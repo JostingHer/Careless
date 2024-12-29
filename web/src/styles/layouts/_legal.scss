@@ -1,0 +1,7 @@
+@use "../../styles/settings/variables";
+
+.l-legal {
+	.docs{
+		padding-top: var(--header-height);
+	}
+}

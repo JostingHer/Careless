@@ -1,0 +1,43 @@
+@use "../settings/variables";
+@use "./auto";
+
+.o-sheet-auto{
+  margin-top: var(--spacing-atom);
+}
+
+.c-sheet-auto{
+  @include variables.boxed-container;
+
+  main{
+    width: 100%;
+
+    .m-info-card-auto{
+      margin-top: var(--spacing-row-gap);
+
+      @media (min-width: auto.$break-sidebar) {
+        display: none;
+      }
+    }
+  }
+
+  aside{
+    display: none;
+
+    .m-info-card-auto{
+      margin-top: 0;
+    }
+
+    @media (min-width: auto.$break-sidebar) {
+      position: sticky;
+      top: var(--spacing-atom);
+      display: block;
+      height: fit-content;
+    }
+  }
+
+  @media (min-width: auto.$break-sidebar) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(435px, 35%);
+    gap: 12px;
+  }
+}

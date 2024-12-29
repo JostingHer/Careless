@@ -1,0 +1,40 @@
+$path: '/assets/fonts/';
+
+
+
+@font-face {
+	font-family: helvetica-neve-italic;
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+	src: url($path + 'helveticaneueblackitalic-webfont.woff2') format('woff2'),
+	    url($path + 'helveticaneueblackitalic-webfont.woff') format('woff');
+}
+
+
+@font-face {
+	font-family: helvetica-neve-bold;
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+	src: url($path + 'helveticaneuebold-webfont.woff2') format('woff2'),
+		url($path + 'helveticaneuebold-webfont.woff') format('woff');
+}
+
+@font-face {
+	font-family: helvetica-neve-light;
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+	src: url($path + 'helveticaneuelight-webfont.woff2') format('woff2'),
+		 url($path + 'helveticaneuelight-webfont.woff') format('woff');
+}
+
+@font-face { 
+	font-family: helvetica-neve-regular;
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+	src: url($path + 'helveticaneue-roman-webfont.woff2') format('woff2'),
+		url($path + 'helveticaneue-roman-webfont.woff') format('woff');
+}

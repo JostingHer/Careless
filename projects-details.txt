@@ -1,0 +1,5 @@
+node: v22.0.0
+yarn: 4.4.1
+web: astro v5.1.1
+backoffice: sanity v3.68.3
+backoffice: prestashop "falta"

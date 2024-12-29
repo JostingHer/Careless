@@ -1,0 +1,44 @@
+@use "../../styles/settings/variables";
+
+.c-list-products__headline {
+  @include variables.boxed-container;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-row-gap);
+  justify-content: center;
+
+  margin-top: calc(var(--spacing-section) /2);
+  margin-bottom: calc(var(--spacing-section) /2);
+
+  @media (min-width: variables.$width-tablet) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.list-products__copy{
+  width: 100%;
+
+  @media (min-width: variables.$width-tablet) {
+    width: 70%;
+    max-width: 960px;
+  }
+}
+
+.c-list-products__bottom {
+  @include variables.boxed-container;
+
+  margin-top: calc(var(--spacing-section) /2 );
+
+  .a-title{
+    margin-top: 1.5lh;
+    margin-bottom: .5lh;
+    font-size: var(--fs-text-large);
+  }
+
+  p{
+    font-size: var(--fs-text-small);
+    line-height: 1.6;
+  }
+}

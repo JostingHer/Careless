@@ -1,0 +1,65 @@
+$spacing: 1.6rem;
+$spacing-s: 1rem;
+$spacing-l: 3.25rem;
+$spacing-xl: 6rem;
+$spacing-xxl: 220px;
+
+$margin-sections: 200px;
+$margin-sections-s: 100px;
+
+/* Queries */
+$width-tablet: 767px;
+$width-laptop: 1023px;
+$width-desktop: 1339px;
+
+/* Este valor $_boxed-rest tiene que ser 100 - var(--boxed-width) expresado en vw. */
+$_boxed-rest: 5vw;
+$_break: 1000px;
+
+$_max-width: 1482px;
+$_max-content: 1482px;
+$_max-boxed: 1482px;
+$_max-boxed-small: 960px;
+
+
+:root {
+	--spacing-atom:  14px;
+	--spacing-section: 60px;
+	--spacing-column-gap: 100px;
+	--spacing-row-gap: 36px;
+	--max-boxed: $_max-boxed;
+	--max-boxed-small: $_max-boxed-small;
+	--boxed-small-width: 80vw;
+	--boxed-width: 85vw;
+	--boxed-docuemnts: 960px;
+	--boxed-article: 653px;
+	--boxed-width-max: #{$_max-width};
+	--boxed-margin: calc((100vw - (var(--boxed-width))) / 2 );
+	--margin-small-boxed-container: 10vw;
+
+	@media (min-width: $_break) {
+		--boxed-small-width: 75vw;
+		--boxed-width: 90vw;
+		--spacing-section: 150px;
+		--spacing-atom: 30px;
+	}
+
+	@media (width >= calc(#{$_max-width} + #{$_boxed-rest})) {
+		--boxed-width: #{$_max-boxed};
+		--boxed-small-width: #{$_max-boxed-small};
+	}
+}
+
+/* Mixins */
+
+@mixin boxed-container {
+	width: var(--boxed-width);
+	max-width: var(--boxed-width-max);
+	margin: 0 auto;
+}
+
+@mixin boxed-container-small {
+	width: var(--boxed-small-width);
+	max-width: var(--boxed-small-width-max);
+	margin: 0 auto;
+}

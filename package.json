@@ -1,0 +1,23 @@
+{
+  "name": "GenZSociety",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "rm:node_modules": "rm -r node_modules && rm -r web/node_modules && rm -r backoffice/node_modules && rm -r packages/*/node_modules",
+    "create:organism": "python3 node_modules/fileseeder/comand_fs.py org",
+    "create:molecule": "python3 node_modules/fileseeder/comand_fs.py mol",
+    "create:atom": "python3 node_modules/fileseeder/comand_fs.py atom",
+    "create:sanity-document": "python3 node_modules/fileseeder/comand_fs.py sdoc",
+    "create:sanity-object": "python3 node_modules/fileseeder/comand_fs.py sobj",
+    "open:fileseeder": "python3 node_modules/fileseeder/interface_fs.py",
+    "create:structure": "python3 node_modules/fileseeder/bystructure_fs.py",
+    "develop:all": "cd web && yarn develop & cd backoffice && yarn develop &",
+    "lint": "cd web && yarn lint && cd ../backoffice && yarn lint",
+    "stylelint": "cd web && yarn stylelint"
+  },
+  "dependencies": {
+    "fileseeder": "https://github.com/TheCookiesAgency/fileseeder.git#astro"
+  },
+  "packageManager": "yarn@4.6.0"
+}

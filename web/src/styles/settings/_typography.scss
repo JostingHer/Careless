@@ -1,0 +1,89 @@
+@use "./layout";
+
+
+
+$font-family: "helvetica-neve-regular", "Gill Sans MT", calibri, "Trebuchet MS", sans-serif;
+
+$ff-normal: "helvetica-neve-regular", "Gill Sans MT", calibri, "Trebuchet MS", sans-serif;
+$ff-bold: "helvetica-neve-bold";
+$ff-semi-bold: "helvetica-neve-semibold";
+
+$ff-italic: "helvetica-neve-italic";
+$ff-light: "helvetica-neve-light";
+$ff-regular: "helvetica-neve-regular";
+
+
+
+:root{
+	--scale-ratio: 1.2; /* Factor de escala, puedes cambiar este valor */
+	--fs-body: calc(.1rem + var(--scale-ratio));
+	--line-height: 1;
+	--fs-title-l: calc(1rem * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio));
+	--fs-title-m: calc(1rem * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio));
+	--fs-title-s: calc(1rem * var(--scale-ratio) * var(--scale-ratio));
+	--fs-text-large: 1.25em;
+	--fs-text-regular:  calc(var(--fs-body) * var(--scale-ratio));
+	--fs-text-small: 0.85em ;
+	--fs-menu: .8rem;
+	--fs-hero: 1rem;
+	--fs-title-section: var(--fs-title-m);
+	--fs-text-button: 1rem;
+	--fs-text-input: 1em;
+	--fs-dialog: 1rem;
+
+	@media (width >= 768px) {
+		--fs-hero: 1.1rem;
+		--line-height-base: 1.4;
+		--fs-text-input: 1em;
+	}
+}
+
+@mixin fs-title-l{
+  margin-top: 1em;
+	font-family: $ff-normal;
+	font-size: var(--fs-title-l);
+
+}
+
+@mixin fs-title-m{
+  margin-top: 1em;
+	font-family: $ff-normal;
+	font-size: var(--fs-title-m);
+
+}
+
+@mixin fs-title-s{
+  margin-top: 1em;
+	font-family: $ff-normal;
+	font-size: var(--fs-title-s);
+
+}
+
+@mixin fs-text-large{
+	font-family: $ff-normal;
+	font-size: var(--fs-text-large);
+}
+
+@mixin fs-text{
+	font-family: $ff-normal;
+	font-size: var(--fs-text-regular);
+}
+
+@mixin fs-text-small{
+	font-family: $ff-normal;
+	font-size: var(--fs-text-small);
+}
+
+@mixin headings{
+  h1, .h1{
+    @include fs-title-l;
+  }
+
+  h2, .h2{
+    @include fs-title-m;
+  }
+
+  h3, .h3{
+    @include fs-title-s;
+  }
+}

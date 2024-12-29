@@ -1,0 +1,33 @@
+@use "../settings/variables";
+
+.l-about-us{
+  .o-section-process-in-steps{
+    margin-top: var(--spacing-section);
+  }
+
+  .o-banner-subscribe{
+    margin-bottom: 0;
+
+    + .o-banner-copy{
+      margin-top: 0;
+    }
+  }
+
+  .o-section-scoring{
+    margin-top: var(--spacing-section);
+
+  }
+
+  .o-section-team-workers{
+    margin-bottom: 0;
+
+    + .o-banner-subscribe{
+      margin-top: 0;
+    }
+  }
+
+  .o-section-map{
+    margin-top: 52px;
+  }
+
+}

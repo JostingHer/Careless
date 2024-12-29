@@ -1,0 +1,16 @@
+node_modules/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+/backoffice/sanity.types.ts
+/backoffice/schema.json
+
+# Local Netlify folder
+.netlify
+/backoffice/scripts/sanity_data.json
+/web/src/public/cucumber-report.html

@@ -1,0 +1,59 @@
+@use "../settings/variables";
+
+.docs {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 1.5em 2em;
+
+	h1 {
+		@include variables.fs-title-l;
+	}
+
+	h2 {
+		@include variables.fs-title-m;
+	}
+
+	h3 {
+		@include variables.fs-title-s;
+	}
+}
+
+.c-boxed {
+	@include variables.boxed-container;
+}
+
+.c-boxed-small {
+	@include variables.boxed-container-small;
+}
+
+
+
+
+.media-in{
+	@media (width <= 1300px) {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.full-content{
+	position: relative;
+	box-sizing: border-box;
+	width: 100vw;
+	max-width:100%;
+}
+
+.fullscreen{
+	position: relative;
+
+	box-sizing: border-box;
+	width: 100vw;
+	max-width:100%;
+	height: 100vh;
+	max-height: 100%;
+  padding: 0.5rem;
+
+	@media (min-width: variables.$width-tablet){
+    padding: 1rem;
+	}
+}

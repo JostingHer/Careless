@@ -1,0 +1,27 @@
+@mixin banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgb(73 73 72 / 60%);
+
+    &::after {
+      content: "";
+
+      position: absolute;
+      right: -162px;
+      bottom: -400px;
+
+      width: 562px;
+      height: 673px;
+
+      background: linear-gradient(161.94deg, rgb(227 166 51 / 10%) 19.26%, rgb(227 166 51 / 16%) 34.32%, rgb(227 166 51 / 49%) 87.7%);
+      filter: blur(236.429px);
+    }
+  }
+  

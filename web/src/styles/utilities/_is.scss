@@ -1,0 +1,20 @@
+@use "../../styles/settings/variables";
+
+.is{
+	&-uppercase{text-transform: uppercase;}
+	&-white{color: var(--c-white)}
+	&-text-center{text-align: center;}
+	&-translucent{opacity: 0.5;}
+	&-pill-text{font-size: var(--fs-text-small);}
+	&-z1{z-index: 1}
+	&-z2{z-index: 2}
+	&-fs-pill { font-size: var(--fs-text-small);}
+  &-fs-btn { font-size: var(--fs-text-button);}
+	&-fs-footer { font-size: var(--fs-text-regular); }
+	&-fs-menu { font-size: var(--fs-text-large); }
+	&-fs-body { font-size: var(--fs-body); }
+	&-fs-lead { font-size: var(--fs--title-s); }
+	&-fs-title-s { font-size: var(--fs--title-s); }
+	&-fs-title-m { font-size: var(--fs--title-m); }
+	&-fs-title-l { font-size: var(--fs--title-l); }
+}

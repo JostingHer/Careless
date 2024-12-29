@@ -1,0 +1,18 @@
+@use "../settings/variables";
+
+body {
+	font-family: variables.$ff-normal;
+	font-size: var(--fs-body);
+	line-height: var(--line-height);
+	color: var(--c-dark);
+
+	background-color:  var(--c-light);
+}
+
+body:has(.m-debugger--danger){
+	background-color: variables.$c-danger;
+
+	* {
+		border: 1px solid variables.$c-warning;
+	}
+}

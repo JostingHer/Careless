@@ -1,20 +1,19 @@
-import { defineField, defineType } from "sanity";
-import { MEDIALIST } from "../definitions/media";
+import {defineField, defineType} from 'sanity'
 
-export default defineType({
-  name: "heroHomeBlog",
-  title: "Hero Home Blog",
-  type: "object",
-  fields: [
-   
-    defineField({
-      name: "copy",
-      title: "title",
-      type: "markdown",
-    }),
-    // PONER UN FILTRO - TIPO CAROUSEL DE TODOS LOS POSTS DE MODA HOMBRES
-    
+import {MEDIALIST} from '../definitions/media'
 
-    ...MEDIALIST,
-  ],
-});
+export const seccionCarousel = defineType({
+    name: 'seccionCarousel',
+    title: 'Sección con carrusel de post el filtro que le pongas',
+    type: 'object',
+    fields: [
+        defineField({
+            name: 'copy',
+            title: 'title',
+            type: 'markdown',
+        }),
+        // PONER UN FILTRO - TIPO CAROUSEL DE TODOS LOS POSTS DE MODA HOMBRES
+
+        ...MEDIALIST,
+    ],
+})

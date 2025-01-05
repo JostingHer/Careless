@@ -1,19 +1,10 @@
-import { prototype } from "easymde";
-import { landing } from "./base/landing";
-import video from "./definitions/video";
-import photo from "./definitions/photo";
-import setting from "./document/setting";
-import homeBlog from "./document/homeBlog";
-import heroHomeBlog from "./objects/heroHomeBlog";
-import summary from "./objects/summary";
-import post from "./document/post";
-import author from "./document/author";
-import category from "./document/category";
-import legal from "./document/legal";
+import {photo, video} from './definitions'
+import {author, category, homeBlog, legal, post, setting} from './document'
+import {heroHomeBlog, summary} from './objects'
 
 export const schemaTypes = [
-    // sort exports schemas base, definitios, objects, sections, document. FROM LESS TO MORE
-  
+    // sort exports schemas definitios, objects, document. FROM LESS TO MORE
+
     // definitions
     photo,
     video,
@@ -24,7 +15,6 @@ export const schemaTypes = [
 
     // sections
 
-
     // documents
     homeBlog,
     author,
@@ -32,8 +22,4 @@ export const schemaTypes = [
     category,
     legal,
     setting,
-   
-
-
-
 ]

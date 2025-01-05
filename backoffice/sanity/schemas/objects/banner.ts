@@ -1,17 +1,17 @@
-import { defineField, defineType } from "sanity";
-import { MEDIACONDITIONAL, MEDIALIST } from "../definitions/media";
+import {defineField, defineType} from 'sanity'
 
-export default defineType({
-  name: "heroHomeBlog",
-  title: "Hero Home Blog",
-  type: "object",
-  fields: [
-    defineField({
-      name: "copy",
-      title: "Información",
-      type: "markdown",
-    }),
-    ...MEDIACONDITIONAL,
-  ],
- 
-});
+import {MEDIACONDITIONAL} from '../definitions/media'
+
+export const banner = defineType({
+    name: 'banner',
+    title: 'Banner básico',
+    type: 'object',
+    fields: [
+        defineField({
+            name: 'copy',
+            title: 'Información',
+            type: 'markdown',
+        }),
+        ...MEDIACONDITIONAL,
+    ],
+})

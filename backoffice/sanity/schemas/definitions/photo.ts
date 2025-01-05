@@ -1,20 +1,20 @@
-import { defineField, defineType } from "sanity";
+import {defineField, defineType} from 'sanity'
 
-export default defineType({
-    name: "photo",
-    title: "Foto",
-    type: "object",
+export const photo = defineType({
+    name: 'photo',
+    title: 'Foto',
+    type: 'object',
     fields: [
         defineField({
-            name: "alt",
-            title: "Texto alternativo",
-            type: "string",
+            name: 'alt',
+            title: 'Texto alternativo',
+            type: 'string',
         }),
 
         defineField({
-            name: "asset",
-            title: "Imagen",
-            type: "image",
+            name: 'asset',
+            title: 'Imagen',
+            type: 'image',
             options: {
                 collapsible: true,
                 collapsed: false,
@@ -23,16 +23,16 @@ export default defineType({
     ],
     preview: {
         select: {
-            title: "alt",
-            asset: "asset",
+            title: 'alt',
+            asset: 'asset',
         },
         prepare(selection) {
-            const { title, asset } = selection;
+            const {title, asset} = selection
             return {
                 title,
-                subtitle: "foto",
+                subtitle: 'foto',
                 media: asset,
-            };
+            }
         },
     },
-});
+})

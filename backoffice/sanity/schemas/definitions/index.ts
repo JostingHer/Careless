@@ -1,3 +1,3 @@
-export * from './media';
-export * from './photo';
-export * from './video';
+export * from './media'
+export * from './photo'
+export * from './video'

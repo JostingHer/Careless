@@ -1,2 +1,2 @@
-export * from './landing';
-export * from './prototype';
+export * from './landing'
+export * from './prototype'

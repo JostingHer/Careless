@@ -13,19 +13,13 @@ export const homeBlog = defineType({
     ],
     fields: [
         ...landing,
-        // Hero
         defineField({
-            name: 'hero',
-            title: 'Hero',
-            type: 'heroHomeBlog',
+            name: 'pageSections',
+            title: 'Secciones de la Página',
+            type: 'sections', // Reutilizando el esquema anterior
             group: 'content',
-            options: {
-                collapsible: true,
-                collapsed: true,
-            },
         }),
     ],
-
     preview: {
         select: {
             title: 'name',

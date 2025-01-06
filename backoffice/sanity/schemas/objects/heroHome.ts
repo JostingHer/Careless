@@ -2,9 +2,9 @@ import {defineField, defineType} from 'sanity'
 
 import {sectionBase} from '../base'
 
-export const banner = defineType({
-    name: 'banner',
-    title: 'Banner básico',
+export const heroHome = defineType({
+    name: 'heroHome',
+    title: 'Hero Home',
     type: 'object',
     fields: [...sectionBase],
 })

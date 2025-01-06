@@ -1,20 +1,22 @@
 import {defineField, defineType} from 'sanity'
 
 import {Languages} from '../../../../company/translations'
+import {prototype} from '../base/prototype'
 
 export const author = defineType({
     name: 'Author',
     title: 'Autores del blog',
     type: 'document',
+    groups: [
+        {name: 'seo', title: 'Metas'},
+        {name: 'content', title: 'Contenido'},
+        {name: 'settings', title: 'Configuración'},
+    ],
     fields: [
+        ...prototype,
         defineField({
-            name: 'name',
+            name: 'nameAuthor',
             title: 'Nombre',
-            type: 'string',
-        }),
-        defineField({
-            name: 'lastName',
-            title: 'Apellidos',
             type: 'string',
         }),
         defineField({
@@ -42,21 +44,6 @@ export const author = defineType({
             name: 'image',
             title: 'Foto',
             type: 'image',
-        }),
-        defineField({
-            name: 'ref',
-            title: 'Referencia',
-            description: 'La misma landing en castellano e inglés debe tener la misma referencia',
-            type: 'string',
-        }),
-        defineField({
-            name: 'language',
-            title: 'Idioma',
-            type: 'string',
-            options: {
-                list: Languages,
-            },
-            initialValue: Languages[0].value,
         }),
     ],
     preview: {

@@ -1,6 +1,20 @@
-import {photo, video} from './definitions'
-import {author, category, homeBlog, legal, post, setting} from './document'
-import {heroHomeBlog, summary} from './objects'
+import {cta, photo, video} from './definitions'
+import {author, category, homeBlog, legal, post, setting, shared, theme} from './document'
+import contact from './document/contact'
+import popups from './document/popups'
+import {
+    banner,
+    heroBasic,
+    heroHome,
+    sectionBasic,
+    sectionCarousel,
+    sectionCarouselPostFilter,
+    sectionGallery,
+    sectionPublicationsCarousel,
+    sections,
+    stories,
+    summary,
+} from './objects'
 
 export const schemaTypes = [
     // sort exports schemas definitios, objects, document. FROM LESS TO MORE
@@ -8,18 +22,32 @@ export const schemaTypes = [
     // definitions
     photo,
     video,
+    cta,
 
     // objects
-    heroHomeBlog,
-    summary,
+    heroBasic,
+    heroHome,
 
-    // sections
+    summary,
+    sectionBasic,
+    sectionCarousel,
+    sections,
+    sectionGallery,
+    sectionPublicationsCarousel,
+    sectionCarouselPostFilter,
+    stories,
+    banner,
 
     // documents
     homeBlog,
     author,
-    post,
     category,
+    post,
+
+    theme,
     legal,
+    popups,
+    shared,
+    contact,
     setting,
 ]

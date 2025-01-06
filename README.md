@@ -1,8 +1,10 @@
-# 🖥️ **Proyecto Web - GenZ Society** 🌟
+# 🖥️ **Proyecto Web - Careless** 🌟
 
 ## 🎯 **Descripción General**
 
-**GenZ Society** es una plataforma web moderna y escalable, construida sobre la **arquitectura hexagonal**. Su objetivo es proporcionar una **tienda online** de fácil gestión, con integración con **Sanity CMS** para la administración de contenido del blog y **PrestaShop** para la gestión de productos y pagos. Esta plataforma también incluye una interfaz de administración (Backoffice) y una interfaz web accesible y optimizada.
+**Careless** es una plataforma web moderna y escalable, construida sobre la **arquitectura hexagonal**. Su objetivo es proporcionar una **tienda online** de fácil gestión, con integración con **Sanity CMS** para la administración de contenido del blog y **PrestaShop** para la gestión de productos y pagos. Esta plataforma también incluye una interfaz de administración (Backoffice) y una interfaz web accesible y optimizada.
+
+**Careless** busca transmitir una actitud relajada y despreocupada, ofreciendo una experiencia de compra en línea donde los usuarios pueden disfrutar de un estilo moderno y sin esfuerzo. El nombre refleja esa sensación de estar bien sin complicarse, como si todo estuviera al alcance de la mano sin esfuerzo, perfecto para aquellos que buscan estar a la moda de una manera relajada.
 
 ---
 
@@ -32,7 +34,6 @@ La **arquitectura hexagonal** (también conocida como arquitectura limpia o de p
 - **Sanity CMS**: Sistema de gestión de contenido flexible y fácil de usar.
 - **PrestaShop**: Plataforma de comercio electrónico para la gestión de productos, pagos y pedidos.
 
-
 ---
 
 ## 🏠 **Backoffice - Sanity & PrestaShop**
@@ -49,12 +50,11 @@ El **Backoffice** permite gestionar el contenido y los productos del sistema. Ac
 
 ---
 
-## 🏢 **Company - Domain **
+## 🏢 **Company - Domain**
 
 La carpeta **`company/`** es el núcleo del proyecto. Aquí reside la lógica de negocio que no depende de ninguna otra capa. Todo lo relacionado con el dominio del sistema (como las entidades de productos, pedidos, usuarios, etc.) se encuentra aquí.
 
 ### Estructura de la carpeta `company/`: Por decidir
-
 
 ---
 
@@ -67,6 +67,8 @@ Clona este repositorio a tu máquina local:
 ```bash
 git clone https://github.com/JostingHer/GenZSociety
 cd genz-society
+```
 
+---
 
-
+El nombre "Careless" transmite una imagen fresca, relajada y moderna, lo que hace que la tienda online tenga un toque distintivo y atractivo para aquellos que buscan productos de calidad sin complicarse demasiado.

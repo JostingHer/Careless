@@ -1,4 +1,4 @@
-import {cta, photo, video} from './definitions'
+import {cta, metadata, photo, video} from './definitions'
 import {author, category, homeBlog, legal, post, setting, shared, theme} from './document'
 import contact from './document/contact'
 import popups from './document/popups'
@@ -23,6 +23,7 @@ export const schemaTypes = [
     photo,
     video,
     cta,
+    metadata,
 
     // objects
     heroBasic,

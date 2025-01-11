@@ -1,20 +1,21 @@
+import {table} from '@sanity/table'
+import {visionTool} from '@sanity/vision'
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
+import {markdownSchema} from 'sanity-plugin-markdown'
+
 import {schemaTypes} from './schemas'
-import { table } from '@sanity/table'
-import { markdownSchema } from 'sanity-plugin-markdown'
 
 export default defineConfig({
-  name: 'default',
-  title: 'Careless',
+    name: 'default',
+    title: 'Careless',
 
-  projectId: 'pwcsr382',
-  dataset: 'production',
+    projectId: 'pwcsr382',
+    dataset: 'production',
 
-  plugins: [structureTool(), visionTool(), table(), markdownSchema() ],
+    plugins: [structureTool(), visionTool(), table(), markdownSchema()],
 
-  schema: {
-    types: [...schemaTypes],
-  },
+    schema: {
+        types: [...schemaTypes],
+    },
 })

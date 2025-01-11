@@ -30,7 +30,7 @@ const landing = [
     {
         name: 'metas',
         title: 'SEO',
-        type: 'string',
+        type: 'metadata',
         group: 'seo',
         options: {collapsible: true, collapsed: true},
     },

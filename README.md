@@ -6,11 +6,13 @@
 
 **Careless** busca transmitir una actitud relajada y despreocupada, ofreciendo una experiencia de compra en línea donde los usuarios pueden disfrutar de un estilo moderno y sin esfuerzo. El nombre refleja esa sensación de estar bien sin complicarse, como si todo estuviera al alcance de la mano sin esfuerzo, perfecto para aquellos que buscan estar a la moda de una manera relajada.
 
+Figma Blog Design: https://www.figma.com/design/MnolKVp9QeGhx5MasknQbO/TFG-DAW-ONLINE_SHOP?node-id=0-1&p=f&t=i7QFBa4p0zFTgQcl-0
+
 ---
 
 ## 🔄 **Arquitectura Hexagonal**
 
-La **arquitectura hexagonal** (también conocida como arquitectura limpia o de puertos y adaptadores) permite una separación clara entre la lógica de negocio y las interfaces externas. Este enfoque facilita la escalabilidad, la mantenibilidad y la prueba de los componentes del sistema.
+La **arquitectura hexagonal** (también conocida como arquitectura limpia o de puertos y adaptadores) permite una separación clara entre la lógica de negocio y las interfaces externas. Este enfoque facilita la escalabilidad, la mantenibilidad y la prueba  de los componentes del sistema.
 
 ### Componentes Principales:
 

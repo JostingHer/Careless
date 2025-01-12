@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import { getSlugWithLang } from "@/translations/modules/getSlugWithLang";
+import { Languages } from "@/translations/domain/languages";
+import Layout from "@/layouts/Layout.astro";
+// Esta función genera las rutas estáticas para cada página de `homeBlog`
+export async function getStaticPaths() {
+    const homePages = await getCollection("homeBlog");
+
+    console.log('Home pages:', homePages);  // Añadir un log para ver las páginas de `homeBlog`
+
+    const paths = homePages.map((page) => ({
+            params: {
+                home: `${getSlugWithLang(page.data.lang, page.data.slug)}`,
+            },
+            props: {
+                data: page.data,
+            },
+        })
+    );
+    console.log('Generated paths:', paths);  // Añadir un log para ver las rutas generadas
+
+
+    return paths;
+}
+
+const { data } = Astro.props;
+const { home } = Astro.params;
+
+console.log("hola", data);
+console.log("hlal", Astro.params);
+---
+<Layout>
+ <h1>hola</h1>
+
+ <pre>
+    <code>
+        {JSON.stringify(data, null, 2)}
+    </code>
+ </pre>
+</Layout>

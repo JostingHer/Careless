@@ -73,6 +73,8 @@ export type Contact = {
   slug?: Slug
   language?: 'es' | 'en'
   metas?: Metadata
+  summary?: Summary
+  ref?: string
 }
 
 export type SharedSection = {
@@ -174,6 +176,8 @@ export type HomeBlog = {
   slug?: Slug
   language?: 'es' | 'en'
   metas?: Metadata
+  summary?: Summary
+  ref?: string
   pageSections?: Array<
     | {
         _ref: string

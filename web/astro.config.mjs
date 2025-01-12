@@ -12,6 +12,10 @@ import { loadITCSS } from "./config/auto-load-styles.mjs";
 
 import sanity from "@sanity/astro";
 import dotenv from "dotenv";
+import {
+    DEFAULT_LANGUAGE,
+    Languages,
+} from "./src/translations/domain/languages";
 
 dotenv.config();
 // https://astro.build/config
@@ -36,7 +40,7 @@ export default defineConfig({
             }),
         },
     },
-    output: "server",
+    output: "static",
     integrations: [
         sitemap(),
         mdx(),
@@ -48,5 +52,9 @@ export default defineConfig({
             useCdn: false,
         }),
     ],
+    i18n: {
+        defaultLocale: DEFAULT_LANGUAGE,
+        locales: [...Languages.map((lang) => lang.value)],
+    },
     adapter: netlify(),
 });

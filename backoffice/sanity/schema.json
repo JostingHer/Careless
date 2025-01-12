@@ -366,6 +366,21 @@
           "name": "metadata"
         },
         "optional": true
+      },
+      "summary": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "summary"
+        },
+        "optional": true
+      },
+      "ref": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
       }
     }
   },
@@ -951,6 +966,21 @@
         "value": {
           "type": "inline",
           "name": "metadata"
+        },
+        "optional": true
+      },
+      "summary": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "summary"
+        },
+        "optional": true
+      },
+      "ref": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       },

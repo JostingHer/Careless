@@ -36,7 +36,7 @@ export default defineConfig({
             }),
         },
     },
-    output: "static",
+    output: "server",
     integrations: [
         sitemap(),
         mdx(),

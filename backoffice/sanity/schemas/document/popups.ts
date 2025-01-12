@@ -1,6 +1,6 @@
 import {defineField, defineType} from 'sanity'
 
-import {Languages} from '../../../../company/translations'
+import {Languages} from '../../../../company/settings/translations'
 
 export default defineType({
     name: 'popup',

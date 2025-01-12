@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 
+import {prototype} from '../base'
 import {landing} from '../base/landing'
 
 export const homeBlog = defineType({
@@ -12,7 +13,7 @@ export const homeBlog = defineType({
         {name: 'settings', title: 'Configuración'},
     ],
     fields: [
-        ...landing,
+        ...prototype,
         defineField({
             name: 'pageSections',
             title: 'Secciones de la Página',

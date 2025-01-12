@@ -1,6 +1,6 @@
 import {defineField} from 'sanity'
 
-import {Languages} from '../../../../company/translations'
+import {Languages} from '../../../../company/settings/translations'
 
 const landing = [
     defineField({

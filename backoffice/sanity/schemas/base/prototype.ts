@@ -22,5 +22,11 @@ const prototype = [
         type: 'string',
         validation: (Rule) => Rule.required(),
     }),
+    defineField({
+        name: 'refDoc',
+        title: 'ReferenciaDoc',
+        type: 'reference',
+        to: [{type: 'homeBlog'}],
+    }),
 ]
 export {prototype}

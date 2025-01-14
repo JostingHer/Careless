@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 
     const paths = homePages.map((page) => ({
             params: {
-                home: `${getSlugWithLang(page.data.lang, page.data.slug)}`,
+                home: `${getSlugWithLang(page.data.slug, page.data.lang)}`,
             },
             props: {
                 data: page.data,
@@ -27,8 +27,7 @@ export async function getStaticPaths() {
 const { data } = Astro.props;
 const { home } = Astro.params;
 
-console.log("hola", data);
-console.log("hlal", Astro.params);
+console.log("slug current", Astro.params);
 ---
 <Layout>
  <h1>hola</h1>

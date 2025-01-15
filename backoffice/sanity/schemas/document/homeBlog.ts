@@ -15,6 +15,12 @@ export const homeBlog = defineType({
     fields: [
         ...prototype,
         defineField({
+            name: 'refDoc',
+            title: 'ReferenciaDoc',
+            type: 'reference',
+            to: [{type: 'homeBlog'}],
+        }),
+        defineField({
             name: 'pageSections',
             title: 'Secciones de la Página',
             type: 'sections', // Reutilizando el esquema anterior

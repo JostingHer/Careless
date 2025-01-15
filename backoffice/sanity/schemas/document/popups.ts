@@ -12,6 +12,12 @@ export default defineType({
     ],
     fields: [
         defineField({
+            name: 'refDoc',
+            title: 'ReferenciaDoc',
+            type: 'reference',
+            to: [{type: 'popup'}],
+        }),
+        defineField({
             name: 'ref',
             title: 'Referencia',
             type: 'string',

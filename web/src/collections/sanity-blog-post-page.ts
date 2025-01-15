@@ -9,12 +9,12 @@ export const postBlogInSanity = defineCollection({
         );
 
         console.log(postList)
-        return postList.map((home) => ({
-            ...home,
-            id: home._id,
-            slug: home.slug?.current,
-            ref: home.ref,
-            lang: home.language,
+        return postList.map((post) => ({
+            ...post,
+            id: post._id,
+            slug: post.slug?.current,
+            ref: post.ref,
+            lang: post.language,
         }));
     },
 });

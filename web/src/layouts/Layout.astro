@@ -2,10 +2,24 @@
 import { getLangFromUrl } from "@/i18n/utils";
 import "./../styles/index.scss";
 import SelectLang from "@/components/SelectLang.astro";
+import type { Page, PrototypePage } from "@/shared/utils/typesGenerals";
+import sanityClient from "@/shared/sanity/client";
 
 
-const { title } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
+
+
+const { id, title, language  } = Astro.props;
+
+let data;
+
+if(id){
+    data = await sanityClient.fetch<(Page | PrototypePage) & { _id: string } & { name: string }>
+    (`*[_id == "${id}" ][0]`);
+} 
+
+
+
 ---
 
 <!doctype html>
@@ -18,7 +32,6 @@ const lang = getLangFromUrl(Astro.url);
     <title>{title}</title>
   </head>
   <body>
-    <SelectLang />
     <slot />
   </body>
 </html>

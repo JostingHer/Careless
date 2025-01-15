@@ -20,6 +20,7 @@ import {
 dotenv.config();
 // https://astro.build/config
 export default defineConfig({
+    output: "static",
     env: {
         schema: {
             ENV: envField.string({
@@ -40,7 +41,6 @@ export default defineConfig({
             }),
         },
     },
-    output: "static",
     integrations: [
         sitemap(),
         mdx(),

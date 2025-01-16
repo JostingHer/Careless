@@ -14,12 +14,6 @@ export const post = defineType({
     fields: [
         ...prototype,
         defineField({
-            name: 'refDoc',
-            title: 'ReferenciaDoc',
-            type: 'reference',
-            to: [{type: 'Post'}],
-        }),
-        defineField({
             name: 'description',
             description: 'Bloque de texto que aparece entre la foto principal y el nombre del artículo',
             title: 'Descripción',

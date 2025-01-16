@@ -15,12 +15,6 @@ export const author = defineType({
     fields: [
         ...prototype,
         defineField({
-            name: 'refDoc',
-            title: 'ReferenciaDoc',
-            type: 'reference',
-            to: [{type: 'Author'}],
-        }),
-        defineField({
             name: 'nameAuthor',
             title: 'Nombre',
             type: 'string',

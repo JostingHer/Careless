@@ -14,12 +14,6 @@ export const legal = defineType({
     fields: [
         ...prototype,
         defineField({
-            name: 'refDoc',
-            title: 'ReferenciaDoc',
-            type: 'reference',
-            to: [{type: 'legal'}],
-        }),
-        defineField({
             name: 'contentList',
             description: 'Hace referencia al contenido',
             title: 'Contenido',

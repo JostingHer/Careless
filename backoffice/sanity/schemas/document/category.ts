@@ -14,12 +14,6 @@ export const category = defineType({
     fields: [
         ...prototype,
         defineField({
-            name: 'refDoc',
-            title: 'ReferenciaDoc',
-            type: 'reference',
-            to: [{type: 'Category'}],
-        }),
-        defineField({
             name: 'contentCopy',
             title: 'Contenido',
             type: 'markdown',

@@ -4,11 +4,10 @@ import type { Post } from "@/shared/sanity/sanity.types";
 
 export const postBlogInSanity = defineCollection({
     loader: async () => {
-        const postList = await sanityClient.fetch<Array<Post>>(
-            `*[_type == "Post" ]`,
-        );
+        const postList =
+            await sanityClient.fetch<Array<Post>>(`*[_type == "Post" ]`);
 
-        console.log(postList)
+        console.log(postList);
         return postList.map((post) => ({
             ...post,
             id: post._id,

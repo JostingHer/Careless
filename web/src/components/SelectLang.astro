@@ -1,14 +1,31 @@
 ---
+import { getSlugWithLang } from '@/translations/modules/getSlugWithLang';
 import { languages } from '../i18n/ui';
-import { getLangFromUrl, useTranslatedPath } from '../i18n/utils';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '../i18n/utils';
+
+
+const { listLinks } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url) ?? "";
-const traslatedPath = useTranslatedPath(lang as any);
+
+
+const t = useTranslations(lang);
+
 ---
-<ul>
-  {Object.entries(languages).map(([lang, label]) => (
-    <li>
-      <a href={traslatedPath("/", lang)}>{label}</a>
-    </li>
-  ))}
-</ul>
+<header>
+  <nav>
+      <a href={getSlugWithLang("/", lang)} >{t("home")}</a>
+      <a>{t("about")}</a>
+      <a >{t("contact")}</a>
+      <a >{t("shop")}</a>
+      <a >{t("blog")}</a>
+  </nav>
+
+    {
+      listLinks.map((link) => (
+          <a href={link.link}>{link.lang}</a>
+          <br>
+      ))
+  }
+
+</header>

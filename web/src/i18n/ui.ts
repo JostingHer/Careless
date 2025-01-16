@@ -8,15 +8,17 @@ export const showDefaultLang = true;
 
 export const ui = {
     en: {
-        title: 'Welcome to <span class="text-gradient">Astro</span>',
-        descriptions:
-            'To get started, open the directory <code>src/pages</code> in your project.<br /> <strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.',
-        subcriptions: "Welcome to Astro",
+        home: "home",
+        about: "Acerca de",
+        contact: "Contact",
+        shop: "shop",
+        blog: "Blog",
     },
     es: {
-        title: 'Bienvenido a <span class="text-gradient">Astro</span>',
-        descriptions:
-            'To get started, open the directory <code>src/pages</code> in your project.<br /> <strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.',
-        subcriptions: "Bienvenido a Astro",
+        home: "Inicio",
+        about: "Nosotros",
+        contact: "Contacto",
+        shop: "Tienda",
+        blog: "Blog",
     },
 } as const;

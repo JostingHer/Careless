@@ -3,15 +3,11 @@ import { getCollection } from "astro:content";
 import { getSlugWithLang } from "@/translations/modules/getSlugWithLang";
 import type { LANGUAGE, Languages } from "@/translations/domain/languages";
 import Layout from "@/layouts/Layout.astro";
-import SelectLang from "@/components/SelectLang.astro";
 import Welcome from "@/components/Welcome.astro";
+import SelectLang from "@/components/SelectLang.astro";
 // Esta función genera las rutas estáticas para cada página de `homeBlog`
 export async function getStaticPaths() {
     const homePages = await getCollection("homeBlog") ;
-
-    console.log('Home pages:', homePages);  // Añadir un log para ver las páginas de `homeBlog`
-
-    
 
     const paths = homePages.map((page) => ({
             params: {
@@ -22,48 +18,82 @@ export async function getStaticPaths() {
             },
         })
     );
-    console.log('Generated paths:', paths);  // Añadir un log para ver las rutas generadas
-
-
+    console.log('Generated paths:', paths);
     return paths;
 }
 
 const { data } = Astro.props;
 const { home } = Astro.params;
 
-const lang = home.split("/")[0] as LANGUAGE;
+let lang = home.split("/")[0] as LANGUAGE;
 console.log('Lang:', lang);  
 
-const reference = data.refDoc._ref;
+
+
+const reference = data.ref;
 
 console.log('Reference:', reference);
 
-const dataOtherLang = await getCollection("homeBlog");
-
-const dataOtherLangFiltered = dataOtherLang.filter((page) => page.data.id === reference);
+const allData = await getCollection("homeBlog");
 
 
-const linkOtherLang = getSlugWithLang(dataOtherLangFiltered[0].data.slug, dataOtherLangFiltered[0].data.lang);
+console.log('All data:', allData);
 
-const listLinks = dataOtherLang.map((page) => ({
+const dataOtherLangFiltered = allData.filter((page) => page.data.ref === reference);
+
+console.log('Data other lang filtered:', dataOtherLangFiltered);
+
+
+const listLinks = dataOtherLangFiltered.map((page) => ({
     lang: page.data.lang,
     link: getSlugWithLang(page.data.slug, page.data.lang),
 }));
 console.log('List links:', listLinks);
 
 
+const dataPost = await getCollection("postBlog");
+
+const listLinksPost = dataPost.map((post) => {
+        return {
+            lang: post.data.lang,
+            link: getSlugWithLang(post.data.slug, post.data.lang),
+        };
+})
+
+
+if(lang !== "es" && lang !== "en"){
+    lang = "es" as LANGUAGE;        
+}
+
+const filterPostByLang = listLinksPost.filter(post => post.lang ===  lang);
+
+console.log("postByLANG",filterPostByLang)
 
 
 ---
 <Layout>
 
+<SelectLang listLinks={listLinks}/>
 
- {
-    listLinks.map((link) => (
-        <a href={link.link}>{link.lang}</a>
-        <br>
-    ))
-}
+<ul>
+    {
+        filterPostByLang.map((post) => (
+            <li>
+                <a href={
+                    post.link 
+                }>   {post.link} </a>
+            </li>
+        ))
+    }
+</ul>
+
+<pre>
+    <code>
+        {
+            JSON.stringify(data, null, 2)
+        }
+    </code>
+</pre>
 
 
 <Welcome title={data.lang} />

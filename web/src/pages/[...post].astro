@@ -32,13 +32,38 @@ export async function getStaticPaths() {
 const { data } = Astro.props;
 const { post } = Astro.params;
 
-const lang = post.split("/")[0] as LANGUAGE;
-console.log('Lang:', lang);  
+const dataOtherLang = await getCollection("postBlog");
+
+let reference = data.id;
+
+if(data.refDoc){
+    reference = data.refDoc._ref;
+}
+
+const dataOtherLangFiltered = dataOtherLang.filter((page) => page.data.ref === reference);
+
+const listLinks = dataOtherLangFiltered.map((page) => ({
+    lang: page.data.lang,
+    link: getSlugWithLang(page.data.slug, page.data.lang),
+}));
+console.log('List links:', listLinks);
+
+
 
 
 ---
 <Layout>
 
 <h1>{data.lang}/{data.slug}</h1>
+
+
+{
+    listLinks.map((link) => (
+        <a href={link.link}>{link.lang}</a>
+        <br>
+    ))
+}
+
+
 
 </Layout>

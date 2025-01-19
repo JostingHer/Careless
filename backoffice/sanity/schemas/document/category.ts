@@ -22,6 +22,8 @@ export const category = defineType({
     preview: {
         select: {
             title: 'name',
+            media: 'image',
+            subtitle: 'language',
         },
     },
 })

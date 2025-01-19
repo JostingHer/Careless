@@ -21,7 +21,6 @@ const prototype = [
         description: 'La misma landing en castellano e inglés debe tener la misma referencia',
         type: 'string',
         validation: (Rule) => Rule.required(),
-    })
-
+    }),
 ]
 export {prototype}

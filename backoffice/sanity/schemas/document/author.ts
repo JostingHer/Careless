@@ -50,6 +50,7 @@ export const author = defineType({
         select: {
             title: 'name',
             media: 'image',
+            subtitle: 'language',
         },
     },
 })

@@ -27,10 +27,16 @@ export const shared = defineType({
             initialValue: Languages[0].value,
         }),
         defineField({
+            name: 'ref',
+            title: 'Referencia',
+            description: 'La misma landing en castellano e inglés debe tener la misma referencia',
+            type: 'string',
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
             name: 'pageSections',
             title: 'Secciones de la Página',
             type: 'sections',
-            group: 'content',
         }),
     ],
     preview: {

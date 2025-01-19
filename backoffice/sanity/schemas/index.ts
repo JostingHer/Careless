@@ -11,6 +11,7 @@ import {
     sectionCarouselPostFilter,
     sectionGallery,
     sectionPublicationsCarousel,
+    sectionReference,
     sections,
     stories,
     summary,
@@ -30,9 +31,9 @@ export const schemaTypes = [
     heroHome,
 
     summary,
+    sectionReference,
     sectionBasic,
     sectionCarousel,
-    sections,
     sectionGallery,
     sectionPublicationsCarousel,
     sectionCarouselPostFilter,
@@ -51,4 +52,5 @@ export const schemaTypes = [
     shared,
     contact,
     setting,
+    sections,
 ]

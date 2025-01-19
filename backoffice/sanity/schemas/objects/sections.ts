@@ -6,10 +6,9 @@ export const sections = defineType({
     type: 'array',
     of: [
         {
-            type: 'reference',
-            name: 'Seccion de referencia',
-            title: 'Seccion en referencia (compartida)',
-            to: [{type: 'sharedSection'}],
+            type: 'sectionReference',
+            name: 'sectionReference',
+            title: 'Referencia a una sección compartida',
             options: {
                 collapsible: true,
                 collapsed: true,

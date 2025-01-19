@@ -46,6 +46,39 @@ export type Geopoint = {
   alt?: number
 }
 
+export type Sections = Array<
+  | ({
+      _key: string
+    } & SectionReference)
+  | ({
+      _key: string
+    } & HeroHome)
+  | ({
+      _key: string
+    } & HeroBasic)
+  | ({
+      _key: string
+    } & Banner)
+  | ({
+      _key: string
+    } & SectionCarousel)
+  | ({
+      _key: string
+    } & SectionCarouselPostFilter)
+  | ({
+      _key: string
+    } & SectionPublicationsCarousel)
+  | ({
+      _key: string
+    } & SectionGallery)
+  | ({
+      _key: string
+    } & Stories)
+  | ({
+      _key: string
+    } & SectionBasic)
+>
+
 export type Setting = {
   _id: string
   _type: 'setting'
@@ -71,56 +104,10 @@ export type Contact = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en'
+  language?: 'es' | 'en' | 'fr'
   metas?: Metadata
   summary?: Summary
   ref?: string
-}
-
-export type SharedSection = {
-  _id: string
-  _type: 'sharedSection'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  language?: 'es' | 'en'
-  pageSections?: Array<
-    | {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        _key: string
-        [internalGroqTypeReferenceTo]?: 'sharedSection'
-      }
-    | ({
-        _key: string
-      } & HeroHome)
-    | ({
-        _key: string
-      } & HeroBasic)
-    | ({
-        _key: string
-      } & Banner)
-    | ({
-        _key: string
-      } & SectionCarousel)
-    | ({
-        _key: string
-      } & SectionCarouselPostFilter)
-    | ({
-        _key: string
-      } & SectionPublicationsCarousel)
-    | ({
-        _key: string
-      } & SectionGallery)
-    | ({
-        _key: string
-      } & Stories)
-    | ({
-        _key: string
-      } & SectionBasic)
-  >
 }
 
 export type Legal = {
@@ -131,7 +118,7 @@ export type Legal = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en'
+  language?: 'es' | 'en' | 'fr'
   metas?: Metadata
   summary?: Summary
   ref?: string
@@ -146,7 +133,7 @@ export type Post = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en'
+  language?: 'es' | 'en' | 'fr'
   metas?: Metadata
   summary?: Summary
   ref?: string
@@ -174,46 +161,11 @@ export type HomeBlog = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en'
+  language?: 'es' | 'en' | 'fr'
   metas?: Metadata
   summary?: Summary
   ref?: string
-  pageSections?: Array<
-    | {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        _key: string
-        [internalGroqTypeReferenceTo]?: 'sharedSection'
-      }
-    | ({
-        _key: string
-      } & HeroHome)
-    | ({
-        _key: string
-      } & HeroBasic)
-    | ({
-        _key: string
-      } & Banner)
-    | ({
-        _key: string
-      } & SectionCarousel)
-    | ({
-        _key: string
-      } & SectionCarouselPostFilter)
-    | ({
-        _key: string
-      } & SectionPublicationsCarousel)
-    | ({
-        _key: string
-      } & SectionGallery)
-    | ({
-        _key: string
-      } & Stories)
-    | ({
-        _key: string
-      } & SectionBasic)
-  >
+  pageSections?: Sections
 }
 
 export type Banner = {
@@ -282,7 +234,7 @@ export type Author = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en'
+  language?: 'es' | 'en' | 'fr'
   metas?: Metadata
   summary?: Summary
   ref?: string
@@ -312,7 +264,7 @@ export type Category = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en'
+  language?: 'es' | 'en' | 'fr'
   metas?: Metadata
   summary?: Summary
   ref?: string
@@ -364,43 +316,6 @@ export type SectionGallery = {
   galleryStyles?: 'mosaic' | 'carousel' | 'grid'
 }
 
-export type Sections = Array<
-  | {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      _key: string
-      [internalGroqTypeReferenceTo]?: 'sharedSection'
-    }
-  | ({
-      _key: string
-    } & HeroHome)
-  | ({
-      _key: string
-    } & HeroBasic)
-  | ({
-      _key: string
-    } & Banner)
-  | ({
-      _key: string
-    } & SectionCarousel)
-  | ({
-      _key: string
-    } & SectionCarouselPostFilter)
-  | ({
-      _key: string
-    } & SectionPublicationsCarousel)
-  | ({
-      _key: string
-    } & SectionGallery)
-  | ({
-      _key: string
-    } & Stories)
-  | ({
-      _key: string
-    } & SectionBasic)
->
-
 export type SectionCarousel = {
   _type: 'sectionCarousel'
   copy?: string
@@ -440,6 +355,28 @@ export type SectionBasic = {
     video?: Video
   }
   reverse?: boolean
+}
+
+export type SectionReference = {
+  _type: 'sectionReference'
+  sharedRef?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'sharedSection'
+  }
+}
+
+export type SharedSection = {
+  _id: string
+  _type: 'sharedSection'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  language?: 'es' | 'en' | 'fr'
+  ref?: string
+  pageSections?: Sections
 }
 
 export type Summary = {
@@ -541,6 +478,12 @@ export type Popup = {
   _createdAt: string
   _updatedAt: string
   _rev: string
+  refDoc?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'popup'
+  }
   ref?: string
   copy?: string
   showPhone?: boolean
@@ -557,7 +500,7 @@ export type Popup = {
     _type: 'image'
   }
   details?: string
-  language?: 'es' | 'en'
+  language?: 'es' | 'en' | 'fr'
 }
 
 export type Video = {
@@ -699,9 +642,9 @@ export type AllSanitySchemaTypes =
   | SanityImagePalette
   | SanityImageDimensions
   | Geopoint
+  | Sections
   | Setting
   | Contact
-  | SharedSection
   | Legal
   | Post
   | HomeBlog
@@ -713,9 +656,10 @@ export type AllSanitySchemaTypes =
   | Slug
   | SectionPublicationsCarousel
   | SectionGallery
-  | Sections
   | SectionCarousel
   | SectionBasic
+  | SectionReference
+  | SharedSection
   | Summary
   | HeroHome
   | HeroBasic

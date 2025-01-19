@@ -1,0 +1,262 @@
+---
+import { getSlugWithLang } from '@/translations/modules/getSlugWithLang';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '../i18n/utils';
+
+const { listLinks } = Astro.props;
+const lang = getLangFromUrl(Astro.url) ?? "";
+const t = useTranslations(lang);
+---
+
+<header class="navbar">
+  <div class="navbar__container">
+    <a href={getSlugWithLang("/", lang)} class="navbar__logo">
+      Logo
+    </a>
+
+    <button 
+      class="navbar__toggle" 
+      aria-label="Toggle Menu"
+      aria-expanded="false"
+      id="nav-toggle"
+    >
+      <span class="navbar__toggle-line"></span>
+      <span class="navbar__toggle-line"></span>
+      <span class="navbar__toggle-line"></span>
+    </button>
+
+    <nav class="navbar__menu" id="nav-menu">
+      <ul class="navbar__list">
+        <li class="navbar__item">
+          <a href={getSlugWithLang("/", lang)} class="navbar__link">{t("home")}</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#" class="navbar__link">{t("about")}</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#" class="navbar__link">{t("contact")}</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#" class="navbar__link">{t("shop")}</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#" class="navbar__link">{t("blog")}</a>
+        </li>
+      </ul>
+
+      <div class="navbar__lang">
+        <button class="navbar__lang-btn" id="lang-toggle">
+          <span class="navbar__lang-current">{lang.toUpperCase()}</span>
+          <svg class="navbar__lang-icon" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="navbar__lang-dropdown" id="lang-dropdown">
+          {listLinks.map((link) => (
+            <a href={link.link} class="navbar__lang-link">
+              {link.lang.toUpperCase()}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* Bloque principal */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  /* Contenedor */
+  .navbar__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Logo */
+  .navbar__logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* Botón toggle */
+  .navbar__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .navbar__toggle-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #000;
+    transition: 0.3s;
+  }
+
+  /* Menú principal */
+  .navbar__menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .navbar__list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar__link {
+    color: #000;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+
+  .navbar__link:hover {
+    color: #666;
+  }
+
+  /* Selector de idioma */
+  .navbar__lang {
+    position: relative;
+  }
+
+  .navbar__lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    color: #000;
+  }
+
+  .navbar__lang-icon {
+    transition: transform 0.3s;
+  }
+
+  .navbar__lang-btn.active .navbar__lang-icon {
+    transform: rotate(180deg);
+  }
+
+  .navbar__lang-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 100px;
+  }
+
+  .navbar__lang-dropdown--visible {
+    display: flex;
+  }
+
+  .navbar__lang-link {
+    color: #000;
+    text-decoration: none;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    transition: background 0.3s;
+    border-radius: 4px;
+  }
+
+  .navbar__lang-link:hover {
+    background: #f5f5f5;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .navbar__toggle {
+      display: flex;
+    }
+
+    .navbar__menu {
+      position: fixed;
+      top: 72px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 72px);
+      background: white;
+      flex-direction: column;
+      padding: 2rem;
+      transform: translateX(100%);
+      transition: transform 0.3s;
+    }
+
+    .navbar__menu--visible {
+      transform: translateX(0);
+    }
+
+    .navbar__list {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .navbar__link {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  const langToggle = document.getElementById('lang-toggle');
+  const langDropdown = document.getElementById('lang-dropdown');
+
+  navToggle?.addEventListener('click', () => {
+    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', (!isExpanded).toString());
+    navMenu?.classList.toggle('navbar__menu--visible');
+    
+    if (isExpanded) {
+      document.body.style.overflow = '';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+  });
+
+  langToggle?.addEventListener('click', () => {
+    langToggle.classList.toggle('active');
+    langDropdown?.classList.toggle('navbar__lang-dropdown--visible');
+  });
+
+  // Cerrar el menú de idiomas al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    if (!langToggle?.contains(e.target as Node)) {
+      langToggle?.classList.remove('active');
+      langDropdown?.classList.remove('navbar__lang-dropdown--visible');
+    }
+  });
+</script>

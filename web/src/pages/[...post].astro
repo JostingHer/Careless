@@ -1,11 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import { getSlugWithLang } from "@/translations/modules/getSlugWithLang";
-import type { LANGUAGE, Languages } from "@/translations/domain/languages";
 import Layout from "@/layouts/Layout.astro";
 import { ignores } from "eslint-plugin-prettier/recommended";
-import SelectLang from "@/components/SelectLang.astro";
 import Welcome from "@/components/Welcome.astro";
+import NavBar from "@/components/NavBar.astro";
 // Esta función genera las rutas estáticas para cada página de `homeBlog`
 export async function getStaticPaths() {
     const postPages = await getCollection("postBlog") ;
@@ -14,55 +13,50 @@ export async function getStaticPaths() {
 
     
 
-    const paths = postPages.map((page) => ({
-            params: {
-                post: `${getSlugWithLang(page.data.slug, page.data.lang)}`,
-            },
-            props: {
-                data: page.data,
-            },
-        })
-    );
+    const paths = postPages.map((page) => {
+
+        const reference = page.data.ref;
+        const dataOtherLangFiltered = postPages.filter((page) => page.data.ref === reference);
+
+        const listLinks = dataOtherLangFiltered.map((page) => ({
+            lang: page.data.lang,
+            link: getSlugWithLang(page.data.slug, page.data.lang),
+        }));
+
+                return {
+                    params: {
+                        post: `${getSlugWithLang(page.data.slug, page.data.lang)}`,
+                    },
+                    props: {
+                        data: page.data,
+                        listLinks
+                      }
+                 }
+        });
     console.log('Generated paths posts:', paths);  // Añadir un log para ver las rutas generadas
-
-
     return paths;
 }
 
-const { data } = Astro.props;
+const { data, listLinks } = Astro.props;
 const { post } = Astro.params;
 
-const dataOtherLang = await getCollection("postBlog");
 
-let reference = data.id;
 
-if(data.refDoc){
-    reference = data.refDoc._ref;
-}
-
-const dataOtherLangFiltered = dataOtherLang.filter((page) => page.data.ref === reference);
-
-const listLinks = dataOtherLangFiltered.map((page) => ({
-    lang: page.data.lang,
-    link: getSlugWithLang(page.data.slug, page.data.lang),
-}));
 console.log('List links:', listLinks);
-
-
-
 
 ---
 <Layout>
+    <NavBar listLinks={listLinks}/>
 
-<h1>{data.lang}/{data.slug}</h1>
+    <pre>
+        <code>
+            listLinks: {JSON.stringify(data, null, 2)}
+        </code>
+    </pre>
+    
+    
 
 
-{
-    listLinks.map((link) => (
-        <a href={link.link}>{link.lang}</a>
-        <br>
-    ))
-}
 
 
 

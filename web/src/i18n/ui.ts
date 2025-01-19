@@ -1,9 +1,3 @@
-export const languages = {
-    en: "English",
-    es: "Español",
-};
-
-export const defaultLang = "es";
 export const showDefaultLang = true;
 
 export const ui = {
@@ -19,6 +13,13 @@ export const ui = {
         about: "Nosotros",
         contact: "Contacto",
         shop: "Tienda",
+        blog: "Blog",
+    },
+    fr: {
+        home: "D'accueil",
+        about: "À propos",
+        contact: "Contact",
+        shop: "Magasin",
         blog: "Blog",
     },
 } as const;

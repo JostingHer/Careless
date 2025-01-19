@@ -5,7 +5,24 @@ import type { HomeBlog } from "@/shared/sanity/sanity.types";
 export const homeBlogInSanity = defineCollection({
     loader: async () => {
         const homeList = await sanityClient.fetch<Array<HomeBlog>>(
-            `*[_type == "homeBlog" ]`,
+            `*[_type == "homeBlog" ]{
+                    ...,
+                    pageSections[]{
+                        ...,
+                        sharedRef->,
+                        category->,
+                        author->,
+                        media{
+                        ...,
+                        photo{
+                            ...,
+                            asset->
+                        }
+                        },
+                        theme->
+                    }
+            }
+`,
         );
         return homeList.map((home) => ({
             ...home,

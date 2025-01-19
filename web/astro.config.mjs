@@ -12,10 +12,7 @@ import { loadITCSS } from "./config/auto-load-styles.mjs";
 
 import sanity from "@sanity/astro";
 import dotenv from "dotenv";
-import {
-    DEFAULT_LANGUAGE,
-    Languages,
-} from "./src/translations/domain/languages";
+import { DEFAULT_LANGUAGE, Languages } from "../company/settings/translations";
 
 dotenv.config();
 // https://astro.build/config

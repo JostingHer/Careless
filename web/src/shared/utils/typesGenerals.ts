@@ -1,4 +1,4 @@
-import type { LANGUAGE } from "@/translations/domain/languages";
+import type { LANGUAGE } from "../../../../company/settings/translations";
 import type { Metadata } from "../sanity/sanity.types";
 import type { ImageAsset } from "sanity";
 

@@ -1,0 +1,49 @@
+---
+import sanityClient from "@/shared/sanity/client";
+import type { LANGUAGE } from "../../../company/settings/translations";
+
+
+interface Props {
+    lang: LANGUAGE | string;
+    categoryId: string;
+    authorId: string;
+}
+
+const { lang, categoryId, authorId } = Astro.props;
+
+const dataPost = await sanityClient.fetch(`
+  *[_type == "Post" && language == $lang 
+    && (!defined($categoryId) || category._ref == $categoryId)
+    && (!defined($authorId) || author._ref == $authorId)]{
+    _id,
+    name,
+    description,
+    slug,
+    "category": category->{
+      name,
+      slug
+    },
+    "author": author->{
+      name,
+      slug
+    }
+  }
+`, { lang, categoryId: categoryId || null, authorId: authorId || null });
+
+
+
+
+---
+
+
+
+<div>
+  <h1>carousel</h1>
+   
+          <pre>
+            <code>
+                {JSON.stringify(dataPost, null, 2)}
+            </code>
+          </pre>
+       
+</div>

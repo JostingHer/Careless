@@ -1,13 +1,14 @@
 ---
 import { getCollection } from "astro:content";
 import { getSlugWithLang } from "@/translations/modules/getSlugWithLang";
-import type { LANGUAGE, Languages } from "@/translations/domain/languages";
 import Layout from "@/layouts/Layout.astro";
 import Welcome from "@/components/Welcome.astro";
-import SelectLang from "@/components/SelectLang.astro";
+import NavBar from "@/components/NavBar.astro";
+import CarouselPost from "@/components/CarouselPost.astro";
 // Esta función genera las rutas estáticas para cada página de `homeBlog`
 export async function getStaticPaths() {
     const data = await getCollection("homeBlog");
+    const dataPost = await getCollection("postBlog");
 
     const paths = data.map((page) => {
 
@@ -43,15 +44,20 @@ const { home } = Astro.params;
 ---
 <Layout>
 
-<SelectLang listLinks={listLinks}/>
-
+<NavBar listLinks={listLinks}/>
+<Welcome title={data.lang} />
 
 <pre>
     <code>
-        listLinks: {JSON.stringify(listLinks, null, 2)}
+        {JSON.stringify(data, null, 2)}
     </code>
 </pre>
-<Welcome title={data.lang} />
+
+
+<h1>caorusel copy</h1>
+
+
+<CarouselPost lang="es" categoryId="2f7c907f-041d-4fc3-83fd-ccf53345f803" authorId="79314c49-f26b-499f-9dbb-f2c7a3cb7811"/>
 
 
 

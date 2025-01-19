@@ -14,6 +14,8 @@ export const postBlogInSanity = defineCollection({
             slug: post.slug?.current,
             ref: post.ref,
             lang: post.language,
+            author_ref: post.author?._ref,
+            category_ref: post.category?._ref,
         }));
     },
 });

@@ -5,6 +5,7 @@ import Layout from "@/layouts/Layout.astro";
 import Welcome from "@/components/Welcome.astro";
 import NavBar from "@/components/NavBar.astro";
 import CarouselPost from "@/components/CarouselPost.astro";
+import CarouselBrands from "@/sections/CarouselBrands/CarouselBrands.astro";
 // Esta función genera las rutas estáticas para cada página de `homeBlog`
 export async function getStaticPaths() {
     const data = await getCollection("homeBlog");
@@ -39,26 +40,34 @@ const { data, listLinks } = Astro.props;
 const { home } = Astro.params;
 
 
+const COMPONENTS_MAP = {
+    "sectionCarouselPostFilter": CarouselBrands,
+    "hero": CarouselBrands,
+    "sectionReference": CarouselBrands,
+}
+
+
 
 
 ---
 <Layout>
 
 <NavBar listLinks={listLinks}/>
-<Welcome title={data.lang} />
 
-<pre>
-    <code>
-        {JSON.stringify(data, null, 2)}
-    </code>
-</pre>
+
+
 
 
 <h1>caorusel copy</h1>
 
+{data.pageSections.map((item) => {
+    const Component = COMPONENTS_MAP[item?._type];
 
-<CarouselPost lang="es" categoryId="2f7c907f-041d-4fc3-83fd-ccf53345f803" authorId="79314c49-f26b-499f-9dbb-f2c7a3cb7811"/>
-
-
+    return Component ? (
+        <Component {...item} />
+    ) : (
+        <div>No component found for type: {item?._type || 'undefined'}</div>
+    );
+})}
 
 </Layout>

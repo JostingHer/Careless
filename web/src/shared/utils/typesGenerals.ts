@@ -33,14 +33,6 @@ export type PrototypePage = {
     readonly name: string;
 };
 
-export type Subdirectory = {
-    _type?: string;
-    slug?: string;
-    metas?: MetadataWithImageRef;
-    copy?: string;
-    copyLong?: string;
-};
-
 export type CollectionPage<T> = {
     readonly id: string;
     readonly data: Omit<T, "slug" | "metas"> & {

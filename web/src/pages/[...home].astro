@@ -6,10 +6,19 @@ import Welcome from "@/components/Welcome.astro";
 import NavBar from "@/components/NavBar.astro";
 import CarouselPost from "@/components/CarouselPost.astro";
 import CarouselBrands from "@/sections/CarouselBrands/CarouselBrands.astro";
+import { string } from "astro:schema";
+import type { PrototypePageData } from "@/shared/utils/typesGenerals";
+import type { HomeBlog } from "@/shared/sanity/sanity.types";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+// Removed invalid import
 // Esta función genera las rutas estáticas para cada página de `homeBlog`
+
+interface Props {
+    data: PrototypePageData<HomeBlog>;
+    listLinks: { lang: string; link: string }[];
+}
 export async function getStaticPaths() {
     const data = await getCollection("homeBlog");
-    const dataPost = await getCollection("postBlog");
 
     const paths = data.map((page) => {
 
@@ -34,18 +43,15 @@ export async function getStaticPaths() {
     );
     console.log('Generated paths:', paths);
     return paths;
-}
+} ;
 
 const { data, listLinks } = Astro.props;
 const { home } = Astro.params;
 
-
-const COMPONENTS_MAP = {
-    "sectionCarouselPostFilter": CarouselPost,
-    
-}
-
-
+const COMPONENTS_MAP: Record<string, any> = {
+  "sectionCarouselPostFilter": CarouselPost,
+  "stories": CarouselPost,
+};
 
 
 ---
@@ -66,16 +72,9 @@ const COMPONENTS_MAP = {
 </pre>
 
 
-{data.pageSections.map((item) => {
+{data.pageSections?.map((item) => {
     const Component = COMPONENTS_MAP[item?._type];
-
-    if (Component) {
-        return <Component {...item} />;
-    } else {
-        return (
-            <div>No component found for type: {item?._type || 'undefined'}</div>
-        );
-    }
+    <Component {...item} />;
   })}
 
 </Layout>

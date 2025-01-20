@@ -12,17 +12,12 @@ interface Props {
       author?: Author ;
     };
 }
-
-
-
 const { data } = Astro.props;
-
 
 const lang = getLangFromUrl(Astro.url) ?? "";
 
 const categoryId = data ? data.category?._id : null;
 const authorId = data ? data.author?._id : null;
-
 
 const dataPost = await sanityClient.fetch(`
   *[_type == "Post" && language == $lang 

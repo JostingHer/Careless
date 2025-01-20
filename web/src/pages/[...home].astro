@@ -41,9 +41,8 @@ const { home } = Astro.params;
 
 
 const COMPONENTS_MAP = {
-    "sectionCarouselPostFilter": CarouselBrands,
-    "hero": CarouselBrands,
-    "sectionReference": CarouselBrands,
+    "sectionCarouselPostFilter": CarouselPost,
+    
 }
 
 
@@ -60,14 +59,23 @@ const COMPONENTS_MAP = {
 
 <h1>caorusel copy</h1>
 
+<pre>
+    <code>
+        {JSON.stringify(data, null, 2)}
+    </code>
+</pre>
+
+
 {data.pageSections.map((item) => {
     const Component = COMPONENTS_MAP[item?._type];
 
-    return Component ? (
-        <Component {...item} />
-    ) : (
-        <div>No component found for type: {item?._type || 'undefined'}</div>
-    );
-})}
+    if (Component) {
+        return <Component {...item} />;
+    } else {
+        return (
+            <div>No component found for type: {item?._type || 'undefined'}</div>
+        );
+    }
+  })}
 
 </Layout>

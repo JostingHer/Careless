@@ -24,17 +24,23 @@ export const post = defineType({
             title: 'Contenido',
             type: 'markdown',
         }),
-        defineField({
-            name: 'category',
-            title: 'Categoría',
-            type: 'reference',
-            to: [{type: 'Category'}],
-        }),
+       defineField({
+            name: 'categories',
+            title: 'Categorías',
+            type: 'array',
+            of: [{type: 'reference', to: [{type: 'Category'}]}],
+        }), 
         defineField({
             name: 'author',
             title: 'Autor',
             type: 'reference',
             to: [{type: 'Author'}],
+        }),
+        defineField({
+            name: 'theme',
+            title: 'Tema',
+            type: 'reference',
+            to: [{type: 'theme'}],
         }),
     ],
     preview: {

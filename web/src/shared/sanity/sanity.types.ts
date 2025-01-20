@@ -139,17 +139,24 @@ export type Post = {
   ref?: string
   description?: string
   contentCopy?: string
-  category?: {
+  categories?: Array<{
     _ref: string
     _type: 'reference'
     _weak?: boolean
+    _key: string
     [internalGroqTypeReferenceTo]?: 'Category'
-  }
+  }>
   author?: {
     _ref: string
     _type: 'reference'
     _weak?: boolean
     [internalGroqTypeReferenceTo]?: 'Author'
+  }
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
   }
 }
 

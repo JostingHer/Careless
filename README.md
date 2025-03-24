@@ -1,10 +1,10 @@
-# 🖥️ **Proyecto Web - Careless** 🌟
-testing
+# 🖥️ **Proyecto Web - BeCareless** 🌟
+
 ## 🎯 **Descripción General**
 
-**Careless** es una plataforma web moderna y escalable, construida sobre la **arquitectura hexagonal**. Su objetivo es proporcionar una **tienda online** de fácil gestión, con integración con **Sanity CMS** para la administración de contenido del blog y **PrestaShop** para la gestión de productos y pagos. Esta plataforma también incluye una interfaz de administración (Backoffice) y una interfaz web accesible y optimizada.
+**BeCareless** es una plataforma web moderna y escalable, construida sobre la **arquitectura hexagonal**. Su objetivo es proporcionar una **tienda online** de fácil gestión, con integración con **Sanity CMS** para la administración de contenido del blog y **PrestaShop** para la gestión de productos y pagos. Esta plataforma también incluye una interfaz de administración (Backoffice) y una interfaz web accesible y optimizada.
 
-**Careless** busca transmitir una actitud relajada y despreocupada, ofreciendo una experiencia de compra en línea donde los usuarios pueden disfrutar de un estilo moderno y sin esfuerzo. El nombre refleja esa sensación de estar bien sin complicarse, como si todo estuviera al alcance de la mano sin esfuerzo, perfecto para aquellos que buscan estar a la moda de una manera relajada.
+**BeCareless** busca transmitir una actitud relajada y despreocupada, ofreciendo una experiencia de compra en línea donde los usuarios pueden disfrutar de un estilo moderno y sin esfuerzo. El nombre refleja esa sensación de estar bien sin complicarse, como si todo estuviera al alcance de la mano sin esfuerzo, perfecto para aquellos que buscan estar a la moda de una manera relajada.
 
 Figma Blog Design: https://www.figma.com/design/MnolKVp9QeGhx5MasknQbO/TFG-DAW-ONLINE_SHOP?node-id=0-1&p=f&t=i7QFBa4p0zFTgQcl-0
 
@@ -73,4 +73,4 @@ cd genz-society
 
 ---
 
-El nombre "Careless" transmite una imagen fresca, relajada y moderna, lo que hace que la tienda online tenga un toque distintivo y atractivo para aquellos que buscan productos de calidad sin complicarse demasiado.
+El nombre "BeCareless" transmite una imagen fresca, relajada y moderna, lo que hace que la tienda online tenga un toque distintivo y atractivo para aquellos que buscan productos de calidad sin complicarse demasiado.

@@ -1,5 +1,5 @@
 # 🖥️ **Proyecto Web - Careless** 🌟
-
+testing
 ## 🎯 **Descripción General**
 
 **Careless** es una plataforma web moderna y escalable, construida sobre la **arquitectura hexagonal**. Su objetivo es proporcionar una **tienda online** de fácil gestión, con integración con **Sanity CMS** para la administración de contenido del blog y **PrestaShop** para la gestión de productos y pagos. Esta plataforma también incluye una interfaz de administración (Backoffice) y una interfaz web accesible y optimizada.

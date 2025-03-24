@@ -29,7 +29,7 @@ yarn develop
 
 1. Para guardar los cambios realizados y que se muestren en producción, ejecuta el siguiente comando:
 
-```bash
+```bash 
 yarn deploy
 ```
 

@@ -1,6 +1,7 @@
 # Sanity
 Sanity es un software de gestión de datos para proyectos web y móviles. Con Sanity, puedes estructurar y relacionar diferentes tipos de contenido de manera flexible y escalable.
 
+
 ## Requisitos
 Para poder utilizar Sanity, necesitarás tener instalado Node.js en tu sistema.
 
@@ -8,6 +9,7 @@ Para poder utilizar Sanity, necesitarás tener instalado Node.js en tu sistema.
 Para instalar Sanity, sigue los siguientes pasos:
 
 1. Clona este repositorio en tu máquina local.
+
 
 
 2. Abre una terminal en el directorio raíz del proyecto backoffice y ejecuta el siguiente comando para instalar las dependencias:
@@ -120,6 +122,7 @@ cd nombre-de-tu-proyecto
 ```bash
 yarn dev
 ```
+
 ## Abre un navegador web y ve a la siguiente URL para acceder a la interfaz de administración de tu proyecto:
 ```bash
 http://localhost:3333
@@ -127,3 +130,4 @@ http://localhost:3333
 
 ## Ingresa tus credenciales de Sanity.io si se te solicita y comienza a trabajar en tu proyecto.
 
+ 

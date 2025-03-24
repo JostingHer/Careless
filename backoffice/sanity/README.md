@@ -40,6 +40,33 @@ yarn deploy-graphql
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Guía de inicio de Sanity.io
 
 Instrucciones para cerrar sesión, iniciar sesión y crear un nuevo proyecto en Sanity.io.

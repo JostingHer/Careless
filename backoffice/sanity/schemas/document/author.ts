@@ -1,6 +1,5 @@
 import {defineField, defineType} from 'sanity'
 
-import {Languages} from '../../../../company/translations'
 import {prototype} from '../base/prototype'
 
 export const author = defineType({
@@ -15,7 +14,7 @@ export const author = defineType({
     fields: [
         ...prototype,
         defineField({
-            name: 'nameAuthor',
+            name: 'author',
             title: 'Nombre',
             type: 'string',
         }),
@@ -25,13 +24,8 @@ export const author = defineType({
             type: 'markdown',
         }),
         defineField({
-            name: 'email',
-            title: 'email',
-            type: 'string',
-        }),
-        defineField({
-            name: 'post',
-            title: 'Puesto',
+            name: 'job',
+            title: 'Puesto de trabajo',
             type: 'string',
         }),
         defineField({

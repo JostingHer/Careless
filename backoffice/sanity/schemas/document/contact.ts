@@ -1,6 +1,6 @@
 import {defineType} from 'sanity'
 
-import {landing} from '../base'
+import {prototype} from '../base'
 
 export default defineType({
     name: 'contact',
@@ -11,7 +11,7 @@ export default defineType({
         {name: 'content', title: 'Contenido'},
         {name: 'settings', title: 'Configuración'},
     ],
-    fields: [...landing],
+    fields: [...prototype],
 
     preview: {
         select: {

@@ -1,8 +1,6 @@
 import {defineField, defineType} from 'sanity'
 
-import {Languages} from '../../../../company/translations'
-
-export default defineType({
+export const popups = defineType({
     name: 'popup',
     title: 'Popups',
     type: 'document',
@@ -50,16 +48,6 @@ export default defineType({
             title: 'Descripción',
             group: 'content',
             type: 'markdown',
-        }),
-        defineField({
-            name: 'language',
-            title: 'Idioma',
-            group: 'settings',
-            type: 'string',
-            options: {
-                list: Languages,
-            },
-            initialValue: Languages[0].value,
         }),
     ],
     preview: {

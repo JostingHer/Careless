@@ -1,7 +1,5 @@
 import {cta, metadata, photo, video} from './definitions'
-import {author, category, homeBlog, legal, post, setting, shared, theme} from './document'
-import contact from './document/contact'
-import popups from './document/popups'
+import {author, category, homeBlog, legal, popups, post, setting, shared, theme} from './document'
 import {
     banner,
     heroBasic,
@@ -45,10 +43,9 @@ export const schemaTypes = [
     category,
     post,
 
-    theme,
     legal,
     popups,
     shared,
-    contact,
     setting,
+    theme,
 ]

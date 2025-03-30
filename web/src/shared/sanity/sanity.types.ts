@@ -63,18 +63,6 @@ export type Setting = {
   socialLinks?: Array<string>
 }
 
-export type Contact = {
-  _id: string
-  _type: 'contact'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  slug?: Slug
-  language?: 'es' | 'en'
-  metas?: Metadata
-}
-
 export type SharedSection = {
   _id: string
   _type: 'sharedSection'
@@ -119,6 +107,7 @@ export type SharedSection = {
         _key: string
       } & SectionBasic)
   >
+  ref?: string
 }
 
 export type Legal = {
@@ -174,6 +163,8 @@ export type HomeBlog = {
   slug?: Slug
   language?: 'es' | 'en'
   metas?: Metadata
+  summary?: Summary
+  ref?: string
   pageSections?: Array<
     | {
         _ref: string
@@ -282,10 +273,9 @@ export type Author = {
   metas?: Metadata
   summary?: Summary
   ref?: string
-  nameAuthor?: string
+  author?: string
   bio?: string
-  email?: string
-  post?: string
+  job?: string
   socialLinkList?: Array<string>
   image?: {
     asset?: {
@@ -553,7 +543,6 @@ export type Popup = {
     _type: 'image'
   }
   details?: string
-  language?: 'es' | 'en'
 }
 
 export type Video = {
@@ -696,7 +685,6 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | Geopoint
   | Setting
-  | Contact
   | SharedSection
   | Legal
   | Post

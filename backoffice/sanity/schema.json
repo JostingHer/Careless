@@ -293,83 +293,6 @@
     }
   },
   {
-    "name": "contact",
-    "type": "document",
-    "attributes": {
-      "_id": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_type": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string",
-          "value": "contact"
-        }
-      },
-      "_createdAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_updatedAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_rev": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "name": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "slug": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "inline",
-          "name": "slug"
-        },
-        "optional": true
-      },
-      "language": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "union",
-          "of": [
-            {
-              "type": "string",
-              "value": "es"
-            },
-            {
-              "type": "string",
-              "value": "en"
-            }
-          ]
-        },
-        "optional": true
-      },
-      "metas": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "inline",
-          "name": "metadata"
-        },
-        "optional": true
-      }
-    }
-  },
-  {
     "name": "sharedSection",
     "type": "document",
     "attributes": {
@@ -609,6 +532,13 @@
               }
             ]
           }
+        },
+        "optional": true
+      },
+      "ref": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       }
@@ -951,6 +881,21 @@
         "value": {
           "type": "inline",
           "name": "metadata"
+        },
+        "optional": true
+      },
+      "summary": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "summary"
+        },
+        "optional": true
+      },
+      "ref": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       },
@@ -1532,7 +1477,7 @@
         },
         "optional": true
       },
-      "nameAuthor": {
+      "author": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
@@ -1546,14 +1491,7 @@
         },
         "optional": true
       },
-      "email": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "post": {
+      "job": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
@@ -3057,23 +2995,6 @@
         "type": "objectAttribute",
         "value": {
           "type": "string"
-        },
-        "optional": true
-      },
-      "language": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "union",
-          "of": [
-            {
-              "type": "string",
-              "value": "es"
-            },
-            {
-              "type": "string",
-              "value": "en"
-            }
-          ]
         },
         "optional": true
       }

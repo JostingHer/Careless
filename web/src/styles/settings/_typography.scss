@@ -1,0 +1,90 @@
+@use "./layout";
+
+
+
+$font-family: "helvetica-neve-regular", "Gill Sans MT", calibri, "Trebuchet MS", sans-serif;
+
+$ff-normal: "helvetica-neve-regular", "Gill Sans MT", calibri, "Trebuchet MS", sans-serif;
+$ff-bold: "helvetica-neve-bold";
+$ff-semi-bold: "helvetica-neve-semibold";
+
+$ff-italic: "helvetica-neve-italic";
+$ff-light: "helvetica-neve-light";
+$ff-regular: "helvetica-neve-regular";
+
+
+
+:root{
+	--line-height: 1;
+	--fs-title-l: 1em;
+	--fs-title-m: 2em;
+	--fs-title-s: 3em;
+	--fs-text-large: 1.25em;
+	--fs-text-regular:  1em;
+	--fs-text-small: 0.85em ;
+	--fs-menu: .9em;
+	--fs-hero: 1em;
+	--fs-title-section: var(--fs-title-m);
+	--fs-text-button: rem;
+	--fs-text-input: 1em;
+	--fs-base: clamp(1rem, 4.5vw, 1.5rem);
+
+	@media (min-width: layout.$width-change-scale-typography) {
+		--fs-base: clamp(1.5rem, 2vw, 1.875rem);
+		--fs-title-section: 2.5em;
+	}
+
+	@media (min-width: layout.$width-freeze-boxed){
+		--fs-base: 1.875rem;
+	}
+}
+
+@mixin fs-title-l{
+  margin-top: 1em;
+	font-family: $ff-normal;
+	font-size: var(--fs-title-l);
+
+}
+
+@mixin fs-title-m{
+  margin-top: 1em;
+	font-family: $ff-normal;
+	font-size: var(--fs-title-m);
+
+}
+
+@mixin fs-title-s{
+  margin-top: 1em;
+	font-family: $ff-normal;
+	font-size: var(--fs-title-s);
+
+}
+
+@mixin fs-text-large{
+	font-family: $ff-normal;
+	font-size: var(--fs-text-large);
+}
+
+@mixin fs-text{
+	font-family: $ff-normal;
+	font-size: var(--fs-text-regular);
+}
+
+@mixin fs-text-small{
+	font-family: $ff-normal;
+	font-size: var(--fs-text-small);
+}
+
+@mixin headings{
+  h1, .h1{
+    @include fs-title-l;
+  }
+
+  h2, .h2{
+    @include fs-title-m;
+  }
+
+  h3, .h3{
+    @include fs-title-s;
+  }
+}

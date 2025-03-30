@@ -1,0 +1,38 @@
+{
+  "consentModal": {
+    "title": "COOKIES",
+    "description": "¿Qué opciones tienes?<br/> <ul><li> <b>  Accept cookies </b>  to ensure an optimal experience on the website.</li><li> <b> Reject cookies </b> , denying all except those essential for site operation.</li><li> <b> Set cookies to your preference</b>, selecting only those you wish to allow in your browser. If you choose none, only those indispensable for navigation will be used.</li></ul>",
+    "footer": "<a href='/cookie-policy/'>Cookie Policy</a>",
+    "acceptAllBtn": "Accept all",
+    "acceptNecessaryBtn": "Reject",
+    "showPreferencesBtn": "Configure",
+    "revisionMessage": "We have sectioned analytical cookies so that you can determine what we can analyze from your navigation."
+  },
+  "preferencesModal": {
+    "title": "Cookie Management",
+    "acceptAllBtn": "Accept all",
+    "acceptNecessaryBtn": "Reject all",
+    "savePreferencesBtn": "Accept current selection",
+    "closeIconLabel": "Close modal",
+    "sections": [
+      {
+        "title": "Cookie Consent",
+        "description": "I want one!"
+      },
+      {
+        "title": "Technical and Functional Cookies",
+        "description": "These cookies are essential for the proper functioning of the website and cannot be disabled.",
+        "linkedCategory": "necessary"
+      },
+      {
+        "title": "Performance and Analytics",
+        "description": "These cookies collect information about how you use our website. All data is anonymous and cannot be used to identify you.",
+        "linkedCategory": "analytics"
+      },
+      {
+        "title": "More Information",
+        "description": "You can get more information in <a href='/cookie-policy/'>our cookie policy</a>"
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+@use "../../../styles/settings/variables";
+
+.header__link{
+   padding: .3lh .3em;
+  font-size: var(--fs-menu);
+   color: var(--c-text-header);
+   text-decoration: none;
+
+   &--active{
+     pointer-events: none;
+     color: var(--c-text-header);
+     border-bottom: 2px solid var(--c-text-header);
+   }
+
+   &:hover{
+     cursor: pointer;
+     color: var(--c-primary);
+   }
+ }

@@ -1,0 +1,6 @@
+@mixin focus {
+	&:focus {
+		outline: 1px dashed var(--c-focus);
+		outline-offset: .5em;
+	}
+}

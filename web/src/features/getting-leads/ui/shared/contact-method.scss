@@ -1,0 +1,44 @@
+@use "../../../../styles/settings/variables";
+
+.m-contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  padding-left: 0;
+
+  list-style: none;
+
+  .icon-svg{
+    height: auto;
+  }
+}
+
+.contact-methods__item{
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: .5em;
+  align-items: center;
+
+  span{
+    text-wrap: nowrap;
+  }
+}
+
+.contact-methods__phone{
+  font-family: variables.$ff-bold;
+  text-decoration: underline;
+}
+
+.contact-methods__link{
+  text-decoration: none;
+
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+.contact-methods__point{
+  display: grid;
+  place-items: center;
+}

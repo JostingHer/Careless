@@ -1,0 +1,78 @@
+@use "../../styles/settings/variables";
+
+$break-menu: 1000px;
+
+.o-header {
+  --c-background-header: var(--c-dark);
+  --c-text-header: var(--c-white);
+  --c-text-hover-header: var(--c-primary);
+
+  position: absolute;
+  z-index: 5;
+
+  width: 100%;
+  margin: 0 auto;
+
+  color: var(--c-text-header);
+
+  background-color: var(--c-background-header);
+
+  .m-button{
+    font-size: var(--fs-menu);
+  }
+
+}
+
+
+.c-header{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  width: 100%;
+  padding: 1lh var(--boxed-margin);
+
+  > .m-nav{
+    display: none;
+  }
+
+  #sidebar-button-contact{
+    display: none;
+  }
+
+  @media (min-width: $break-menu){
+    .m-nav{
+      display: flex;
+    }
+
+    #sidebar-button-contact{
+      display: block;
+      margin-left: 1em;
+    }
+
+    .sidebar__burger{
+        display: none;
+    }
+
+    .nav__details ul{
+      position: absolute;
+    }
+  }
+}
+
+.header__logo{
+  margin-right: auto;
+  margin-left: 0;
+
+  .logo-svg{
+    pointer-events: all;
+
+    position: relative;
+    z-index: 1;
+
+    width: 100px;
+    height: auto;
+
+    object-fit: cover;
+  }
+}

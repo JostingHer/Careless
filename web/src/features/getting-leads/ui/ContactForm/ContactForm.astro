@@ -1,0 +1,64 @@
+---
+import LegalNoticeToggle from "../shared/LegalNoticeToggle.astro";
+import { CONTACT_FORM_LEAD } from "../../domain/lead";
+
+const form = `${CONTACT_FORM_LEAD}-form`;
+
+---
+<form id={form} name={form} data-form-send  class="m-form">
+    <label for="contact-name" hidden>Nombre y apellidos </label>
+    <input
+        autofocus
+        id="contact-name"
+        class="a-input"
+        type={`text`}
+        name={`name`}
+        placeholder={`Nombre y apellidos`}
+        required
+    />
+
+    <label for="contact-phone" hidden>Teléfono </label>
+    <input
+        id="contact-phone"
+        class="a-input"
+        type={`tel`}
+        name={`phone`}
+        placeholder={`Teléfono`}
+        required
+    />
+    <LegalNoticeToggle name={form} />
+    <button id={`${form}-submit`} data-form-submit type="submit" class="m-button button--primary">
+        Enviar
+    </button>
+</form>
+
+<script>
+    import { actions } from "astro:actions";
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    const submit = document.getElementById(
+        `contact-form-submit`,
+    ) as HTMLButtonElement;
+    const popup = document.getElementById("contact-dialog") as HTMLDialogElement;
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        submit?.setAttribute("disabled", "true");
+        submit?.classList.add("button--submitting");
+        const formData = new FormData(form as HTMLFormElement);
+        const { error } = await actions.sendData(formData);
+        submit?.classList.remove("button--submitting");
+        if (error) {
+            submit?.classList.add("button--fail");
+            return;
+        }
+        submit?.classList.add("button--success");
+        submit.innerHTML = "¡Envíado!";
+
+        setTimeout(() => {
+            if(popup && popup.open){
+                popup.close();
+            }
+        }, 2000);
+    });
+</script>

@@ -1,0 +1,19 @@
+---
+import HeaderLink from "../HeaderLink.astro";
+
+
+---
+<nav class="m-nav">
+    <HeaderLink class="header__link" href="/">Home</HeaderLink>
+    <details class="nav__details">
+        <summary class="nav__link-button">Desplegable</summary>
+            <ul class="nav__details-content">
+                    <li>
+                        <HeaderLink class="header__link header__link--subitem" href={`/test/`}>
+                            to test
+                        </HeaderLink>
+                    </li>
+            </ul>
+    </details>
+    <HeaderLink class="header__link" href="/sobre-nosotros/">Upcars</HeaderLink>
+</nav>

@@ -1,0 +1,32 @@
+@use "../../styles/settings/variables";
+
+#cc-main {
+ --border-radius: 22px;
+ --cc-bg:  #FFF;
+ --cc-modal-border-radius: var(--border-radius);
+ --cc-btn-border-radius:  var(--border-radius);
+ --cc-modal-transition-duration: .25s;
+ --cc-modal-margin: 1rem;
+ --cc-z-index: 2147483647;
+
+ /** Change button primary color to black **/
+ --cc-btn-primary-bg: var(--c-primary-orange);
+ --cc-btn-primary-color: #FFF;
+ --cc-btn-primary-border-color:  var(--c-primary-orange);
+ --cc-btn-primary-hover-bg: #F6F6F6;
+ --cc-btn-primary-hover-color:  var(--c-primary-orange);
+ --cc-btn-primary-hover-border-color:  var(--c-primary-orange);
+
+ /** Change button secondary color to black **/
+ --cc-btn-secondary-bg: #FFF;
+ --cc-btn-secondary-border-color:  var(--c-primary-orange);
+ --cc-btn-secondary-hover-bg:   #FFF;
+ --cc-btn-secondary-hover-color: var(--c-primary-orange);
+ --cc-btn-secondary-hover-border-color:  var(--c-primary-orange);
+
+ /** Also make toggles the same color as the button **/
+ --cc-toggle-on-bg: var(--cc-btn-primary-bg);
+
+ /**  cookie-category-block  **/
+ --cc-cookie-category-block-border:  var(--c-primary-orange);
+}

@@ -1,0 +1,19 @@
+@use "../../../styles/settings/variables";
+
+.a-link {
+	/* ready */
+	margin: 0;
+	padding: 0;
+
+	color: var(--c-dark);
+	text-decoration: underline;
+
+	background-color: transparent;
+	border: none;
+	outline: none;
+
+	&:hover,
+	&:focus {
+		color: var(--c-dark);
+	}
+}

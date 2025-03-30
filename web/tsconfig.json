@@ -1,5 +1,24 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "include": [".astro/types.d.ts", "**/*", "./src/common/astro.d.ts"],
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "target": "ES2023",
+    "downlevelIteration": true,
+    "strictNullChecks": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@global-shared/*": [
+        "../shared/*"
+      ],
+      "@sections/*": [
+        "./src/sections/*"
+      ],
+    }
+  }
 }

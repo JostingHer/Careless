@@ -1,0 +1,31 @@
+---
+import Layout from "@/sections/Layout.astro";
+import type { CollectionKey } from "astro:content";
+import { getEntry } from "astro:content";
+import type { Data } from "../../common/astro";
+import type { HomeEntry } from "./infrastructure/sanity-home-collection";
+import { t } from "../../translations/global";
+import { LANGUAGE } from "../../../../shared/translations/domain/languages";
+
+type Props = {
+    _id: string
+};
+
+const { _id } = Astro.props as Props;
+
+const collection: CollectionKey = "home"
+
+const { data } = await getEntry(collection, _id) as Data<HomeEntry>;
+
+
+---
+
+<Layout collection={collection} _id={_id} >
+    <h1>Title!</h1>
+    <h2>Hola</h2>
+    <p>Asoma!!!</p>
+
+    lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+    traducciones contacto. {t("Lo que sea", LANGUAGE.EN )}
+</Layout>

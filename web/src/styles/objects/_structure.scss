@@ -1,0 +1,31 @@
+@use "../settings/variables";
+
+.docs {
+	max-width: var(--boxed-docuemnts);
+	margin: 0 auto;
+	padding: 1.5em 2em;
+
+	h1 {
+		@include variables.fs-title-l;
+	}
+
+	h2 {
+		@include variables.fs-title-m;
+	}
+
+	h3 {
+		@include variables.fs-title-s;
+	}
+
+	p + p{
+		margin-top: 1lh;
+	}
+}
+
+.c-boxed {
+	@include variables.boxed-container;
+}
+
+.c-boxed-small {
+	@include variables.boxed-container-small;
+}

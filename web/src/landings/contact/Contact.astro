@@ -1,0 +1,17 @@
+---
+import Layout from "@/sections/Layout.astro";
+import type { CollectionKey } from "astro:content";
+
+type Props = {
+    _id: string
+};
+
+const { _id } = Astro.props as Props;
+
+const collection: CollectionKey = "contact"
+
+---
+
+<Layout collection={collection} _id={_id} >
+ <h1>Contacto</h1>
+</Layout>

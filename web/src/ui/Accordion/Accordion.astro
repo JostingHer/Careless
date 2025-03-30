@@ -1,0 +1,82 @@
+---
+import { getHtmlSimpleCopy, type TagTitle } from "@/common/utils/get-html-render";
+interface Props {
+    title?: string;
+    copy?: string;
+    settings?: { titleTag?: TagTitle};
+}
+
+const { title, copy, settings } = Astro.props;
+
+const body = getHtmlSimpleCopy(copy, settings?.titleTag);
+---
+
+<astro-accordion>
+    <div id="accordion" class={`m-accordion`}>
+        <div class="accordion__headline" id="toggle">
+            <div class="accordion__title">
+                {title}
+            </div>
+            <svg
+                class="icon-svg"
+                width="14"
+                height="15"
+                viewBox="0 0 14 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M0.628504 1.5455C0.6299 0.684133 1.56323 0.14729 2.3085 0.579184L12.9286 6.73368C13.6739 7.16557 13.6721 8.24228 12.9255 8.67176L2.28547 14.7918C1.5388 15.2213 0.607211 14.6814 0.608607 13.82L0.628504 1.5455Z"
+                    fill="#E3A633"></path>
+            </svg>
+        </div>
+        <div class="accordion__body">
+            <div>
+                {copy ? <div set:html={body} /> : null}
+                <slot />
+            </div>
+        </div>
+    </div>
+</astro-accordion>
+
+<script>
+    class Accordion extends HTMLElement {
+        accordion: HTMLElement;
+        body: HTMLElement;
+        is_open: boolean;
+        toggle: SVGElement;
+
+        constructor() {
+            super();
+            this.is_open = false;
+            this.body = this.querySelector(".accordion__body") as HTMLElement;
+            this.accordion = this.querySelector("#accordion") as HTMLElement;
+            this.toggle = this.querySelector("svg") as SVGElement;
+            const handler = this.querySelector("#toggle");
+
+            this.accordion.style.setProperty(
+                "--accordion-height",
+                `${this.body.scrollHeight}px`,
+            );
+
+            handler?.addEventListener("click", () => {
+                this.is_open = !this.is_open;
+                this.updateAccordionState();
+            });
+        }
+        updateAccordionState() {
+            if (this.is_open) {
+                this.accordion.classList.remove("m-accordion--close");
+                this.accordion.classList.add("m-accordion--open");
+            } else {
+                this.accordion.classList.remove("m-accordion--open");
+                this.accordion.classList.add("m-accordion--close");
+            }
+        }
+    }
+
+    if (!customElements.get("astro-accordion")) {
+        customElements.define("astro-accordion", Accordion);
+    }
+
+</script>

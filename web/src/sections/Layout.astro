@@ -1,0 +1,51 @@
+---
+import "../styles/index.scss";
+
+import { getCodeLang } from "@global-shared/translations/utils/getCodeLang";
+import {
+getEntry,
+    type CollectionKey,
+} from 'astro:content';
+import Favicons from "./head/Favicons.astro";
+import Metas from "./head/Metas.astro";
+import GoogleTagManager from "@/features/cookie-consent/GoogleTagManager.astro";
+import CookieConsentHead from "@/features/cookie-consent/CookieConsentHead.astro";
+import MarkupSchema from "./head/MarkupSchema.astro";
+import Footer from "./footer/Footer.astro";
+import Header from "./header/Header.astro";
+import ContactPopup from "@/features/getting-leads/ui/ContactForm/ContactPopup.astro";
+import type { Data } from "@/common/astro";
+import type { LandingPage } from "../common/types";
+
+type Props = {
+    _id: string,
+    collection: CollectionKey,
+}
+
+const { _id, collection = "home" } = Astro.props;
+
+const { data } = await getEntry(collection, _id) as Data<LandingPage> ;
+
+const { language } = data;
+
+---
+
+<!doctype html>
+<html lang={getCodeLang(language)}>
+<head>
+    <CookieConsentHead />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <Favicons />
+    <Metas _id={_id} collection={collection} />
+    <MarkupSchema _id={_id} collection={collection} />
+    <meta name="generator" content={Astro.generator} />
+</head>
+<body class={`l-${collection}`}>
+    <GoogleTagManager />
+    <Header language={language} />
+    <slot />
+    <Footer language={language} />
+    <ContactPopup />
+</body>
+</html>

@@ -1,0 +1,49 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { CollectionKey } from "astro:content";
+import { getEntry } from "astro:content";
+import type { Data } from "@/common/astro";
+import type { LandingPage } from "@/common/types";
+
+type Props = {
+    _id: string;
+    collection: CollectionKey
+}
+
+const { _id, collection } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const entry = await getEntry(collection, _id) as Data<LandingPage>;
+
+if (!entry.data.metas) return;
+
+const { metas } = entry.data;
+
+const title = metas?.title || entry.data.name || "TheCookies";
+
+let image =
+    entry.data.metas?.thumbnail?.asset?.url || new URL("assets/images/placeholder.jpg", Astro.url);
+
+---
+
+<title>{`${title}`}</title>
+<meta name="title" content={`${title}`} />
+<meta name="description" content={`${metas?.description}`} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={metas?.description} />
+<meta property="og:image" content={image} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={metas?.description} />
+<meta property="twitter:image" content={image} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />

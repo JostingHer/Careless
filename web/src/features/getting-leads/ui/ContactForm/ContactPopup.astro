@@ -1,0 +1,73 @@
+---
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+import { getEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+
+import closeSvg from '@/assets/icons/close.svg';
+
+import ContactForm from "./ContactForm.astro";
+import { CONTACT_FORM_LEAD } from "../../domain/lead";
+import { getOptimizedImage } from "@/common/sanity/getOptimizedImage";
+import ContactMethods from "../shared/ContactMethods.astro";
+import type { Data } from "@/common/astro";
+import type { PopUpEntry } from "../../infrastructure/sanity-popups-collection";
+
+const popup = await getEntry("popups", CONTACT_FORM_LEAD) as Data<PopUpEntry>;
+
+const copy = getHtmlSimpleCopy(popup?.data?.copy, "p");
+const description = getHtmlSimpleCopy(popup?.data?.description, "p");
+
+const details = getHtmlSimpleCopy(popup?.data?.details, "p");
+
+const optimizedImage = getOptimizedImage(popup?.data.image.asset).url();
+
+---
+<dialog class="o-popup" id=`${CONTACT_FORM_LEAD}-dialog`>
+    { optimizedImage && (
+        <div class="popup__c-image">
+            <img class="popup__image" src={optimizedImage} alt={``} />
+        </div>
+    )}
+    <button
+            data-button-close-popup
+            class="popup__close"
+    >
+        <Image class="popup__close-icon" src={closeSvg} alt="" />
+    </button>
+    <div class="popup__content">
+        <div class="popup__copy" set:html={copy} />
+        <div class="popup__copy" set:html={description} />
+        <ContactMethods />
+        <ContactForm/>
+        <p class="popup__details" set:html={details} />
+        <small style="color: #5a5a5a; margin-top: 10px;">
+            <b> Protección de datos personales.</b>
+            Utilizaremos sus datos para responder consultas, enviar comunicaciones comerciales y
+            realizar análisis estadísticos.
+            Para más información sobre el tratamiento y sus derechos, consulte la
+            <a href="/politica-de-privacidad/" target="_blank"> política de privacidad </a>
+        </small>
+    </div>
+</dialog>
+
+<script>
+    const buttonsToOpenPopupList = document.querySelectorAll("[data-button-contact]");
+    const dialog = document.getElementById(`contact-dialog`) as HTMLDialogElement;
+    const close = dialog.querySelector('[data-button-close-popup]') as HTMLButtonElement;
+
+    dialog.addEventListener("click", (event) => {
+        if(event.target === dialog){
+            dialog.close();
+        }
+    });
+    close.addEventListener("click", () => {
+        dialog.close();
+    });
+
+    buttonsToOpenPopupList.forEach((button) => {
+        button.addEventListener("click", () => {
+            dialog.showModal();
+        });
+    });
+</script>

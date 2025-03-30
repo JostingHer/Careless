@@ -1,0 +1,28 @@
+---
+import { getEntry } from "astro:content";
+import Layout from "@/sections/Layout.astro";
+import type { CollectionKey } from "astro:content";
+import type { LegalEntry } from "./infrastructure/sanity-legal-collection";
+import type { Data } from "@/common/astro";
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+
+type Props = {
+    _id: string
+};
+
+const { _id } = Astro.props as Props;
+
+const collection: CollectionKey = "legal"
+
+const { data } = await getEntry(collection, _id) as Data<LegalEntry>;
+
+const copy = getHtmlSimpleCopy(data.content);
+
+---
+
+<Layout collection={collection} _id={_id} >
+    <div class="docs">
+        <h1>{data.name}</h1>
+        <div set:html={copy} />
+    </div>
+</Layout>

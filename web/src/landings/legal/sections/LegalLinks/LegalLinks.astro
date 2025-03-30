@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import type { Data } from "@/common/astro";
+import type { LANGUAGE } from "@global-shared/translations/domain/languages";
+import type { LegalEntry } from "@/landings/legal/infrastructure/sanity-legal-collection";
+
+type Props = {
+    language: LANGUAGE;
+}
+
+const { language } = Astro.props;
+
+
+const collection = await getCollection("legal") as Data<LegalEntry>[];
+
+const collectionByLanguage = collection.filter((entry) => entry.data.language === language);
+
+
+---
+
+<ul>
+    { collectionByLanguage.map((entry) => {
+        return <li><a href={entry.data.slug}>{entry.data.name}</a></li>
+    })}
+    <li>
+        <button data-cc="show-preferencesModal" class="a-link">
+            Configuración de cookies
+        </button>
+    </li>
+</ul>

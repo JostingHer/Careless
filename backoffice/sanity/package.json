@@ -10,8 +10,8 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
-    "types": "sanity schema extract && sanity typegen generate && cp -f sanity.types.ts ../../web/src/shared/sanity",
-    "publish:types": "sanity deploy && sanity graphql deploy -y && sanity schema extract && sanity typegen generate && cp -f sanity.types.ts ../../web/src/shared/sanity",
+    "types": "sanity schema extract && sanity typegen generate && cp -f sanity.types.ts ../../web/src/common/sanity",
+    "publish:types": "sanity deploy && sanity graphql deploy -y && sanity schema extract && sanity typegen generate && cp -f sanity.types.ts ../../web/src/common/sanity",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext ts --fix"
   },

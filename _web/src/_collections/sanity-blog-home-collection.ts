@@ -1,5 +1,5 @@
 import { defineCollection } from "astro:content";
-import sanityClient from "@/shared/sanity/client";
+import sanityClient from "@/_shared/sanity/client";
 
 export const homeBlogInSanity = defineCollection({
     loader: async () => {

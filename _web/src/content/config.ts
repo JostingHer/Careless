@@ -1,4 +1,4 @@
-import { homeBlogInSanity } from "../collections/sanity-blog-home-collection";
+import { homeBlogInSanity } from "../_collections/sanity-blog-home-collection";
 
 export const collections = {
     homeBlog: homeBlogInSanity,

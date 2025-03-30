@@ -1,5 +1,5 @@
 import { DEFAULT_LANGUAGE, LANGUAGE } from "@/translations/domain/languages.ts";
-import { cleanSlashInPath } from "@/shared/utils/cleanSplash.ts";
+import { cleanSlashInPath } from "@/_shared/utils/cleanSplash";
 
 export function getSlugWithLang(
     slug?: string,

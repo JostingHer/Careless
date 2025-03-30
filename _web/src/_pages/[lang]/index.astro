@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Welcome from "../../components/Welcome.astro";
 import Layout from "../../layouts/Layout.astro";
-import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { getLangFromUrl, useTranslations } from "@/_i18n/utils";
 
 
 const lang = getLangFromUrl(Astro.url);

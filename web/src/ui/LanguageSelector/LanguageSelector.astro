@@ -3,40 +3,46 @@ import { arrow_svg, globe_svg } from "./language-selector-elements";
 import { LANGUAGE } from "@global-shared/translations/domain/languages";
 import { DEFAULT_LANGUAGE } from "@global-shared/translations/domain/languages";
 import { getLanguageTitle } from "@global-shared/translations/utils/getSlugWithLang";
-
+import { sanityClient } from "sanity:client";
 
 type Props = {
-    language?: LANGUAGE;
-}
-
+  language?: LANGUAGE;
+};
+const sharedList = await sanityClient.fetch<Array<string>>(
+  `*[_type == "shared" ]{
+            ...,
+            }`
+);
 
 const { language = DEFAULT_LANGUAGE } = Astro.props;
 ---
 
 <details class="m-language-selector">
-    <summary class="language-selector__summary">
-        <span set:html={globe_svg}/> {getLanguageTitle(language)} <span set:html={arrow_svg}/>
-    </summary>
-    <div class="language-selector__list">
-        <a
-            href="/"
-                class={`language-selector__button ${
-                    language === LANGUAGE.ES
-                        ? "language-selector__button--active"
-                        : "language-selector__button--no-active"
-                }`}
-        >
-            {getLanguageTitle(LANGUAGE.ES)}
-        </a>
-        <a
-            href=`/${LANGUAGE.EN}/`
-                class={`language-selector__button ${
-                    language === LANGUAGE.EN
-                        ? "language-selector__button--active"
-                        : "language-selector__button--no-active"
-                }`}
-        >
-            {getLanguageTitle(LANGUAGE.EN)}
-        </a>
-    </div>
+  <summary class="language-selector__summary">
+    <span set:html={globe_svg} />
+    {getLanguageTitle(language)}
+    <span set:html={arrow_svg} />
+  </summary>
+  <div class="language-selector__list">
+    <a
+      href="/"
+      class={`language-selector__button ${
+        language === LANGUAGE.ES
+          ? "language-selector__button--active"
+          : "language-selector__button--no-active"
+      }`}
+    >
+      {getLanguageTitle(LANGUAGE.ES)}
+    </a>
+    <a
+      href=`/${LANGUAGE.EN}/`
+      class={`language-selector__button ${
+        language === LANGUAGE.EN
+          ? "language-selector__button--active"
+          : "language-selector__button--no-active"
+      }`}
+    >
+      {getLanguageTitle(LANGUAGE.EN)}
+    </a>
+  </div>
 </details>

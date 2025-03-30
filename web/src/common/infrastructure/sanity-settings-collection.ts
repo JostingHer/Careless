@@ -10,9 +10,11 @@ export const settingsInSanity = defineCollection({
             ...,
             }`,
         );
+
         return list.map((setting) => ({
             ...setting,
             id: setting._id,
+            _id: setting._id,
         }));
     },
 });

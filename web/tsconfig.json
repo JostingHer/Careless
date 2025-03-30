@@ -19,6 +19,9 @@
       "@sections/*": [
         "./src/sections/*"
       ],
+      "@landings/*": [
+        "./src/landings/*"
+      ],
     }
   }
 }

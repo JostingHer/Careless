@@ -6,25 +6,26 @@ import type { Data } from "@/common/astro";
 import type { LandingPage } from "@/common/types";
 
 type Props = {
-    _id: string;
-    collection: CollectionKey
-}
+  _id: string;
+  collection: CollectionKey;
+};
 
 const { _id, collection } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url, Astro.site);
+// const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const entry = await getEntry(collection, _id) as Data<LandingPage>;
+const entry = (await getEntry(collection, _id)) as Data<LandingPage>;
 
 if (!entry.data.metas) return;
 
 const { metas } = entry.data;
 
-const title = metas?.title || entry.data.name || "TheCookies";
+const title = metas?.title || entry.data.name || "JostingHernandez.com";
 
 let image =
-    entry.data.metas?.thumbnail?.asset?.url || new URL("assets/images/placeholder.jpg", Astro.url);
-
+  entry.data.metas?.thumbnail?.asset?.url ||
+  new URL("assets/images/placeholder.jpg", Astro.url);
 ---
 
 <title>{`${title}`}</title>

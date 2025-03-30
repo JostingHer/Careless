@@ -5,12 +5,13 @@ import LanguageSelector from "@/ui/LanguageSelector/LanguageSelector.astro";
 
 type Props = {
   language: LANGUAGE;
+  id?: string;
 };
 
-const { language } = Astro.props;
+const { language, id } = Astro.props;
 ---
 
 <footer class="o-footer">
-  <LanguageSelector language={language} />
+  <LanguageSelector id={id} language={language} />
   <!-- <LegalLinks language={language}  /> -->
 </footer>

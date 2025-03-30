@@ -24,6 +24,7 @@ const landing = [
         type: 'string',
         options: {
             list: Languages,
+            layout: 'radio',
         },
         initialValue: Languages[0].value,
     }),

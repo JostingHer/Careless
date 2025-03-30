@@ -1,20 +1,53 @@
 ---
 import { arrow_svg, globe_svg } from "./language-selector-elements";
-import { LANGUAGE } from "@global-shared/translations/domain/languages";
+import type { LANGUAGE } from "@global-shared/translations/domain/languages";
 import { DEFAULT_LANGUAGE } from "@global-shared/translations/domain/languages";
-import { getLanguageTitle } from "@global-shared/translations/utils/getSlugWithLang";
+import {
+  getLanguageTitle,
+  getSlugWithLang,
+} from "@global-shared/translations/utils/getSlugWithLang";
 import { sanityClient } from "sanity:client";
 
 type Props = {
   language?: LANGUAGE;
+  id?: string;
 };
-const sharedList = await sanityClient.fetch<Array<string>>(
-  `*[_type == "shared" ]{
-            ...,
-            }`
+const { id, language = DEFAULT_LANGUAGE } = Astro.props;
+
+const current_page = await sanityClient.fetch<Array<any>>(
+  `
+    *[_id == $id]{
+      ref,
+      name,
+      _type,
+      "slug": slug.current,
+      language,
+    }
+  `,
+  { id }
 );
 
-const { language = DEFAULT_LANGUAGE } = Astro.props;
+const ref = current_page.length > 0 ? current_page[0].ref : null;
+
+const current_page_other_lang = ref
+  ? await sanityClient.fetch<Array<any>>(
+      `
+        *[ref == $ref]{
+          ref,
+          language,
+          name,
+          _type,
+          "slug": slug.current,
+        }
+      `,
+      { ref }
+    )
+  : [];
+
+const listLinks = current_page_other_lang.map((page) => ({
+  lang: page.language,
+  link: getSlugWithLang(page.slug, page.language),
+}));
 ---
 
 <details class="m-language-selector">
@@ -24,25 +57,25 @@ const { language = DEFAULT_LANGUAGE } = Astro.props;
     <span set:html={arrow_svg} />
   </summary>
   <div class="language-selector__list">
-    <a
-      href="/"
-      class={`language-selector__button ${
-        language === LANGUAGE.ES
-          ? "language-selector__button--active"
-          : "language-selector__button--no-active"
-      }`}
-    >
-      {getLanguageTitle(LANGUAGE.ES)}
-    </a>
-    <a
-      href=`/${LANGUAGE.EN}/`
-      class={`language-selector__button ${
-        language === LANGUAGE.EN
-          ? "language-selector__button--active"
-          : "language-selector__button--no-active"
-      }`}
-    >
-      {getLanguageTitle(LANGUAGE.EN)}
-    </a>
+    {
+      listLinks.map((link) => (
+        <a
+          href={link.link}
+          class={`language-selector__button ${
+            language === link.lang
+              ? "language-selector__button--active"
+              : "language-selector__button--no-active"
+          }`}
+        >
+          {getLanguageTitle(link.lang)}
+        </a>
+      ))
+    }
   </div>
 </details>
+
+<pre>
+  <code>
+    {JSON.stringify(listLinks, null, 2)}
+  </code>
+</pre>

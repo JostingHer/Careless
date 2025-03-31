@@ -23,7 +23,14 @@ const { _id, collection = "Blog" } = Astro.props;
 
 const { data } = (await getEntry(collection, _id)) as Data<LandingPage>;
 
-const { language } = data;
+const { language, ref } = data;
+
+const it = {
+  id: _id,
+  collection,
+  language,
+  ref,
+};
 ---
 
 <!doctype html>
@@ -33,7 +40,7 @@ const { language } = data;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <Favicons />
-    <Metas _id={_id} collection={collection} />
+    <Metas {...it} />
     <MarkupSchema _id={_id} collection={collection} />
     <meta name="generator" content={Astro.generator} />
   </head>
@@ -41,7 +48,7 @@ const { language } = data;
     <GoogleTagManager />
     <Header language={language} />
     <slot />
-    <Footer id={_id} language={language} />
+    <Footer {...it} />
     <ContactPopup />
   </body>
 </html>

@@ -6,47 +6,24 @@ import {
   getLanguageTitle,
   getSlugWithLang,
 } from "@global-shared/translations/utils/getSlugWithLang";
-import { sanityClient } from "sanity:client";
+import type { CollectionKey } from "astro:content";
+import { getCollection } from "astro:content";
 
 type Props = {
-  language?: LANGUAGE;
-  id?: string;
+  id: string;
+  ref: string;
+  language: LANGUAGE;
+  collection: CollectionKey;
 };
-const { id, language = DEFAULT_LANGUAGE } = Astro.props;
+const { id, ref, language = DEFAULT_LANGUAGE, collection } = Astro.props;
 
-const current_page = await sanityClient.fetch<Array<any>>(
-  `
-    *[_id == $id]{
-      ref,
-      name,
-      _type,
-      "slug": slug.current,
-      language,
-    }
-  `,
-  { id }
-);
+const current_page_other_lang = await getCollection(collection, ({ data }) => {
+  return data.ref === ref;
+});
 
-const ref = current_page.length > 0 ? current_page[0].ref : null;
-
-const current_page_other_lang = ref
-  ? await sanityClient.fetch<Array<any>>(
-      `
-        *[ref == $ref]{
-          ref,
-          language,
-          name,
-          _type,
-          "slug": slug.current,
-        }
-      `,
-      { ref }
-    )
-  : [];
-
-const listLinks = current_page_other_lang.map((page) => ({
-  lang: page.language,
-  link: getSlugWithLang(page.slug, page.language),
+const listLinks = current_page_other_lang.map(({ data }) => ({
+  lang: data.language as LANGUAGE,
+  link: getSlugWithLang(data.slug, data.language),
 }));
 ---
 

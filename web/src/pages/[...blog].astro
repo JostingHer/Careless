@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { getSlugWithLang } from "@global-shared/translations/utils/getSlugWithLang";
-import Blog from "@/landings/Blog/Blog.astro";
+import HomeBlog from "@/landings/Blog/HomeBlog.astro";
 
 export async function getStaticPaths() {
   const landingsList = await getCollection("Blog");
@@ -25,4 +25,4 @@ const { data } = Astro.props;
 console.log("data", data);
 ---
 
-<Blog _id={data._id} />
+<HomeBlog _id={data._id} />

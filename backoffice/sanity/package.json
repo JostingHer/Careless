@@ -29,13 +29,12 @@
     "sanity": "^3.39.0",
     "sanity-plugin-cloudinary": "^1.1.2",
     "sanity-plugin-markdown": "^4.1.2",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.16"
   },
   "devDependencies": {
     "@sanity/cli": "^3.57.2",
     "@sanity/client": "^6.21.3",
     "@types/react": "^18.2.38",
-    "@types/styled-components": "^5.1.34",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
     "@typescript-eslint/parser": "^6.12.0",
     "eslint": "^8.54.0",

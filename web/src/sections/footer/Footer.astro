@@ -2,16 +2,22 @@
 // import LegalLinks from "@/landings/legal/sections/LegalLinks/LegalLinks.astro";
 import type { LANGUAGE } from "@global-shared/translations/domain/languages";
 import LanguageSelector from "@/ui/LanguageSelector/LanguageSelector.astro";
+import type { CollectionKey } from "astro:content";
+import { collections } from "@/content/config";
+import { getCollection } from "astro:content";
+import { getSlugWithLang } from "@global-shared/translations/utils/getSlugWithLang";
 
 type Props = {
+  id: string;
   language: LANGUAGE;
-  id?: string;
+  collection: CollectionKey;
+  ref: string;
 };
 
-const { language, id } = Astro.props;
+const { language, id, ref, collection } = Astro.props;
 ---
 
 <footer class="o-footer">
-  <LanguageSelector id={id} language={language} />
+  <LanguageSelector {...Astro.props} />
   <!-- <LegalLinks language={language}  /> -->
 </footer>

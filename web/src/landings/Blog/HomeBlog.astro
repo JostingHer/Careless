@@ -3,22 +3,21 @@ import Layout from "@/sections/Layout.astro";
 import type { CollectionKey } from "astro:content";
 import { getEntry } from "astro:content";
 import type { Data } from "../../common/astro";
-import type { homeBlogEntry } from "./infrastructure/sanity-blog-collection";
+import type { HomeBlogEntry } from "./infrastructure/sanity-blog-collection";
 import { t } from "../../translations/global";
 import { LANGUAGE } from "../../../../shared/translations/domain/languages";
-import { getCollection } from "astro:content";
 
 type Props = {
   _id: string;
 };
 
-const { _id } = Astro.props as Props;
+const { _id } = Astro.props;
 
 const collection: CollectionKey = "Blog";
 
-const { data } = (await getEntry(collection, _id)) as Data<homeBlogEntry>;
+const { data } = (await getEntry(collection, _id)) as Data<HomeBlogEntry>;
 
-// const shared = await getCollection("shared");
+// const shared = await getCollection("shared"); // las secciones de shared
 ---
 
 <Layout collection={collection} _id={_id}>

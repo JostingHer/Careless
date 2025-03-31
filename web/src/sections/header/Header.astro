@@ -5,33 +5,32 @@ import { logo_html } from "@/assets/icons/html/company-elements";
 import type { LANGUAGE } from "@global-shared/translations/domain/languages";
 import { DEFAULT_LANGUAGE } from "@global-shared/translations/domain/languages";
 
-type Props ={
-    language?: LANGUAGE;
-}
+type Props = {
+  language?: LANGUAGE;
+};
 
 const { language = DEFAULT_LANGUAGE } = Astro.props;
-
 ---
 
-
-
 <header class="o-header">
-    <div class="c-header">
-        <a href="/" class="header__logo" set:html={logo_html} />
-        <Nav />
-        <Sidebar language={language}/>
-    </div>
+  <div class="c-header">
+    <a href="/" class="header__logo" set:html={logo_html} />
+    <Nav />
+    <Sidebar language={language} />
+  </div>
 </header>
 
 <script>
-
-    function setHeightMenu(){
-        const headerElement = document.querySelector('.o-header') as HTMLElement;
-        if (headerElement) {
-            const headerHeight = headerElement.offsetHeight;
-            document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-        }
+  function setHeightMenu() {
+    const headerElement = document.querySelector(".o-header") as HTMLElement;
+    if (headerElement) {
+      const headerHeight = headerElement.offsetHeight;
+      document.documentElement.style.setProperty(
+        "--header-height",
+        `${headerHeight}px`
+      );
     }
-    setHeightMenu()
-    window.addEventListener('resize', setHeightMenu)
+  }
+  setHeightMenu();
+  window.addEventListener("resize", setHeightMenu);
 </script>

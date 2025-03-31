@@ -5,6 +5,7 @@ export type LandingPage = {
     slug: string;
     id: string;
     language: LANGUAGE;
+    ref: string;
     name: string;
     metas: MetadataWithImageRef;
     _type: string;

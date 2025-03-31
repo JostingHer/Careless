@@ -14,10 +14,11 @@ export const homeBlogInSanity = defineCollection({
             id: home._id,
             _id: home._id,
             slug: home.slug?.current || "/",
+            ref: home.ref,
         }));
     },
 });
 
 type CleanHomeBlog = Omit<HomeBlog, keyof LandingPage>;
 
-export type homeBlogEntry = CleanHomeBlog & LandingPage;
+export type HomeBlogEntry = CleanHomeBlog & LandingPage;

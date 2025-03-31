@@ -4,20 +4,27 @@ import type { CollectionKey } from "astro:content";
 import { getEntry } from "astro:content";
 import type { Data } from "@/common/astro";
 import type { LandingPage } from "@/common/types";
+import {
+  DEFAULT_LANGUAGE,
+  type LANGUAGE,
+} from "@global-shared/translations/domain/languages";
+import { getCollection } from "astro:content";
+import { getSlugWithLang } from "@global-shared/translations/utils/getSlugWithLang";
 
 type Props = {
-  _id: string;
+  id: string;
+  ref: string;
+  language: LANGUAGE;
   collection: CollectionKey;
 };
-
-const { _id, collection } = Astro.props;
+const { id, ref, language = DEFAULT_LANGUAGE, collection } = Astro.props;
 
 const canonicalURL = new URL(Astro.url, Astro.site);
 // const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const entry = (await getEntry(collection, _id)) as Data<LandingPage>;
+const entry = (await getEntry(collection, id)) as Data<LandingPage>;
 
-if (!entry.data.metas) return;
+// if (!entry.data.metas) return;
 
 const { metas } = entry.data;
 
@@ -26,7 +33,22 @@ const title = metas?.title || entry.data.name || "JostingHernandez.com";
 let image =
   entry.data.metas?.thumbnail?.asset?.url ||
   new URL("assets/images/placeholder.jpg", Astro.url);
+
+const current_page_other_lang = await getCollection(collection, ({ data }) => {
+  return data.ref === ref;
+});
+
+const hrefLangList = current_page_other_lang.map(({ data }) => ({
+  lang: data.language as LANGUAGE,
+  link: getSlugWithLang(data.slug, data.language),
+}));
 ---
+
+<pre>
+  <code>
+    {JSON.stringify(hrefLangList, null, 2)}
+  </code>
+</pre>
 
 <title>{`${title}`}</title>
 <meta name="title" content={`${title}`} />
@@ -48,3 +70,29 @@ let image =
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+
+
+<!-- Link URL multilang -->
+<link rel="alternate" href={canonicalURL} hreflang={language} />
+{
+  hrefLangList.map((link) => {
+    if (link.lang === DEFAULT_LANGUAGE) {
+        return (
+        <link
+            rel="alternate"
+            href={link.link}
+            hreflang="x-default"
+          />
+          <link
+            rel="alternate"
+            href={link.link}
+            hreflang={`${DEFAULT_LANGUAGE}`}
+          />
+        )
+    };
+    return(
+      <link rel="alternate" href={link.link} hreflang={link.lang} />
+    )
+
+  })
+}

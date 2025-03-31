@@ -1,4 +1,5 @@
 ---
+import type { Data } from "@/common/astro";
 import { arrow_svg, globe_svg } from "./language-selector-elements";
 import type { LANGUAGE } from "@global-shared/translations/domain/languages";
 import { DEFAULT_LANGUAGE } from "@global-shared/translations/domain/languages";
@@ -8,6 +9,7 @@ import {
 } from "@global-shared/translations/utils/getSlugWithLang";
 import type { CollectionKey } from "astro:content";
 import { getCollection } from "astro:content";
+import type { LandingPage } from "@/common/types";
 
 type Props = {
   id: string;
@@ -17,9 +19,9 @@ type Props = {
 };
 const { id, ref, language = DEFAULT_LANGUAGE, collection } = Astro.props;
 
-const current_page_other_lang = await getCollection(collection, ({ data }) => {
+const current_page_other_lang = (await getCollection(collection, ({ data }) => {
   return data.ref === ref;
-});
+})) as unknown as Data<LandingPage>[];
 
 const listLinks = current_page_other_lang.map(({ data }) => ({
   lang: data.language as LANGUAGE,

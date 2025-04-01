@@ -22,6 +22,9 @@
       "@landings/*": [
         "./src/landings/*"
       ],
+      "@common/*": [
+        "./src/common/*"
+      ],
     }
   }
 }

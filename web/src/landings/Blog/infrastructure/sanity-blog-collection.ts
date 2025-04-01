@@ -8,11 +8,31 @@ export const homeBlogInSanity = defineCollection({
         const homeList = await sanityClient.fetch<Array<HomeBlog>>(
             `*[_type == "homeBlog" ]`,
         );
+        // const homeLists = await sanityClient.fetch<Array<HomeBlog>>(
+        //     `*[_type == "homeBlog" ]{
+        //             ...,
+        //             pageSections[]{
+        //                 ...,
+        //                 sharedRef->,
+        //                 category->,
+        //                 author->,
+        //                 media{
+        //                     ...,
+        //                     photo{
+        //                         ...,
+        //                         asset->
+        //                     }
+        //                 },
+        //                 theme->
+        //             }
+        //                 }
+        //     `,
+        // );
 
         return homeList.map((home) => ({
             ...home,
-            id: home._id,
             _id: home._id,
+            id: home._id,
             slug: home.slug?.current || "/",
             ref: home.ref,
         }));

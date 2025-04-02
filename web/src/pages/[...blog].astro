@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { getSlugWithLang } from "@global-shared/translations/utils/getSlugWithLang";
-import HomeBlog from "@/landings/Blog/HomeBlog.astro";
+import HomeBlog from "@/app/Blog/HomeBlog.astro";
 
 export async function getStaticPaths() {
   const landingsList = await getCollection("Blog");

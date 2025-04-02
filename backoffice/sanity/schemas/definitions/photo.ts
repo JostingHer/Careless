@@ -18,6 +18,7 @@ export const photo = defineType({
             options: {
                 collapsible: true,
                 collapsed: false,
+                hotspot: true,
             },
         }),
     ],

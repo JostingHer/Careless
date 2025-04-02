@@ -1,11 +1,12 @@
 ---
-import Layout from "@/common/modules/Layout.astro";
+import Layout from "@/sections/Layout.astro";
 import type { CollectionKey } from "astro:content";
 import { getEntry } from "astro:content";
 import type { Data } from "../../common/astro";
 import type { HomeBlogEntry } from "./infrastructure/sanity-blog-collection";
 import { t } from "../../translations/global";
 import { LANGUAGE } from "../../../../shared/translations/domain/languages";
+import { getMediaListOptimized } from "@/common/sanity/getOptimizedImage";
 
 type Props = {
   _id: string;
@@ -18,6 +19,14 @@ const collection: CollectionKey = "Blog";
 const { data } = (await getEntry(collection, _id)) as Data<HomeBlogEntry>;
 
 // const shared = await getCollection("shared"); // las secciones de shared
+
+const mediaList = data.galleryStyles.mediaListv2;
+const mediaLis2 = data.galleryStyles.mediaListv2;
+
+const mediaOptimizedList = getMediaListOptimized(mediaList);
+
+console.log("Original mediaList:", mediaList);
+console.log("Optimized mediaList:", mediaOptimizedList);
 ---
 
 <Layout collection={collection} _id={_id}>
@@ -27,4 +36,27 @@ const { data } = (await getEntry(collection, _id)) as Data<HomeBlogEntry>;
 
   lorem ipsum dolor sit amet, consectetur adipiscing elit. traducciones
   contacto. {t("Lo que sea", LANGUAGE.EN)}
+
+  <img src="" alt="" />
+
+  <pre>
+    <code>
+      {JSON.stringify(mediaList, null, 2)}
+    </code>
+  </pre>
+
+  {
+    mediaOptimizedList.map((service) => (
+      <div class="section-services__item">
+        <img class="section-services__cover" src={service.url} />
+      </div>
+    ))
+  }
+  {
+    mediaLis2.map((service) => (
+      <div class="section-services__item">
+        <img class="section-services__cover" src={service.photo?.url} />
+      </div>
+    ))
+  }
 </Layout>

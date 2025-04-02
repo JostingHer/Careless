@@ -6,29 +6,20 @@ import type { LandingPage } from "@/common/types";
 export const homeBlogInSanity = defineCollection({
     loader: async () => {
         const homeList = await sanityClient.fetch<Array<HomeBlog>>(
-            `*[_type == "homeBlog" ]`,
+            `
+            *[_type == "homeBlog" ]{
+            ...,
+            "galleryStyles": pageSections[0]{
+                ...,
+                "theme": theme->,
+                "mediaListv2": mediaList[]{
+                    _type,
+                    "photo": asset.asset->{...},
+                } 
+            }
+        }
+            `,
         );
-        // const homeLists = await sanityClient.fetch<Array<HomeBlog>>(
-        //     `*[_type == "homeBlog" ]{
-        //             ...,
-        //             pageSections[]{
-        //                 ...,
-        //                 sharedRef->,
-        //                 category->,
-        //                 author->,
-        //                 media{
-        //                     ...,
-        //                     photo{
-        //                         ...,
-        //                         asset->
-        //                     }
-        //                 },
-        //                 theme->
-        //             }
-        //                 }
-        //     `,
-        // );
-
         return homeList.map((home) => ({
             ...home,
             _id: home._id,

@@ -20,6 +20,13 @@ export const photo = defineType({
                 collapsed: false,
                 hotspot: true,
             },
+            fields: [
+                defineField({
+                    title: 'Texto alternativo',
+                    name: 'caption',
+                    type: 'string',
+                }),
+            ],
         }),
     ],
     preview: {

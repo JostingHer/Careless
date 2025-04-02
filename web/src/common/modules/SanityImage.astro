@@ -1,0 +1,25 @@
+---
+type Props = {
+  photo: {
+    url: string;
+    caption?: string;
+    hotspot?: { x: number; y: number };
+  };
+  [key: string]: any;
+};
+
+const { photo, ...restProps } = Astro.props;
+
+if (!photo?.url) return;
+
+const objectPosition: string = photo?.hotspot
+  ? `${photo?.hotspot.x * 100}% ${photo.hotspot.y * 100}%`
+  : "center";
+---
+
+<img
+  src={photo.url}
+  alt={`${photo?.caption}`}
+  {...restProps}
+  style={{ objectFit: "cover", objectPosition: `${objectPosition}` }}
+/>

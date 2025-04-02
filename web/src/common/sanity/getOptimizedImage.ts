@@ -3,29 +3,27 @@ import type { ImageUrlBuilder } from "@sanity/image-url/lib/types/builder";
 import type { ImageAsset } from "sanity";
 import { sanityClient } from "sanity:client";
 import type { Media } from "@/common/types";
+import type { Reference } from "@sanity/types";
 
 export const getOptimizedImage = (
-    image?: ImageAsset,
+    image?: Reference,
     width?: number,
     height?: number,
 ): ImageUrlBuilder => {
-    if (!image || typeof image !== "object" || !("metadata" in image)) {
+    if (!image) {
         console.error("Invalid image object", image);
         return {
             url: () => `/assets/images/no-image.png`,
         } as unknown as ImageUrlBuilder;
     }
-    const builder = imageUrlBuilder(sanityClient)
-        .width(width ?? image?.metadata?.dimensions.width ?? 100)
-        .height(height ?? image?.metadata?.dimensions.height ?? 100)
-        .fit("max")
-        .auto("format");
+    const builder = imageUrlBuilder(sanityClient).fit("max").auto("format");
     return builder.image(image);
 };
 
 type MediaOptimized = Omit<Media, "photo"> & {
     photo?: {
         url?: string;
+        caption?: string;
     };
 };
 
@@ -35,15 +33,20 @@ type PhotoOptimized = Omit<
 >;
 
 export function getMediaListOptimized(
-    mediaList: Array<Media>,
+    mediaList?: Array<Media>,
     onlyPhoto?: boolean,
     onlyVideo?: boolean,
 ): MediaOptimized[] {
+    if (!mediaList) return [];
     const optimizedList = mediaList.map((media) => {
         if (media._type.includes("photo") && media?.photo) {
             return {
                 ...media,
-                url: getOptimizedImage(media.photo).url(),
+                photo: {
+                    url: getOptimizedImage(media.photo).url(),
+                    caption: media.photo?.caption,
+                    hotspot: media.photo?.hotspot,
+                },
             };
         }
         return {
@@ -67,6 +70,7 @@ export function getFirstPhoto(mediaList: Array<Media>): PhotoOptimized {
         return {
             photo: {
                 url: `/assets/images/no-picture.png`,
+                caption: `Imagen no encontrada`,
             },
             _type: "photo",
             alt: "No image",

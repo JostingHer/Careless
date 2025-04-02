@@ -1,11 +1,22 @@
 import {defineField, defineType} from 'sanity'
 
-import {sectionBaseMediaList} from '../base'
+import {sectionBase} from '../base'
 
 export const sectionPublicationsCarousel = defineType({
     name: 'sectionPublicationsCarousel',
     title: 'Sección publicaciones de redes sociales carousel',
     type: 'object',
-    fields: [...sectionBaseMediaList],
-    // puede que camnie com landign de infojobs
+    fields: [
+        defineField({
+            name: 'copy',
+            title: 'Información',
+            type: 'markdown',
+        }),
+        defineField({
+            name: 'theme',
+            title: 'Tema',
+            type: 'reference',
+            to: [{type: 'theme'}],
+        }),
+    ],
 })

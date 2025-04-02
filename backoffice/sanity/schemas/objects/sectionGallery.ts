@@ -15,14 +15,11 @@ export const sectionGallery = defineType({
             options: {
                 list: [
                     {title: 'Mosaico', value: 'mosaic'},
-                    {title: 'Carrusel', value: 'carousel'},
                     {title: 'Rejilla', value: 'grid'},
                 ],
-                layout: 'radio', // Esto hace que se muestre como botones de opción (radio buttons)
+                layout: 'radio',
             },
             initialValue: 'mosaic', // valor por defecto
         }),
     ],
-
-    // toggle de las distintas formas de mostrar la galeria
 })

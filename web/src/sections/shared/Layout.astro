@@ -1,5 +1,5 @@
 ---
-import "../styles/index.scss";
+import "../../styles/index.scss";
 
 import { getCodeLang } from "@global-shared/translations/utils/getCodeLang";
 import { getEntry, type CollectionKey } from "astro:content";
@@ -12,7 +12,7 @@ import Footer from "./footer/Footer.astro";
 import Header from "./header/Header.astro";
 import ContactPopup from "@/features/getting-leads/ui/ContactForm/ContactPopup.astro";
 import type { Data } from "@/common/astro";
-import type { LandingPage } from "../common/types";
+import type { LandingPage } from "@/common/types";
 
 type Props = {
   _id: string;

@@ -1,11 +1,11 @@
-import {cta, metadata, photo, video} from './definitions'
+import {Summary} from '../../../web/src/common/sanity/sanity.types'
+import {cta, metadata, photo, storie, video} from './definitions'
 import {author, category, homeBlog, legal, popups, post, setting, shared, theme} from './document'
 import {
     banner,
     heroBasic,
     heroHome,
     sectionBasic,
-    sectionCarousel,
     sectionCarouselPostFilter,
     sectionGallery,
     sectionPublicationsCarousel,
@@ -18,18 +18,18 @@ export const schemaTypes = [
     // sort exports schemas definitios, objects, document. FROM LESS TO MORE
 
     // definitions
+    summary,
     photo,
     video,
     cta,
     metadata,
+    storie,
 
     // objects
     heroBasic,
     heroHome,
 
-    summary,
     sectionBasic,
-    sectionCarousel,
     sections,
     sectionGallery,
     sectionPublicationsCarousel,

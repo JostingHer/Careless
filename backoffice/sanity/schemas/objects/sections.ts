@@ -43,15 +43,6 @@ export const sections = defineType({
             },
         },
         {
-            type: 'sectionCarousel',
-            name: 'sectionCarousel',
-            title: 'Carrusel de Sección',
-            options: {
-                collapsible: true,
-                collapsed: true,
-            },
-        },
-        {
             type: 'sectionCarouselPostFilter',
             name: 'sectionCarouselPostFilter',
             title: 'Carrusel Filtrado de Posts',

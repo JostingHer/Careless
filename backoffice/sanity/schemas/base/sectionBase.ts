@@ -1,6 +1,6 @@
 import {defineField} from 'sanity'
 
-import {MEDIACONDITIONAL} from '../definitions/media'
+import {MEDIALIST} from '../definitions/media'
 
 export const sectionBase = [
     defineField({
@@ -20,5 +20,5 @@ export const sectionBase = [
         type: 'reference',
         to: [{type: 'theme'}],
     }),
-    ...MEDIACONDITIONAL,
+    ...MEDIALIST,
 ]

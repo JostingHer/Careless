@@ -1,4 +1,4 @@
-import { next_svg, preview_svg } from "./elements_navigation";
+import { next_svg, preview_svg } from "./elements_navigation.tsx";
 import { type FC, type PropsWithChildren } from "preact/compat";
 import useSlider from "./useSlider.tsx";
 

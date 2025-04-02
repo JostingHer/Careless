@@ -25,6 +25,21 @@
       "@common/*": [
         "./src/common/*"
       ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@translations/*": [
+        "./src/translations/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@icons/*": [
+        "src/icons/*"
+      ],
     }
   }
 }

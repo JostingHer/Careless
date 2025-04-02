@@ -1,10 +1,26 @@
 import {defineField, defineType} from 'sanity'
 
-import {sectionBaseMediaList} from '../base'
-
 export const stories = defineType({
     name: 'stories',
     title: 'Sección stories de redes sociales',
     type: 'object',
-    fields: [...sectionBaseMediaList],
+    fields: [
+        defineField({
+            name: 'copy',
+            title: 'Información',
+            type: 'markdown',
+        }),
+        defineField({
+            name: 'theme',
+            title: 'Tema',
+            type: 'reference',
+            to: [{type: 'theme'}],
+        }),
+        defineField({
+            name: 'stories',
+            title: 'Historias',
+            type: 'array',
+            of: [{type: 'string'}],
+        }),
+    ],
 })

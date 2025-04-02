@@ -4,7 +4,7 @@ import {sectionBase} from '../base'
 
 export const heroBasic = defineType({
     name: 'heroBasic',
-    title: 'Hero Home Blog',
+    title: 'Hero básico',
     type: 'object',
     fields: [...sectionBase],
 })

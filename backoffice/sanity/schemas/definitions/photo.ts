@@ -6,12 +6,6 @@ export const photo = defineType({
     type: 'object',
     fields: [
         defineField({
-            name: 'alt',
-            title: 'Texto alternativo',
-            type: 'string',
-        }),
-
-        defineField({
             name: 'asset',
             title: 'Imagen',
             type: 'image',

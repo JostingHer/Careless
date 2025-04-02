@@ -20,7 +20,7 @@
         "./src/sections/*"
       ],
       "@landings/*": [
-        "./src/landings/*"
+        "src/contexts/*"
       ],
       "@common/*": [
         "./src/common/*"

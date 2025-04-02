@@ -23,15 +23,15 @@ export default defineConfig({
                 access: "public",
                 optional: true,
             }),
-            PUBLIC_SANITY_PROJECT_ID: envField.string({
+            SANITY_PROJECT_ID: envField.string({
                 context: "client",
                 access: "public",
             }),
-            PUBLIC_SANITY_DATASET: envField.string({
+            SANITY_DATASET: envField.string({
                 context: "client",
                 access: "public",
             }),
-            PUBLIC_SANITY_API_VERSION: envField.string({
+            SANITY_API_VERSION: envField.string({
                 context: "client",
                 access: "public",
             }),
@@ -43,8 +43,8 @@ export default defineConfig({
         loadITCSS(),
         preact(),
         sanity({
-            projectId: process.env.PUBLIC_SANITY_PROJECT_ID,
-            dataset: process.env.PUBLIC_SANITY_DATASET,
+            projectId: process.env.SANITY_PROJECT_ID,
+            dataset: process.env.SANITY_DATASET,
             useCdn: false,
         }),
     ],

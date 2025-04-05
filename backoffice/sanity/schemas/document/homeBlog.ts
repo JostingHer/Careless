@@ -13,6 +13,15 @@ export const homeBlog = defineType({
     ],
     fields: [
         ...prototype,
+        {
+            type: 'heroHome',
+            name: 'hero',
+            title: 'Hero',
+            options: {
+                collapsible: true,
+                collapsed: true,
+            },
+        },
         defineField({
             name: 'pageSections',
             title: 'Secciones de la Página',

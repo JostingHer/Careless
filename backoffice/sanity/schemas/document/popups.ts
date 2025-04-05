@@ -1,5 +1,7 @@
 import {defineField, defineType} from 'sanity'
 
+import {Languages} from '../../../../company/settings/translations'
+
 export const popups = defineType({
     name: 'popup',
     title: 'Popups',
@@ -10,9 +12,15 @@ export const popups = defineType({
     ],
     fields: [
         defineField({
-            name: 'ref',
-            title: 'Referencia',
+            name: 'language',
+            title: 'Idioma',
+            group: 'settings',
             type: 'string',
+            options: {
+                list: Languages,
+                layout: 'radio',
+            },
+            initialValue: Languages[0].value,
         }),
         defineField({
             name: 'copy',
@@ -21,33 +29,13 @@ export const popups = defineType({
             type: 'markdown',
         }),
         defineField({
-            name: 'showPhone',
-            title: 'Mostrar teléfono',
-            group: 'content',
-            type: 'boolean',
-        }),
-        defineField({
-            name: 'description',
-            description: 'Optativo. Contenido justo antes del formulario y debajo del teléfono si está activado.',
-            title: 'Descripción',
-            group: 'content',
-            type: 'markdown',
-        }),
-        defineField({
             name: 'image',
             title: 'Imagen',
-            type: 'image',
+            type: 'photo',
             group: 'content',
             options: {
                 hotspot: true,
             },
-        }),
-        defineField({
-            name: 'details',
-            description: 'Opcional. Espacio para detallar información adicional. Se muestra debajo del formulario.',
-            title: 'Descripción',
-            group: 'content',
-            type: 'markdown',
         }),
     ],
     preview: {

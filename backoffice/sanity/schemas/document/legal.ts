@@ -14,8 +14,7 @@ export const legal = defineType({
     fields: [
         ...prototype,
         defineField({
-            name: 'contentList',
-            description: 'Hace referencia al contenido',
+            name: 'content',
             title: 'Contenido',
             group: 'main',
             type: 'markdown',

@@ -15,14 +15,15 @@ export const post = defineType({
         ...prototype,
         defineField({
             name: 'description',
-            description: 'Bloque de texto que aparece entre la foto principal y el nombre del artículo',
+            description: 'resumen breve del artículo',
             title: 'Descripción',
             type: 'markdown',
         }),
         defineField({
-            name: 'contentCopy',
-            title: 'Contenido',
-            type: 'markdown',
+            name: 'pageSections',
+            title: 'Secciones de la Página',
+            type: 'postSections',
+            group: 'content',
         }),
         defineField({
             name: 'category',

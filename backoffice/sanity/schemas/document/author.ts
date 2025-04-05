@@ -29,15 +29,9 @@ export const author = defineType({
             type: 'string',
         }),
         defineField({
-            name: 'socialLinkList',
-            title: 'Redes sociales',
-            type: 'array',
-            of: [{type: 'url'}],
-        }),
-        defineField({
             name: 'image',
             title: 'Foto',
-            type: 'image',
+            type: 'photo',
         }),
     ],
     preview: {

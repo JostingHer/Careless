@@ -1,17 +1,14 @@
-import {Summary} from '../../../web/src/common/sanity/sanity.types'
-import {cta, metadata, photo, storie, video} from './definitions'
+import {cta, metadata, photo, summary, video} from './definitions'
 import {author, category, homeBlog, legal, popups, post, setting, shared, theme} from './document'
 import {
     banner,
     heroBasic,
     heroHome,
+    postSections,
     sectionBasic,
     sectionCarouselPostFilter,
-    sectionGallery,
-    sectionPublicationsCarousel,
+    sectionMarkdown,
     sections,
-    stories,
-    summary,
 } from './objects'
 
 export const schemaTypes = [
@@ -19,25 +16,26 @@ export const schemaTypes = [
 
     // definitions
     summary,
+    metadata,
     photo,
     video,
-    cta,
-    metadata,
-    storie,
+    // cta,
 
     // objects
-    heroBasic,
     heroHome,
-
+    heroBasic,
     sectionBasic,
-    sections,
-    sectionGallery,
-    sectionPublicationsCarousel,
-    sectionCarouselPostFilter,
-    stories,
+    sectionMarkdown,
     banner,
+    sectionCarouselPostFilter,
+
+    // sectionGallery,
+
+    sections,
+    postSections,
 
     // documents
+    theme,
     homeBlog,
     author,
     category,
@@ -47,5 +45,4 @@ export const schemaTypes = [
     popups,
     shared,
     setting,
-    theme,
 ]

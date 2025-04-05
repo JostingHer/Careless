@@ -6,7 +6,7 @@ export const photo = defineType({
     type: 'object',
     fields: [
         defineField({
-            name: 'asset',
+            name: 'photo',
             title: 'Imagen',
             type: 'image',
             options: {
@@ -25,14 +25,13 @@ export const photo = defineType({
     ],
     preview: {
         select: {
-            title: 'alt',
-            asset: 'asset',
+            title: 'photo.caption',
+            asset: 'photo',
         },
         prepare(selection) {
             const {title, asset} = selection
             return {
-                title,
-                subtitle: 'foto',
+                title: title || 'Sin texto alternativo',
                 media: asset,
             }
         },

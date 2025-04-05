@@ -70,7 +70,7 @@ export type SharedSection = {
   _updatedAt: string
   _rev: string
   name?: string
-  language?: 'es' | 'en'
+  language?: 'es' | 'en' | 'fr'
   pageSections?: Array<
     | {
         _ref: string
@@ -79,18 +79,10 @@ export type SharedSection = {
         _key: string
         [internalGroqTypeReferenceTo]?: 'sharedSection'
       }
-    | ({
-        _key: string
-      } & HeroHome)
-    | ({
-        _key: string
-      } & HeroBasic)
+    | string
     | ({
         _key: string
       } & Banner)
-    | ({
-        _key: string
-      } & SectionCarousel)
     | ({
         _key: string
       } & SectionCarouselPostFilter)
@@ -118,7 +110,7 @@ export type Legal = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en'
+  language?: 'es' | 'en' | 'fr'
   metas?: Metadata
   summary?: Summary
   ref?: string
@@ -133,12 +125,39 @@ export type Post = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en'
+  language?: 'es' | 'en' | 'fr'
   metas?: Metadata
   summary?: Summary
   ref?: string
   description?: string
-  contentCopy?: string
+  pageSections?: Array<
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        _key: string
+        [internalGroqTypeReferenceTo]?: 'sharedSection'
+      }
+    | string
+    | ({
+        _key: string
+      } & Banner)
+    | ({
+        _key: string
+      } & SectionCarouselPostFilter)
+    | ({
+        _key: string
+      } & SectionPublicationsCarousel)
+    | ({
+        _key: string
+      } & SectionGallery)
+    | ({
+        _key: string
+      } & Stories)
+    | ({
+        _key: string
+      } & SectionBasic)
+  >
   category?: {
     _ref: string
     _type: 'reference'
@@ -153,6 +172,35 @@ export type Post = {
   }
 }
 
+export type Author = {
+  _id: string
+  _type: 'Author'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  slug?: Slug
+  language?: 'es' | 'en' | 'fr'
+  metas?: Metadata
+  summary?: Summary
+  ref?: string
+  author?: string
+  bio?: string
+  job?: string
+  socialLinkList?: Array<string>
+  image?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+}
+
 export type HomeBlog = {
   _id: string
   _type: 'homeBlog'
@@ -161,10 +209,11 @@ export type HomeBlog = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en'
+  language?: 'es' | 'en' | 'fr'
   metas?: Metadata
   summary?: Summary
   ref?: string
+  hero?: HeroHome
   pageSections?: Array<
     | {
         _ref: string
@@ -173,18 +222,10 @@ export type HomeBlog = {
         _key: string
         [internalGroqTypeReferenceTo]?: 'sharedSection'
       }
-    | ({
-        _key: string
-      } & HeroHome)
-    | ({
-        _key: string
-      } & HeroBasic)
+    | string
     | ({
         _key: string
       } & Banner)
-    | ({
-        _key: string
-      } & SectionCarousel)
     | ({
         _key: string
       } & SectionCarouselPostFilter)
@@ -206,27 +247,6 @@ export type HomeBlog = {
 export type Banner = {
   _type: 'banner'
   copy?: string
-  cta?: Array<
-    {
-      _key: string
-    } & Cta
-  >
-  theme?: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'theme'
-  }
-  media?: {
-    type?: 'photo' | 'video'
-    photo?: Photo
-    video?: Video
-  }
-}
-
-export type Stories = {
-  _type: 'stories'
-  copy?: string
   theme?: {
     _ref: string
     _type: 'reference'
@@ -243,6 +263,18 @@ export type Stories = {
   >
 }
 
+export type Stories = {
+  _type: 'stories'
+  copy?: string
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
+  stories?: Array<string>
+}
+
 export type SectionCarouselPostFilter = {
   _type: 'sectionCarouselPostFilter'
   copy?: string
@@ -252,42 +284,7 @@ export type SectionCarouselPostFilter = {
     _weak?: boolean
     [internalGroqTypeReferenceTo]?: 'Category'
   }
-  author?: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'Author'
-  }
   limit?: number
-}
-
-export type Author = {
-  _id: string
-  _type: 'Author'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  slug?: Slug
-  language?: 'es' | 'en'
-  metas?: Metadata
-  summary?: Summary
-  ref?: string
-  author?: string
-  bio?: string
-  job?: string
-  socialLinkList?: Array<string>
-  image?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    _type: 'image'
-  }
 }
 
 export type Category = {
@@ -298,10 +295,11 @@ export type Category = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en'
+  language?: 'es' | 'en' | 'fr'
   metas?: Metadata
   summary?: Summary
   ref?: string
+  heroBasic?: HeroBasic
   contentCopy?: string
 }
 
@@ -320,14 +318,6 @@ export type SectionPublicationsCarousel = {
     _weak?: boolean
     [internalGroqTypeReferenceTo]?: 'theme'
   }
-  mediaList?: Array<
-    | ({
-        _key: string
-      } & Photo)
-    | ({
-        _key: string
-      } & Video)
-  >
 }
 
 export type SectionGallery = {
@@ -347,7 +337,7 @@ export type SectionGallery = {
         _key: string
       } & Video)
   >
-  galleryStyles?: 'mosaic' | 'carousel' | 'grid'
+  galleryStyles?: 'mosaic' | 'grid'
 }
 
 export type Sections = Array<
@@ -358,18 +348,10 @@ export type Sections = Array<
       _key: string
       [internalGroqTypeReferenceTo]?: 'sharedSection'
     }
-  | ({
-      _key: string
-    } & HeroHome)
-  | ({
-      _key: string
-    } & HeroBasic)
+  | string
   | ({
       _key: string
     } & Banner)
-  | ({
-      _key: string
-    } & SectionCarousel)
   | ({
       _key: string
     } & SectionCarouselPostFilter)
@@ -387,8 +369,28 @@ export type Sections = Array<
     } & SectionBasic)
 >
 
-export type SectionCarousel = {
-  _type: 'sectionCarousel'
+export type SectionBasic = {
+  _type: 'sectionBasic'
+  copy?: string
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
+  mediaList?: Array<
+    | ({
+        _key: string
+      } & Photo)
+    | ({
+        _key: string
+      } & Video)
+  >
+  reverse?: boolean
+}
+
+export type HeroHome = {
+  _type: 'heroHome'
   copy?: string
   theme?: {
     _ref: string
@@ -406,75 +408,23 @@ export type SectionCarousel = {
   >
 }
 
-export type SectionBasic = {
-  _type: 'sectionBasic'
-  copy?: string
-  cta?: Array<
-    {
-      _key: string
-    } & Cta
-  >
-  theme?: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'theme'
-  }
-  media?: {
-    type?: 'photo' | 'video'
-    photo?: Photo
-    video?: Video
-  }
-  reverse?: boolean
-}
-
-export type Summary = {
-  _type: 'summary'
-  title?: string
-  text?: string
-  photo?: string
-}
-
-export type HeroHome = {
-  _type: 'heroHome'
-  copy?: string
-  cta?: Array<
-    {
-      _key: string
-    } & Cta
-  >
-  theme?: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'theme'
-  }
-  media?: {
-    type?: 'photo' | 'video'
-    photo?: Photo
-    video?: Video
-  }
-}
-
 export type HeroBasic = {
   _type: 'heroBasic'
   copy?: string
-  cta?: Array<
-    {
-      _key: string
-    } & Cta
-  >
   theme?: {
     _ref: string
     _type: 'reference'
     _weak?: boolean
     [internalGroqTypeReferenceTo]?: 'theme'
   }
-  media?: {
-    type?: 'photo' | 'video'
-    photo?: Photo
-    video?: Video
-  }
+  mediaList?: Array<
+    | ({
+        _key: string
+      } & Photo)
+    | ({
+        _key: string
+      } & Video)
+  >
 }
 
 export type Theme = {
@@ -487,6 +437,13 @@ export type Theme = {
   backgroundColor?: string
   secondColor?: string
   textColor?: string
+}
+
+export type Storie = {
+  _type: 'storie'
+  title?: string
+  videoId?: string
+  image?: Photo
 }
 
 export type Metadata = {
@@ -592,8 +549,7 @@ export type SanityFileAsset = {
 
 export type Photo = {
   _type: 'photo'
-  alt?: string
-  asset?: {
+  photo?: {
     asset?: {
       _ref: string
       _type: 'reference'
@@ -602,6 +558,7 @@ export type Photo = {
     }
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
+    caption?: string
     _type: 'image'
   }
 }
@@ -663,6 +620,13 @@ export type SanityImageMetadata = {
   isOpaque?: boolean
 }
 
+export type Summary = {
+  _type: 'summary'
+  title?: string
+  text?: string
+  photo?: string
+}
+
 export type Markdown = string
 
 export type Table = {
@@ -688,22 +652,21 @@ export type AllSanitySchemaTypes =
   | SharedSection
   | Legal
   | Post
+  | Author
   | HomeBlog
   | Banner
   | Stories
   | SectionCarouselPostFilter
-  | Author
   | Category
   | Slug
   | SectionPublicationsCarousel
   | SectionGallery
   | Sections
-  | SectionCarousel
   | SectionBasic
-  | Summary
   | HeroHome
   | HeroBasic
   | Theme
+  | Storie
   | Metadata
   | Cta
   | Popup
@@ -715,6 +678,7 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
+  | Summary
   | Markdown
   | Table
   | TableRow

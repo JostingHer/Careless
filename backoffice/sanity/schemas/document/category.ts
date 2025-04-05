@@ -13,11 +13,15 @@ export const category = defineType({
     ],
     fields: [
         ...prototype,
-        defineField({
-            name: 'contentCopy',
-            title: 'Contenido',
-            type: 'markdown',
-        }),
+        {
+            type: 'heroBasic',
+            name: 'heroBasic',
+            title: 'heroBasic',
+            options: {
+                collapsible: true,
+                collapsed: true,
+            },
+        },
     ],
     preview: {
         select: {

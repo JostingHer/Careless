@@ -17,12 +17,6 @@ export const sectionCarouselPostFilter = defineType({
             to: [{type: 'Category'}],
         }),
         defineField({
-            name: 'author',
-            title: 'Autor',
-            type: 'reference',
-            to: [{type: 'Author'}],
-        }),
-        defineField({
             name: 'limit',
             title: 'Cantidad máxima de posts',
             type: 'number',

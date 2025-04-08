@@ -1,6 +1,6 @@
 import {defineField} from 'sanity'
 
-import {Languages} from '../../../../company/settings/translations'
+import {Languages} from '../../../../shared/translations/domain/languages'
 import {summary} from '../definitions'
 
 const prototype = [

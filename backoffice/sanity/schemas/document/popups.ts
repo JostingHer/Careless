@@ -1,6 +1,6 @@
 import {defineField, defineType} from 'sanity'
 
-import {Languages} from '../../../../company/settings/translations'
+import {Languages} from '../../../../shared/translations/domain/languages'
 
 export const popups = defineType({
     name: 'popup',

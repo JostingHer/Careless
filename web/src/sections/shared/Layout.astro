@@ -11,7 +11,7 @@ import MarkupSchema from "./head/MarkupSchema.astro";
 import Footer from "./footer/Footer.astro";
 import Header from "./header/Header.astro";
 import ContactPopup from "@/features/getting-leads/ui/ContactForm/ContactPopup.astro";
-import type { Data } from "@/common/astro";
+import type { Data, SharedContext } from "@/common/astro";
 import type { LandingPage } from "@/common/types";
 
 type Props = {
@@ -25,7 +25,7 @@ const { data } = (await getEntry(collection, _id)) as Data<LandingPage>;
 
 const { language, ref } = data;
 
-const it = {
+const context: SharedContext = {
   id: _id,
   collection,
   language,
@@ -40,7 +40,7 @@ const it = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <Favicons />
-    <Metas {...it} />
+    <Metas {...context} />
     <MarkupSchema _id={_id} collection={collection} />
     <meta name="generator" content={Astro.generator} />
   </head>
@@ -48,7 +48,7 @@ const it = {
     <GoogleTagManager />
     <Header language={language} />
     <slot />
-    <Footer {...it} />
+    <Footer {...context} />
     <ContactPopup />
   </body>
 </html>

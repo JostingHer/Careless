@@ -1,5 +1,5 @@
 ---
-import type { Data } from "@/common/astro";
+import type { Data, SharedContext } from "@/common/astro";
 import { arrow_svg, globe_svg } from "./language-selector-elements";
 import type { LANGUAGE } from "@global-shared/translations/domain/languages";
 import { DEFAULT_LANGUAGE } from "@global-shared/translations/domain/languages";
@@ -7,25 +7,25 @@ import {
   getLanguageTitle,
   getSlugWithLang,
 } from "@global-shared/translations/utils/getSlugWithLang";
-import type { CollectionKey } from "astro:content";
 import { getCollection } from "astro:content";
 import type { LandingPage } from "@/common/types";
+import { getEntry } from "astro:content";
 
-type Props = {
-  id: string;
-  ref: string;
-  language: LANGUAGE;
-  collection: CollectionKey;
-};
+type Props = SharedContext;
+
 const { id, ref, language = DEFAULT_LANGUAGE, collection } = Astro.props;
 
+const { data } = (await getEntry(collection, id)) as Data<LandingPage>;
+
+const reference = data.ref;
+
 const current_page_other_lang = (await getCollection(collection, ({ data }) => {
-  return data.ref === ref;
-})) as unknown as Data<LandingPage>[];
+  return data.ref === reference;
+})) as Data<LandingPage>[];
 
 const listLinks = current_page_other_lang.map(({ data }) => ({
-  lang: data.language as LANGUAGE,
-  link: getSlugWithLang(data.slug, data.language),
+  lang: data.language,
+  link: data.slug,
 }));
 ---
 

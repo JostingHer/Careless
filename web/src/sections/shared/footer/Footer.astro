@@ -6,18 +6,15 @@ import type { CollectionKey } from "astro:content";
 import { collections } from "@/content/config";
 import { getCollection } from "astro:content";
 import { getSlugWithLang } from "@global-shared/translations/utils/getSlugWithLang";
+import type { SharedContext } from "@/common/astro";
 
-type Props = {
-  id: string;
-  language: LANGUAGE;
-  collection: CollectionKey;
-  ref: string;
-};
+type Props = SharedContext;
 
 const { language, id, ref, collection } = Astro.props;
 ---
 
 <footer class="o-footer">
+  <h2>cambio de idioma</h2>
   <LanguageSelector {...Astro.props} />
   <!-- <LegalLinks language={language}  /> -->
 </footer>

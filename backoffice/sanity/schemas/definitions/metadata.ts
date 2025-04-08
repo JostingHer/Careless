@@ -1,3 +1,7 @@
+import {defineField} from 'sanity'
+
+import {photo} from './photo'
+
 export const metadata = {
     title: 'Metadata',
     name: 'metadata',
@@ -33,13 +37,6 @@ export const metadata = {
                 layout: 'dropdown', // <-- defaults to 'dropdown'
             },
         },
-        {
-            name: 'thumbnail',
-            title: 'Thumbnail',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
-        },
+        ...photo.fields,
     ],
 }

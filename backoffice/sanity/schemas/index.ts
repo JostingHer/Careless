@@ -4,6 +4,7 @@ import {
     banner,
     heroBasic,
     heroHome,
+    heroPost,
     postSections,
     sectionBasic,
     sectionCarouselPostFilter,
@@ -24,6 +25,7 @@ export const schemaTypes = [
     // objects
     heroHome,
     heroBasic,
+    heroPost,
     sectionBasic,
     sectionMarkdown,
     banner,
@@ -37,9 +39,9 @@ export const schemaTypes = [
     // documents
     theme,
     homeBlog,
+    post,
     author,
     category,
-    post,
 
     legal,
     popups,

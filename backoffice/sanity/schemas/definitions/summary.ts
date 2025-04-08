@@ -1,5 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
+import {MEDIALIST} from './media'
+import {photo} from './photo'
+
 export const summary = defineType({
     name: 'summary',
     title: 'Sumario',
@@ -15,11 +18,7 @@ export const summary = defineType({
             title: 'Contenido',
             type: 'markdown',
         }),
-        defineField({
-            name: 'photo',
-            title: 'foto',
-            type: 'string',
-        }),
+        ...MEDIALIST,
     ],
     preview: {
         select: {

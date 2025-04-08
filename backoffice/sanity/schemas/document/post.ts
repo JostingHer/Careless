@@ -1,6 +1,7 @@
 import {defineField, defineType} from 'sanity'
 
 import {prototype} from '../base/prototype'
+import {heroPost} from '../objects'
 
 export const post = defineType({
     name: 'Post',
@@ -13,12 +14,15 @@ export const post = defineType({
     ],
     fields: [
         ...prototype,
-        defineField({
-            name: 'description',
-            description: 'resumen breve del artículo',
-            title: 'Descripción',
-            type: 'markdown',
-        }),
+        {
+            type: 'heroPost',
+            name: 'hero',
+            title: 'Hero',
+            options: {
+                collapsible: true,
+                collapsed: true,
+            },
+        },
         defineField({
             name: 'pageSections',
             title: 'Secciones de la Página',

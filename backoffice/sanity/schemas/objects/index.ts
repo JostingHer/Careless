@@ -1,6 +1,7 @@
 export * from './banner'
 export * from './heroBasic'
 export * from './heroHome'
+export * from './heroPost'
 export * from './postSections'
 export * from './sectionBasic'
 export * from './sectionCarouselPostFilter'

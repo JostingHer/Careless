@@ -6,7 +6,7 @@ import type { LANGUAGE } from "../../../../shared/translations/domain/languages.
 export const settingsInSanity = defineCollection({
     loader: async () => {
         const list = await sanityClient.fetch<Array<Setting>>(
-            `*[_type == "setting" ]{
+            `*[_type == "setting"]{
             ...,
             }`,
         );

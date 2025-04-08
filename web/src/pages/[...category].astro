@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import CategoryBlogPage from "@/contexts/Blog/modules/CategoryBlogPage.astro";
+
+export async function getStaticPaths() {
+  const landingsList = await getCollection("Category");
+
+  const paths = landingsList.map((landing) => {
+    return {
+      params: {
+        category: landing.data.slug,
+      },
+      props: {
+        data: landing.data,
+      },
+    };
+  });
+  console.log("paths", paths);
+
+  return paths;
+}
+
+const { data } = Astro.props;
+console.log("data", data);
+---
+
+<CategoryBlogPage _id={data._id} />

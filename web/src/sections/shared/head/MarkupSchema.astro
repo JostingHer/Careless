@@ -1,5 +1,5 @@
 ---
-import SchemaBlog from "@/app/Blog/SchemaHomeBlog.astro";
+import SchemaHomeBlog from "@/contexts/Blog/modules/schema/SchemaHomeBlog.astro";
 import type { CollectionKey } from "astro:content";
 import { getEntry } from "astro:content";
 import type { Data } from "@/common/astro";
@@ -17,4 +17,4 @@ const entry = (await getEntry(collection, _id)) as Data<LandingPage>;
 const { data } = entry;
 ---
 
-{data._type === "Home" && <SchemaBlog _id={_id} />}
+{data._type === "HomeBlog" && <SchemaHomeBlog _id={_id} />}

@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import HomeBlog from "@/contexts/Blog/modules/HomeBlogPage.astro";
+
+export async function getStaticPaths() {
+  const landingsList = await getCollection("HomeBlog");
+
+  const paths = landingsList.map((landing) => {
+    return {
+      params: {
+        home: landing.data.slug,
+      },
+      props: {
+        data: landing.data,
+      },
+    };
+  });
+  console.log("paths", paths);
+
+  return paths;
+}
+
+const { data } = Astro.props;
+console.log("data", data);
+---
+
+<HomeBlog _id={data._id} />

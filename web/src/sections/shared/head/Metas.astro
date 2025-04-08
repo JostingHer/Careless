@@ -40,15 +40,10 @@ const current_page_other_lang = await getCollection(collection, ({ data }) => {
 
 const hrefLangList = current_page_other_lang.map(({ data }) => ({
   lang: data.language as LANGUAGE,
-  link: getSlugWithLang(data.slug, data.language),
+  link: data.slug,
 }));
 ---
 
-<pre>
-  <code>
-    {JSON.stringify(hrefLangList, null, 2)}
-  </code>
-</pre>
 
 <title>{`${title}`}</title>
 <meta name="title" content={`${title}`} />

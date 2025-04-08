@@ -19,8 +19,8 @@
       "@sections/*": [
         "./src/sections/*"
       ],
-      "@app/*": [
-        "./src/app/*"
+      "@contexts/*": [
+        "src/contexts/*"
       ],
       "@common/*": [
         "./src/common/*"

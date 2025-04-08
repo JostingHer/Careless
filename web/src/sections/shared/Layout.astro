@@ -19,7 +19,7 @@ type Props = {
   collection: CollectionKey;
 };
 
-const { _id, collection = "Blog" } = Astro.props;
+const { _id, collection = "HomeBlog" } = Astro.props;
 
 const { data } = (await getEntry(collection, _id)) as Data<LandingPage>;
 

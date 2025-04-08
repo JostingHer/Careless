@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import AuthorBlogPage from "@/contexts/Blog/modules/AuthorBlogPage.astro";
+
+export async function getStaticPaths() {
+  const landingsList = await getCollection("Author");
+
+  const paths = landingsList.map((landing) => {
+    return {
+      params: {
+        author: landing.data.slug,
+      },
+      props: {
+        data: landing.data,
+      },
+    };
+  });
+  console.log("paths", paths);
+
+  return paths;
+}
+
+const { data } = Astro.props;
+console.log("data", data);
+---
+
+<AuthorBlogPage _id={data._id} />

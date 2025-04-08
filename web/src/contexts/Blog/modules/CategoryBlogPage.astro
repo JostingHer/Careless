@@ -1,0 +1,30 @@
+---
+import Layout from "@/sections/shared/Layout.astro";
+import type { CollectionKey } from "astro:content";
+import { getEntry } from "astro:content";
+import type { Data } from "@/common/astro";
+import type { CategoryEntry } from "@/contexts/Blog/infraestructure/sanity-category-blog-collection";
+import { getMediaListOptimized } from "@/common/sanity/getOptimizedImage";
+
+type Props = {
+  _id: string;
+};
+
+const { _id } = Astro.props;
+
+const collection: CollectionKey = "Category";
+
+const { data } = (await getEntry(collection, _id)) as Data<CategoryEntry>;
+
+// const shared = await getCollection("shared");
+---
+
+<Layout collection={collection} _id={_id}>
+  <h1>Title!</h1>
+  <h2>Hola</h2>
+  <p>Asoma!!!</p>
+
+  <pre>
+    {JSON.stringify(data, null, 2)}
+  </pre>
+</Layout>

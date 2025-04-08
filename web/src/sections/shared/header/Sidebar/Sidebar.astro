@@ -13,26 +13,7 @@ type Props = {
 };
 
 const { language = DEFAULT_LANGUAGE } = Astro.props;
-
-const collection = (await getCollection("settings")) as Data<SettingEntry>[];
-
-let data;
-
-if (collection.length > 0) {
-  data = collection[0].data;
-}
 ---
-
-{
-  data?.phone && (
-    <a
-      href={`tel:+34${data.phone?.split(" ").join("")}`}
-      class="sidebar__phone"
-      data-phone-button
-      set:html={phone_html}
-    />
-  )
-}
 
 <button
   class="m-button button--primary"

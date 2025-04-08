@@ -1,15 +1,14 @@
 ---
 import { getCollection } from "astro:content";
-import { getSlugWithLang } from "@global-shared/translations/utils/getSlugWithLang";
-import HomeBlog from "@/app/Blog/HomeBlog.astro";
+import PostBlogPage from "@/contexts/Blog/modules/PostBlogPage.astro";
 
 export async function getStaticPaths() {
-  const landingsList = await getCollection("Blog");
+  const landingsList = await getCollection("Post");
 
   const paths = landingsList.map((landing) => {
     return {
       params: {
-        blog: `${getSlugWithLang(landing.data.slug, landing.data.language)}`,
+        post: landing.data.slug,
       },
       props: {
         data: landing.data,
@@ -25,4 +24,4 @@ const { data } = Astro.props;
 console.log("data", data);
 ---
 
-<HomeBlog _id={data._id} />
+<PostBlogPage _id={data._id} />

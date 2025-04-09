@@ -2,42 +2,41 @@
 
 
 
-$font-family: "helvetica-neve-regular", "Gill Sans MT", calibri, "Trebuchet MS", sans-serif;
+$font-family: "whyte-regular", "Gill Sans MT", calibri, "Trebuchet MS", sans-serif;
 
-$ff-normal: "helvetica-neve-regular", "Gill Sans MT", calibri, "Trebuchet MS", sans-serif;
-$ff-bold: "helvetica-neve-bold";
-$ff-semi-bold: "helvetica-neve-semibold";
-
-$ff-italic: "helvetica-neve-italic";
-$ff-light: "helvetica-neve-light";
-$ff-regular: "helvetica-neve-regular";
+$ff-normal: "whyte-regular", "Gill Sans MT", calibri, "Trebuchet MS", sans-serif;
+$ff-bold: "whyte-bold";
 
 
-
-:root{
+$ff-italic: "whyte-italic";
+$ff-light: "whyte-light";
+$ff-regular: "whyte-regular";
+:root {
 	--line-height: 1;
 	--fs-title-l: 1em;
 	--fs-title-m: 2em;
 	--fs-title-s: 3em;
-	--fs-text-large: 1.25em;
-	--fs-text-regular:  1em;
-	--fs-text-small: 0.85em ;
-	--fs-menu: .9em;
+	--fs-text-large: 1.2em;
+	--fs-text-regular: 1em;
+	--fs-text-small: 0.85em;
+	--fs-menu: 0.9em;
 	--fs-hero: 1em;
 	--fs-title-section: var(--fs-title-m);
-	--fs-text-button: rem;
+	--fs-text-button: 1rem;
 	--fs-text-input: 1em;
-	--fs-base: clamp(1rem, 4.5vw, 1.5rem);
 
+	--fs-base: clamp(0.95rem, 3.5vw, 1.25rem);
+	
 	@media (min-width: layout.$width-change-scale-typography) {
-		--fs-base: clamp(1.5rem, 2vw, 1.875rem);
-		--fs-title-section: 2.5em;
+		--fs-base: clamp(1.1rem, 1.3vw, 1.375rem);
+		--fs-title-section: 2.1em;
 	}
 
-	@media (min-width: layout.$width-freeze-boxed){
-		--fs-base: 1.875rem;
+	@media (min-width: layout.$width-freeze-boxed) {
+		--fs-base: 1.375rem;
 	}
 }
+
 
 @mixin fs-title-l{
   margin-top: 1em;

@@ -1,8 +1,10 @@
 @use "../settings/variables";
 
+
+
 body {
 	font-family: variables.$ff-normal;
-	font-size: var(--fs-body);
+	font-size: var(--fs-base);
 	line-height: var(--line-height);
 	color: var(--c-dark);
 

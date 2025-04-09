@@ -1,12 +1,40 @@
 $path: '/assets/fonts/';
 
-
-
 @font-face {
-	font-family: helvetica-neve-italic;
+	font-family: whyte-light;
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
-	src: url($path + 'helveticaneue-roman-webfont.woff2') format('woff2'),
-	    url($path + 'helveticaneue-roman-webfont.woff') format('woff');
+	src: url($path + 'Whyte-Light.woff2') format('woff2'),
+	    url($path + 'Whyte-Light.woff') format('woff');
+}
+
+
+@font-face {
+	font-family: whyte-italic;
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+	src: url($path + 'Whyte-Italic.woff2') format('woff2'),
+	    url($path + 'Whyte-Italic.woff') format('woff');
+}
+
+
+@font-face {
+	font-family: whyte-regular;
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+	src: url($path + 'Whyte-Regular.woff2') format('woff2'),
+	    url($path + 'Whyte-Regular.woff') format('woff');
+}
+
+
+@font-face {
+	font-family: whyte-bold;
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+	src: url($path + 'Whyte-Bold.woff2') format('woff2'),
+	    url($path + 'Whyte-Bold.woff') format('woff');
 }

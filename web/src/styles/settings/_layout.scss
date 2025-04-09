@@ -11,7 +11,7 @@ $margin-sections-s: 100px;
 $width-tablet: 767px;
 $width-laptop: 1023px;
 $width-desktop: 1339px;
-$width-change-scale-typography: 767px;
+$width-change-scale-typography: 767px; /* Ojo */
 
 
 /* Este valor $_boxed-rest tiene que ser 100 - var(--boxed-width) expresado en vw. */
@@ -38,7 +38,7 @@ $width-freeze-boxed: calc(#{$_max-width} + #{$_boxed-rest});
 	--boxed-docuemnts: 960px;
 	--boxed-article: 653px;
 	--boxed-width-max: #{$_max-width};
-	--boxed-margin: calc((100vw - (var(--boxed-width))) / 2 );
+	--boxed-margin: calc((100vw - (var(--boxed-width))) / 2 ); /* Esto calcula el margen lateral izquierdo y derecho, usando vw (viewport width). */
 	--margin-small-boxed-container: 10vw;
 	--header-height: 80px;
 

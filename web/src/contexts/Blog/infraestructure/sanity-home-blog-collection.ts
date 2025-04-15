@@ -8,8 +8,31 @@ export const homeBlogInSanity = defineCollection({
     loader: async () => {
         const pageList = await sanityClient.fetch<Array<HomeBlog>>(
             `
-                 *[_type == "homeBlog"]{...}
-            `,
+              *[_type == "homeBlog" ]{
+                    ...,
+                    hero{
+                    mediaList[]{
+                        ...,
+                        _type,
+                        "srcLaptop": srcLaptop.asset->url,
+                        "srcMobile": srcMobile.asset->url,
+                        "photo": photo.asset,
+                        alt
+                    }
+                    },
+                    pageSections {
+                    ...,
+                    mediaList[]{
+                        ...,
+                        _type,
+                        "srcLaptop": srcLaptop.asset->url,
+                        "srcMobile": srcMobile.asset->url,
+                        "photo": photo.asset,
+                        alt
+                    }
+                    }
+            } 
+         `,
         );
         return pageList.map((page) => ({
             ...page,

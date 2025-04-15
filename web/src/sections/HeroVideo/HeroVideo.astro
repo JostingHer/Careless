@@ -1,0 +1,48 @@
+---
+import ImageOptimized from "@/common/modules/ImageOptimized.astro";
+import {
+  getFirstPhoto,
+  getMediaListOptimized,
+  getOptimizedImage,
+} from "@/common/sanity/getOptimizedImage";
+import type { HeroHome } from "@/common/sanity/sanity.types";
+import type { Media } from "@/common/types";
+import type { SectionBase } from "@/common/types";
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+import type { Reference } from "sanity";
+
+type props = SectionBase<HeroHome>;
+
+const { copy, theme, mediaList } = Astro.props as props;
+
+const info = getHtmlSimpleCopy(copy);
+
+const bgVideo = mediaList?.filter((media) => media._type === "video")[0];
+const bgPhoto = mediaList?.filter((media) => media._type === "photo")[0];
+
+if (!mediaList) return null;
+
+const optimizedImage = getFirstPhoto(mediaList);
+
+const medias = getMediaListOptimized(mediaList);
+---
+
+<section class="o-hero-video">
+  <div class="c-hero-video">
+    <div class="hero-video__copy" set:html={info} />
+    <div class="hero-video__ctas">
+      <a href="#hero" class="m-button button--primary"> All Articles </a>
+    </div>
+  </div>
+  <video
+    class="hero-video__background"
+    autoplay
+    loop
+    muted
+    playsinline
+    id="video-video-home"
+    src={bgVideo?.srcLaptop}
+  >
+    <source id="video-hero-source" type="video/mp4" />
+  </video>
+</section>

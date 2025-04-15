@@ -1,10 +1,8 @@
 ---
+import type { Photo } from "../sanity/sanity.types";
+import type { ImageHotspot } from "sanity";
 type Props = {
-  photo: {
-    url: string;
-    caption?: string;
-    hotspot?: { x: number; y: number };
-  };
+  photo: (Photo["photo"] & { url?: string | undefined }) | any;
   [key: string]: any;
 };
 
@@ -12,13 +10,15 @@ const { photo, ...restProps } = Astro.props;
 
 if (!photo?.url) return;
 
-const objectPosition: string = photo?.hotspot
-  ? `${photo?.hotspot.x * 100}% ${photo.hotspot.y * 100}%`
+const hotspot = (photo?.hotspot as ImageHotspot) || false;
+
+const objectPosition: string = hotspot
+  ? `${hotspot.x * 100}% ${hotspot.y * 100}%`
   : "center";
 ---
 
 <img
-  src={photo.url}
+  src={photo?.url}
   alt={`${photo?.caption}`}
   {...restProps}
   style={{ objectFit: "cover", objectPosition: `${objectPosition}` }}

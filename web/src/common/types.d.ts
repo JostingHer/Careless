@@ -1,5 +1,5 @@
 import type { LANGUAGE } from "../../../shared/translations/domain/languages.ts";
-import type { Metadata } from "./sanity/sanity.types";
+import type { Metadata, Photo } from "./sanity/sanity.types";
 
 export type LandingPage = {
     slug: string;
@@ -17,10 +17,13 @@ type MetadataWithImageRef = Omit<Metadata, "thumbnail"> & {
 
 export type Media = {
     _type: string;
-    photo?: ImageAsset;
+    photo?: Photo["photo"];
+    srcLaptop?: string;
+    srcMobile?: string;
     alt?: string;
-    urlHorizontal?: string;
-    imgHorizontal?: string;
-    imgVertical?: string;
-    urlVertical?: string;
+};
+
+export type SectionBase<T> = Omit<T, "mediaList"> & {
+    _type: T;
+    mediaList?: Media[];
 };

@@ -5,6 +5,7 @@ import { getEntry } from "astro:content";
 import type { Data } from "@/common/astro";
 import type { HomeBlogEntry } from "@/contexts/Blog/infraestructure/sanity-home-blog-collection";
 import { getMediaListOptimized } from "@/common/sanity/getOptimizedImage";
+import HeroVideo from "@/sections/HeroVideo/HeroVideo.astro";
 
 type Props = {
   _id: string;
@@ -20,11 +21,21 @@ const { data } = (await getEntry(collection, _id)) as Data<HomeBlogEntry>;
 ---
 
 <Layout collection={collection} _id={_id}>
-  <h1>Title!</h1>
-  <h2>Hola</h2>
-  <p>Asoma!!!</p>
-
-  <pre>
-    {JSON.stringify(data, null, 2)}
-  </pre>
+  <HeroVideo {...data.hero} />
+  {
+    data.pageSections?.map((section) => {
+      switch (section._type) {
+        case "banner":
+          return <h1>Banner</h1>;
+        case "reference":
+          return <h1>reference que es shared section</h1>;
+        case "sectionBasic":
+          return <h1>sectionBasic</h1>;
+        case "sectionCarouselPostFilter":
+          return <h1>sectionCarouselPostFilter</h1>;
+        default:
+          return null;
+      }
+    })
+  }
 </Layout>

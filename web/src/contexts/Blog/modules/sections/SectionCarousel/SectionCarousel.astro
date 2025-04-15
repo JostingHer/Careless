@@ -1,16 +1,48 @@
 ---
-import type { SectionCarouselPostFilter } from "@/common/sanity/sanity.types";
+import type { Data } from "@/common/astro";
+import type {
+  Category,
+  SectionCarouselPostFilter,
+} from "@/common/sanity/sanity.types";
 import type { SectionBase } from "@/common/types";
 import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+import CardPost from "@/components/CardPost/CardPost.astro";
+import CarouselNav from "@/components/CarouselNav/CarouselNav.astro";
+import Navigation from "@/components/Navigator/Navigation.tsx";
+import type { CategoryEntry } from "@/contexts/Blog/infraestructure/sanity-category-blog-collection";
+import type { PostEntry } from "@/contexts/Blog/infraestructure/sanity-post-blog-collection";
+import { getCollection } from "astro:content";
+import { getEntry } from "astro:content";
+import { getEntries } from "astro:content";
 
-type props = SectionBase<SectionCarouselPostFilter>;
+type props = SectionBase<SectionCarouselPostFilter> & {
+  index?: number;
+};
 
-const { copy, category, limit, mediaList } = Astro.props as props;
+const { copy, category, limit, mediaList, index } = Astro.props as props;
 
-const info = getHtmlSimpleCopy(copy);
+const filterPostByCategory = (await getCollection("Post", (post) => {
+  return post.data.category?._ref == category?._ref;
+})) as Data<PostEntry>[];
+
+const info = getHtmlSimpleCopy(copy, "h1");
+
+const carouselId = `section-carousel-${index}`;
 ---
 
-<div>
-  <h1>sectionCarousel</h1>
-  <h1 set:html={info} />
+<div class="o-section-carousel">
+  <div class="c-section-carousel">
+    <div class="cs-section-carousel" id={carouselId}>
+      {filterPostByCategory.map((card) => <CardPost _id={card.id} />)}
+    </div>
+
+    <div class="section-carousel__headline">
+      <pre>{JSON.stringify(info)}</pre>
+      <div class="section-carousel__copy" set:html={info} />
+
+      <div class="section-carousel__controls">
+        <CarouselNav carouselId={carouselId} />
+      </div>
+    </div>
+  </div>
 </div>

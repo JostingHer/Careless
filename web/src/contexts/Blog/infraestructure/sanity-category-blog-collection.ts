@@ -8,7 +8,21 @@ export const categoryInSanity = defineCollection({
     loader: async () => {
         const pagesList = await sanityClient.fetch<Array<Category>>(
             `
-                 *[_type == "Category"]{...}
+                 *[_type == "Category"]{
+                 ...,
+                  summary {
+                        ...,
+                          mediaList[]{
+                            ...,
+                            _type,
+                            "srcLaptop": srcLaptop.asset->url,
+                            "srcMobile": srcMobile.asset->url,
+                            "photo": photo.asset,
+                            alt
+                        }
+                    },
+                 "theme": theme->{...},
+                 }
             `,
         );
         return pagesList.map((page) => ({

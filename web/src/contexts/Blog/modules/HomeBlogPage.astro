@@ -23,15 +23,11 @@ const { data } = (await getEntry(collection, _id)) as Data<HomeBlogEntry>;
 
 <Layout collection={collection} _id={_id}>
   <HeroVideo {...data.hero} />
-  <pre>
-    {JSON.stringify(data, null, 2)} 
-  </pre>
-
   {
-    data.pageSections?.map((section) => {
+    data.pageSections?.map((section, index) => {
       switch (section._type) {
         case "sectionCarouselPostFilter":
-          return <SectionCarousel {...section} />;
+          return <SectionCarousel {...section} index={index} />;
         case "banner":
           return <h1>Banner</h1>;
         case "sectionBasic":

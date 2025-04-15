@@ -14,6 +14,12 @@ export const post = defineType({
     ],
     fields: [
         ...prototype,
+        defineField({
+            name: 'theme',
+            title: 'Tema',
+            type: 'reference',
+            to: [{type: 'theme'}],
+        }),
         {
             type: 'heroPost',
             name: 'hero',

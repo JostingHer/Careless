@@ -10,16 +10,27 @@ export const homeBlogInSanity = defineCollection({
             `
             *[_type == "homeBlog" ]{
                     ...,
+                    summary {
+                        ...,
+                          mediaList[]{
+                            ...,
+                            _type,
+                            "srcLaptop": srcLaptop.asset->url,
+                            "srcMobile": srcMobile.asset->url,
+                            "photo": photo.asset,
+                            alt
+                        }
+                    },
                     hero{
                     "theme": theme->{...},
-                    mediaList[]{
-                        ...,
-                        _type,
-                        "srcLaptop": srcLaptop.asset->url,
-                        "srcMobile": srcMobile.asset->url,
-                        "photo": photo.asset,
-                        alt
-                    }
+                        mediaList[]{
+                            ...,
+                            _type,
+                            "srcLaptop": srcLaptop.asset->url,
+                            "srcMobile": srcMobile.asset->url,
+                            "photo": photo.asset,
+                            alt
+                        }
                     },
                     pageSections[] {
                         ...,

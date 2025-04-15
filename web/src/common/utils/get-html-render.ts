@@ -12,7 +12,7 @@ export type TagTitle =
 
 export const getHtmlSimpleCopy = (
     markdown: string = "",
-    tagTitle: TagTitle = "original",
+    tagTitle: TagTitle = "p",
 ) => {
     const renderer = new marked.Renderer();
     if (tagTitle === "original") {
@@ -22,30 +22,6 @@ export const getHtmlSimpleCopy = (
     } else {
         renderer.heading = (data) => {
             return `<${tagTitle} class="a-title" >${data.text}</${tagTitle}>`;
-        };
-    }
-
-    renderer.paragraph = (data) => {
-        return `<p class="p">${marked.parseInline(data.text)}</p>`;
-    };
-
-    marked.setOptions({ renderer });
-    return marked(markdown);
-};
-
-export const getHtmlSimpleCopyWithLinkInTitle = (
-    markdown: string = "",
-    tagTitle: TagTitle = "p",
-    slug: string,
-) => {
-    const renderer = new marked.Renderer();
-    if (tagTitle === "original") {
-        renderer.heading = (data) => {
-            return `<h${data.depth} class="a-title" ><a href=${slug}>${data.text}</a></h${data.depth}>`;
-        };
-    } else {
-        renderer.heading = (data) => {
-            return `<${tagTitle} class="a-title" ><a href=${slug}>${data.text}</a> </${tagTitle}>`;
         };
     }
 

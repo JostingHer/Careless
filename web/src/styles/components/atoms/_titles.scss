@@ -1,6 +1,17 @@
 @use "../../settings/variables";
 
 
+
+
 .a-title  {
-	/* ready */
+	display: block;
+
+	margin: 0 0 16px;
+	padding:0;
+
+	font-family: variables.$ff-bold;
+	font-size: var(--fs-title-m);
+	line-height: 1.2em;
+	text-align: left;
+	text-wrap: balance;
 }

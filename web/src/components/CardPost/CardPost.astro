@@ -1,0 +1,101 @@
+---
+import type { Data } from "@/common/astro";
+import ImageOptimized from "@/common/modules/ImageOptimized.astro";
+import { getFirstPhoto } from "@/common/sanity/getOptimizedImage";
+import type { Summary, Theme } from "@/common/sanity/sanity.types";
+import type { SectionBase } from "@/common/types";
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+import type { CategoryEntry } from "@/contexts/Blog/infraestructure/sanity-category-blog-collection";
+import type { PostEntry } from "@/contexts/Blog/infraestructure/sanity-post-blog-collection";
+import { getCollection } from "astro:content";
+import { getEntry } from "astro:content";
+
+type props = {
+  _id: string;
+};
+
+const { _id } = Astro.props as props;
+
+const getPostById = (await getEntry("Post", _id)) as Data<PostEntry>;
+
+const summary = getPostById.data.summary as SectionBase<Summary>;
+
+if (!summary) return null;
+
+const bgVideo = summary.mediaList?.filter((media) => media._type == "video")[0];
+
+const optimizedImage = getFirstPhoto(summary.mediaList || []);
+
+const theme = getPostById.data?.theme;
+const category = getPostById.data?.category;
+
+const getCategoryById = (await getCollection("Category", (category) => {
+  return category.data._id == category.id;
+})) as Data<CategoryEntry>[];
+
+const cardInfo = getHtmlSimpleCopy(summary?.text);
+const cardTitle = getHtmlSimpleCopy(summary?.title, "h3");
+const cardDate = getHtmlSimpleCopy(getPostById.data._updatedAt, "p");
+const cardCategory = getHtmlSimpleCopy(getCategoryById[0].data.name, "p");
+---
+
+<article
+  class="m-card-post"
+  style={`background-color: ${theme?.backgroundColor}; color: ${theme?.textColor};`}
+>
+  <div class="card-post__media-canvas">
+    {
+      summary.mediaList ? (
+        bgVideo ? (
+          <video
+            class="card-post__media-video"
+            autoplay
+            loop
+            muted
+            playsinline
+            src={bgVideo?.srcLaptop}
+          >
+            <source id="video-hero-source" type="video/mp4" />
+          </video>
+        ) : (
+          <ImageOptimized
+            class="card-post__media-img"
+            photo={optimizedImage?.photo}
+          />
+        )
+      ) : (
+        ""
+      )
+    }
+  </div>
+
+  <div class="card-post__data">
+    <div class="card-post__title">
+      <a href={getPostById.data.slug} class="card-post__title-link">
+        <h3 set:html={cardTitle} />
+      </a>
+    </div>
+    <span class="card-post__date" set:html={cardDate} />
+    <div class="card-post__copy" set:html={cardInfo} />
+    <div class="card-post__categories">
+      <span class="card-post__category-name" set:html={cardCategory} />
+    </div>
+  </div>
+</article>
+
+<script>
+  import { navigate } from "astro:transitions/client";
+  const cardPosts = document.querySelectorAll(".m-card-post");
+
+  cardPosts.forEach((cardPost) => {
+    const card = cardPost as HTMLDivElement;
+    card.style.cursor = "pointer";
+  });
+
+  cardPosts.forEach((cardPost) => {
+    cardPost.addEventListener("click", () => {
+      const link = cardPost.querySelector("a") as HTMLAnchorElement;
+      navigate(link.href);
+    });
+  });
+</script>

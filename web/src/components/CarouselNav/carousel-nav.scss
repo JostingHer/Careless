@@ -16,18 +16,24 @@
 
 	padding: .8rem;
 
-	background-color: red;
-	border: none;
+	background-color: transparent;
+	border: 2px solid var(--c-black);
 	border-radius: 100%;
-	box-shadow: 0 0 24px 0 color-mix(in srgb, red 50%, transparent);
 
 	transition: .3s;
 
+	svg path{
+		fill: var(--c-black);
+	}
+
 	&:hover{
 		color: var(--c-white);
-		background: color-mix(in srgb, red 50%, transparent);
-		box-shadow: 0 0 0;
+		background: var(--c-black);
+		border: 2px solid transparent;
+		svg path{
+			fill: var(--c-white);
 		}
+	}
 
 
 	&:focus {
@@ -43,7 +49,6 @@
 		pointer-events: none;
 		opacity: .5;
 		background-color: var(--c-gray-light);
-		box-shadow: 0 0 0;
 	}
 
 }

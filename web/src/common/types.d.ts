@@ -9,6 +9,7 @@ export type LandingPage = {
     name: string;
     metas: MetadataWithImageRef;
     _type: string;
+    theme?: Theme;
 };
 
 type MetadataWithImageRef = Omit<Metadata, "thumbnail"> & {

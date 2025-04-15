@@ -1,0 +1,56 @@
+@use "../../styles/settings/variables";
+
+.card-post__media-img, .card-post__media-video{
+  width: 100%;
+  height: fit-content;
+
+  filter: drop-shadow(0 21px 20px color-mix(in srgb, var(--c-dark) 0%, transparent));
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+
+  transition: .3s;
+
+}
+
+.m-card-post {
+  position: relative;
+
+  border-radius: 24px;
+
+  transition: .3s;
+
+  &:hover {
+    cursor: pointer;
+    transform-origin: center center;
+    transform: scale(1.01);
+  }
+
+}
+
+.card-post__media-canvas{
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  height: auto;
+
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+
+
+.card-post__data{
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+}
+
+.card-post__title{
+  margin-top: 8px;
+  font-family: variables.$ff-bold;
+}
+
+

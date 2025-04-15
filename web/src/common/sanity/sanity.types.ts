@@ -108,6 +108,12 @@ export type Post = {
   metas?: Metadata
   summary?: Summary
   ref?: string
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
   hero?: HeroPost
   pageSections?: Array<
     | {

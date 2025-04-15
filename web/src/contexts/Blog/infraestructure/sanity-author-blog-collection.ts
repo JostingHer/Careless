@@ -8,7 +8,21 @@ export const authorInSanity = defineCollection({
     loader: async () => {
         const pagesList = await sanityClient.fetch<Array<Author>>(
             `
-                 *[_type == "Author"]{...}
+                 *[_type == "Author"]{
+                 ...,
+                  summary {
+                        ...,
+                          mediaList[]{
+                            ...,
+                            _type,
+                            "srcLaptop": srcLaptop.asset->url,
+                            "srcMobile": srcMobile.asset->url,
+                            "photo": photo.asset,
+                            alt
+                        }
+                    },
+                 "theme": theme->{...},
+                 }
             `,
         );
         return pagesList.map((page) => ({

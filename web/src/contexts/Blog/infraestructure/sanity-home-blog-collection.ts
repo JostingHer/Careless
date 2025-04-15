@@ -8,9 +8,10 @@ export const homeBlogInSanity = defineCollection({
     loader: async () => {
         const pageList = await sanityClient.fetch<Array<HomeBlog>>(
             `
-              *[_type == "homeBlog" ]{
+            *[_type == "homeBlog" ]{
                     ...,
                     hero{
+                    "theme": theme->{...},
                     mediaList[]{
                         ...,
                         _type,
@@ -20,16 +21,17 @@ export const homeBlogInSanity = defineCollection({
                         alt
                     }
                     },
-                    pageSections {
-                    ...,
-                    mediaList[]{
+                    pageSections[] {
                         ...,
-                        _type,
-                        "srcLaptop": srcLaptop.asset->url,
-                        "srcMobile": srcMobile.asset->url,
-                        "photo": photo.asset,
-                        alt
-                    }
+                        "theme": theme->{...},
+                        mediaList[]{
+                            ...,
+                            _type,
+                            "srcLaptop": srcLaptop.asset->url,
+                            "srcMobile": srcMobile.asset->url,
+                            "photo": photo.asset,
+                            alt
+                        }
                     }
             } 
          `,

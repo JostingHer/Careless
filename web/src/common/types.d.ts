@@ -1,5 +1,5 @@
 import type { LANGUAGE } from "../../../shared/translations/domain/languages.ts";
-import type { Metadata, Photo } from "./sanity/sanity.types";
+import type { Metadata, Photo, Theme } from "./sanity/sanity.types";
 
 export type LandingPage = {
     slug: string;
@@ -26,4 +26,5 @@ export type Media = {
 export type SectionBase<T> = Omit<T, "mediaList"> & {
     _type: T;
     mediaList?: Media[];
+    theme?: Theme;
 };

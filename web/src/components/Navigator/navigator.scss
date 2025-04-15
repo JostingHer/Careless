@@ -1,0 +1,49 @@
+@use "../../styles/settings/variables";
+
+.m-carousel-nav {
+	display: flex;
+	flex-direction: row;
+	gap: 16px;
+	align-items: baseline;
+
+	width: fit-content;
+}
+
+.carousel-nav__button, .slide-nav__button {
+	cursor: default;
+
+	display: inline-flex;
+
+	padding: .8rem;
+
+	background-color: red;
+	border: none;
+	border-radius: 100%;
+	box-shadow: 0 0 24px 0 color-mix(in srgb, red 50%, transparent);
+
+	transition: .3s;
+
+	&:hover{
+		color: var(--c-white);
+		background: color-mix(in srgb, red 50%, transparent);
+		box-shadow: 0 0 0;
+		}
+
+
+	&:focus {
+		outline-offset: 0;
+
+	}
+
+	&:first-child {
+		margin-left: 0;
+	}
+
+	&--disable, &[disabled] {
+		pointer-events: none;
+		opacity: .5;
+		background-color: var(--c-gray-light);
+		box-shadow: 0 0 0;
+	}
+
+}

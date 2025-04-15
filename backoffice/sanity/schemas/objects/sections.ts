@@ -7,7 +7,7 @@ export const sections = defineType({
     of: [
         {
             type: 'reference',
-            name: 'Seccion de referencia',
+            name: 'sectionShared',
             title: 'Seccion en referencia (compartida)',
             to: [{type: 'sharedSection'}],
             options: {

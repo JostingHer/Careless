@@ -1,0 +1,16 @@
+---
+import type { SectionCarouselPostFilter } from "@/common/sanity/sanity.types";
+import type { SectionBase } from "@/common/types";
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+
+type props = SectionBase<SectionCarouselPostFilter>;
+
+const { copy, category, limit, mediaList } = Astro.props as props;
+
+const info = getHtmlSimpleCopy(copy);
+---
+
+<div>
+  <h1>sectionCarousel</h1>
+  <h1 set:html={info} />
+</div>

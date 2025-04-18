@@ -23,6 +23,12 @@ export const homeBlog = defineType({
             },
         },
         defineField({
+            name: 'theme',
+            title: 'Tema',
+            type: 'reference',
+            to: [{type: 'theme'}],
+        }),
+        defineField({
             name: 'pageSections',
             title: 'Secciones de la Página',
             type: 'sections', // Reutilizando el esquema anterior

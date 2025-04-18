@@ -33,6 +33,12 @@ export const author = defineType({
             title: 'Foto',
             type: 'photo',
         }),
+        defineField({
+            name: 'theme',
+            title: 'Tema',
+            type: 'reference',
+            to: [{type: 'theme'}],
+        }),
     ],
     preview: {
         select: {

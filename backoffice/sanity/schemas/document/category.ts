@@ -22,6 +22,12 @@ export const category = defineType({
                 collapsed: true,
             },
         },
+        defineField({
+            name: 'theme',
+            title: 'Tema',
+            type: 'reference',
+            to: [{type: 'theme'}],
+        }),
     ],
     preview: {
         select: {

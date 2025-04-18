@@ -163,6 +163,12 @@ export type Author = {
   bio?: string
   job?: string
   image?: Photo
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
 }
 
 export type HomeBlog = {
@@ -178,6 +184,12 @@ export type HomeBlog = {
   summary?: Summary
   ref?: string
   hero?: HeroHome
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
   pageSections?: Array<
     | {
         _ref: string
@@ -239,13 +251,18 @@ export type Sections = Array<
 export type SectionCarouselPostFilter = {
   _type: 'sectionCarouselPostFilter'
   copy?: string
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
   category?: {
     _ref: string
     _type: 'reference'
     _weak?: boolean
     [internalGroqTypeReferenceTo]?: 'Category'
   }
-  limit?: number
 }
 
 export type Category = {
@@ -261,6 +278,12 @@ export type Category = {
   summary?: Summary
   ref?: string
   heroBasic?: HeroBasic
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
 }
 
 export type Slug = {
@@ -378,7 +401,6 @@ export type Theme = {
   _rev: string
   name?: string
   backgroundColor?: string
-  secondColor?: string
   textColor?: string
 }
 

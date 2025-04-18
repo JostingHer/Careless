@@ -1,5 +1,6 @@
 ---
 import type { Data } from "@/common/astro";
+import SectionContainer from "@/common/modules/SectionContainer/SectionContainer.astro";
 import type {
   Category,
   SectionCarouselPostFilter,
@@ -25,24 +26,20 @@ const filterPostByCategory = (await getCollection("Post", (post) => {
   return post.data.category?._ref == category?._ref;
 })) as Data<PostEntry>[];
 
-const info = getHtmlSimpleCopy(copy, "h1");
+const info = getHtmlSimpleCopy(copy, "h2");
 
 const carouselId = `section-carousel-${index}`;
 ---
 
-<div class="o-section-carousel">
-  <div class="c-section-carousel">
-    <div class="cs-section-carousel" id={carouselId}>
-      {filterPostByCategory.map((card) => <CardPost _id={card.id} />)}
-    </div>
+<SectionContainer boxed="large" class:list={["c-section-carousel"]}>
+  <div class="cs-section-carousel" id={carouselId}>
+    {filterPostByCategory.map((card) => <CardPost _id={card.id} />)}
+  </div>
 
-    <div class="section-carousel__headline">
-      <pre>{JSON.stringify(info)}</pre>
-      <div class="section-carousel__copy" set:html={info} />
-
-      <div class="section-carousel__controls">
-        <CarouselNav carouselId={carouselId} />
-      </div>
+  <div class="section-carousel__headline">
+    <div class="section-carousel__copy" set:html={info} />
+    <div class="section-carousel__controls">
+      <CarouselNav carouselId={carouselId} />
     </div>
   </div>
-</div>
+</SectionContainer>

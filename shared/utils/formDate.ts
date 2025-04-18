@@ -1,10 +1,10 @@
-import { getCodeLang } from "../../web/src/utils/getCodeLang";
 
-export const formatDate = (dateString: Date, language?: string): string => {
-  const options: Intl.DateTimeFormatOptions = {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  };
-  return new Date(dateString).toLocaleDateString(`${getCodeLang(language) || "es-ES"}`, options);
-};
+export const formatDate = (isoDate: string): string => {
+  const date = new Date(isoDate);
+  
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  
+  return `${day}/${month}/${year}`;
+}

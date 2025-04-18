@@ -1,0 +1,45 @@
+---
+import type { Theme } from "@/common/sanity/sanity.types";
+
+type Props = {
+  theme?: Theme;
+  class?: string;
+  boxed?: "large" | "small" | "";
+};
+const c_black = "#000000";
+const c_white = "#ffffff";
+
+const { theme, class: className } = Astro.props as Props;
+const backgroundColor = theme?.backgroundColor || c_black;
+const textColor = theme?.textColor || c_white;
+
+const classes = className ? ` ${className}` : "";
+
+const boxed = Astro.props.boxed
+  ? `c-section-container--${Astro.props.boxed}`
+  : "";
+---
+
+<section
+  class={`o-section-container`}
+  text-color={textColor}
+  background-color={backgroundColor}
+>
+  <div class=`c-section-container ${boxed}  ${classes}`>
+    <slot />
+  </div>
+</section>
+
+<script>
+  const sectionsContainer = document.querySelectorAll(".o-section-container");
+
+  sectionsContainer.forEach((section) => {
+    const sectionCurrent = section as HTMLDivElement;
+
+    const backgroundColor = section.getAttribute("background-color");
+    const textColor = section.getAttribute("text-color");
+
+    sectionCurrent.style.setProperty("--c-background-color", backgroundColor);
+    sectionCurrent.style.setProperty("--c-text-color", textColor);
+  });
+</script>

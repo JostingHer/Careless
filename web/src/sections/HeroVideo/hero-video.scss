@@ -8,13 +8,13 @@
   overflow: hidden;
 
   width: 100%;
-  height: calc(100vh );
-  padding-top: 100px;
+  height: 100vh ;
 
   font-size: var(--fs-hero);
 
+
   @media (orientation: landscape) {
-    height: calc(100vh - 56px - 2lh );
+    height: 100vh;
     padding-top: 0;
   }
 }
@@ -35,22 +35,18 @@
 }
 
 .hero-video__copy{
-  max-width: var(--boxed-docuemnts);
 
   font-family: variables.$ff-regular;
   font-size: 1em;
   color: var(--c-white);
   text-align: center;
-  text-wrap: balance;
+  margin-top: 10rem 0;
 
   .a-title{
-    margin-bottom: var(--spacing-vertical);
-    font-size: 1.25em;
+    font-size: 3em;
     text-align: center;
 
-    @media (min-width: variables.$width-tablet) {
-      font-size: 1.6em;
-    }
+  
   }
 
   p {

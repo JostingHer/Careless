@@ -22,7 +22,8 @@ export const homeBlogInSanity = defineCollection({
                         }
                     },
                     hero{
-                    "theme": theme->{...},
+                    ...,
+                        "theme": theme->{...},
                         mediaList[]{
                             ...,
                             _type,

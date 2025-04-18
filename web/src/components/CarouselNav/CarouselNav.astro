@@ -7,11 +7,10 @@ interface Props {
 }
 
 const { carouselId, offsetLeft } = Astro.props;
-
 const moveScroll = offsetLeft || 300;
 ---
 
-<astro-carousel-nav>
+<astro-carousel-nav data-carousel-id={carouselId} data-move-scroll={moveScroll}>
   <div id={`carousel-nav-${carouselId}`} class={`m-carousel-nav`}>
     <button
       id={`carousel-nav-button-preview-${carouselId}`}
@@ -52,54 +51,77 @@ const moveScroll = offsetLeft || 300;
   </div>
 </astro-carousel-nav>
 
-<script define:vars={{ carouselId, moveScroll }}>
+<script>
   class CarouselNav extends HTMLElement {
     carousel;
     nav;
     preview;
     next;
+    carouselId;
+    moveScroll;
 
     constructor() {
       super();
-      this.nav = this.querySelector(`#carousel-nav-${carouselId}`);
-      this.carousel = document.getElementById(`${carouselId}`);
-      this.next = this.querySelector(`#carousel-nav-button-next-${carouselId}`);
+
+      // Obtenemos los datos del data-attribute
+      this.carouselId = this.dataset.carouselId;
+      this.moveScroll = parseInt(this.dataset.moveScroll || "300");
+
+      // Esperamos a que el DOM esté completamente cargado
+      window.addEventListener("DOMContentLoaded", () => {
+        this.init();
+      });
+    }
+
+    init() {
+      // Buscamos elementos usando el carouselId específico de esta instancia
+      this.nav = this.querySelector(`#carousel-nav-${this.carouselId}`);
+      this.carousel = document.getElementById(`${this.carouselId}`);
+      this.next = this.querySelector(
+        `#carousel-nav-button-next-${this.carouselId}`
+      );
       this.preview = this.querySelector(
-        `#carousel-nav-button-preview-${carouselId}`
+        `#carousel-nav-button-preview-${this.carouselId}`
       );
 
+      if (!this.carousel) {
+        console.error(`Carousel with id ${this.carouselId} not found`);
+        return;
+      }
+
       this.next?.addEventListener("click", () => {
-        this.carousel.scrollLeft += moveScroll;
+        this.carousel.scrollLeft += this.moveScroll;
       });
 
       this.preview?.addEventListener("click", () => {
-        this.carousel.scrollLeft -= moveScroll;
+        this.carousel.scrollLeft -= this.moveScroll;
       });
-      if (this.carousel) {
-        const checkButtonState = () => {
-          if (this.carousel.scrollLeft <= 0) {
-            this.preview?.classList.add("carousel-nav__button--disable");
-          } else {
-            this.preview?.classList.remove("carousel-nav__button--disable");
-          }
 
-          if (
-            this.carousel.scrollLeft + this.carousel.clientWidth >=
-            this.carousel.scrollWidth
-          ) {
-            this.next?.classList.add("carousel-nav__button--disable");
-          } else {
-            this.next?.classList.remove("carousel-nav__button--disable");
-          }
-        };
+      const checkButtonState = () => {
+        if (this.carousel.scrollLeft <= 0) {
+          this.preview?.classList.add("carousel-nav__button--disable");
+        } else {
+          this.preview?.classList.remove("carousel-nav__button--disable");
+        }
 
-        this.carousel.addEventListener("scroll", checkButtonState);
+        if (
+          this.carousel.scrollLeft + this.carousel.clientWidth >=
+          this.carousel.scrollWidth
+        ) {
+          this.next?.classList.add("carousel-nav__button--disable");
+        } else {
+          this.next?.classList.remove("carousel-nav__button--disable");
+        }
+      };
 
-        checkButtonState();
-      }
+      this.carousel.addEventListener("scroll", checkButtonState);
+
+      // Ejecutamos inicialmente para configurar el estado de los botones
+      checkButtonState();
     }
   }
 
+  // Registramos el componente una sola vez
   if (!customElements.get("astro-carousel-nav")) {
     customElements.define("astro-carousel-nav", CarouselNav);
   }

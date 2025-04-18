@@ -22,17 +22,6 @@ export const theme = defineType({
                 }),
         }),
         defineField({
-            name: 'secondColor',
-            title: 'Color secundario (Hexadecimal)',
-            type: 'string',
-            initialValue: '#3954C6',
-            validation: (Rule) =>
-                Rule.regex(/^#([0-9A-F]{3}){1,2}$/i, {
-                    name: 'hex color',
-                    message: 'Debe ser un color hexadecimal. Ejemplo: #3954C6',
-                }),
-        }),
-        defineField({
             name: 'textColor',
             title: 'Color del Texto (Hexadecimal)',
             type: 'string',
@@ -49,12 +38,11 @@ export const theme = defineType({
             title: 'name',
             bgColor: 'backgroundColor',
             textColor: 'textColor',
-            secondColor: 'secondColor',
         },
-        prepare({title, bgColor, textColor, secondColor}) {
+        prepare({title, bgColor, textColor}) {
             return {
                 title,
-                subtitle: `${bgColor || '#ccc'} / ${textColor || '#000'} / ${secondColor || '#3954C6'}`,
+                subtitle: `${bgColor || '#ccc'} / ${textColor || '#000'} }`,
                 media: (
                     <div
                         style={{
@@ -73,7 +61,6 @@ export const theme = defineType({
                     >
                         <span
                             style={{
-                                backgroundColor: secondColor || '#3954C6',
                                 color: textColor || '#000',
                                 padding: '2px',
                             }}

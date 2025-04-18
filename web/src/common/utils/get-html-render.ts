@@ -12,18 +12,19 @@ export type TagTitle =
 
 export const getHtmlSimpleCopy = (
     markdown: string = "",
-    tagTitle: TagTitle = "p",
+    tagTitle: TagTitle = "h1",
 ) => {
     const renderer = new marked.Renderer();
-    if (tagTitle === "original") {
-        renderer.heading = (data) => {
-            return `<h${data.depth} class="a-title" >${data.text}</h${data.depth}>`;
-        };
-    } else {
-        renderer.heading = (data) => {
-            return `<${tagTitle} class="a-title" >${data.text}</${tagTitle}>`;
-        };
-    }
+
+    renderer.heading = ({ tokens, depth }) => {
+        // Utiliza el parser inline para reconstruir el contenido del heading.
+        const content = marked.Parser.parseInline(tokens);
+        if (tagTitle === "original") {
+            return `<h${depth} class="a-title">${content}</h${depth}>`;
+        } else {
+            return `<${tagTitle} class="a-title">${content}</${tagTitle}>`;
+        }
+    };
 
     marked.setOptions({ renderer });
     return marked(markdown);

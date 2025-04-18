@@ -4,7 +4,9 @@ import ImageOptimized from "@/common/modules/ImageOptimized.astro";
 import { getFirstPhoto } from "@/common/sanity/getOptimizedImage";
 import type { Summary, Theme } from "@/common/sanity/sanity.types";
 import type { SectionBase } from "@/common/types";
+import { formatDate } from "@/common/utils/formDate";
 import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+import type { AuthorEntry } from "@/contexts/Blog/infraestructure/sanity-author-blog-collection";
 import type { CategoryEntry } from "@/contexts/Blog/infraestructure/sanity-category-blog-collection";
 import type { PostEntry } from "@/contexts/Blog/infraestructure/sanity-post-blog-collection";
 import { getCollection } from "astro:content";
@@ -28,20 +30,24 @@ const optimizedImage = getFirstPhoto(summary.mediaList || []);
 
 const theme = getPostById.data?.theme;
 const category = getPostById.data?.category;
+const author = getPostById.data?.author;
 
-const getCategoryById = (await getCollection("Category", (category) => {
-  return category.data._id == category.id;
+const getCategoryById = (await getCollection("Category", (cat) => {
+  return cat.id === category?._ref;
 })) as Data<CategoryEntry>[];
+
+const getAuthorById = (await getCollection("Author", (aut) => {
+  return aut.id === author?._ref;
+})) as Data<AuthorEntry>[];
 
 const cardInfo = getHtmlSimpleCopy(summary?.text);
 const cardTitle = getHtmlSimpleCopy(summary?.title, "h3");
-const cardDate = getHtmlSimpleCopy(getPostById.data._updatedAt, "p");
-const cardCategory = getHtmlSimpleCopy(getCategoryById[0].data.name, "p");
 ---
 
 <article
   class="m-card-post"
-  style={`background-color: ${theme?.backgroundColor}; color: ${theme?.textColor};`}
+  text-color={theme?.textColor}
+  background-color={theme?.backgroundColor}
 >
   <div class="card-post__media-canvas">
     {
@@ -70,15 +76,29 @@ const cardCategory = getHtmlSimpleCopy(getCategoryById[0].data.name, "p");
   </div>
 
   <div class="card-post__data">
-    <div class="card-post__title">
-      <a href={getPostById.data.slug} class="card-post__title-link">
-        <h3 set:html={cardTitle} />
-      </a>
-    </div>
-    <span class="card-post__date" set:html={cardDate} />
+    <a href={getPostById.data.slug} class="card-post__title">
+      <h3 set:html={cardTitle} />
+    </a>
+    <span class="card-post__date">
+      {formatDate(getPostById.data._updatedAt)}
+    </span>
+    <span class="card-post__author">
+      {getAuthorById[0].data.name}
+      {getAuthorById[0].data.job}
+    </span>
     <div class="card-post__copy" set:html={cardInfo} />
     <div class="card-post__categories">
-      <span class="card-post__category-name" set:html={cardCategory} />
+      {
+        getCategoryById.map((category) => {
+          return (
+            <a
+              href={category.data.slug}
+              class="card-post__category-name"
+              set:html={category.data.name}
+            />
+          );
+        })
+      }
     </div>
   </div>
 </article>
@@ -89,7 +109,13 @@ const cardCategory = getHtmlSimpleCopy(getCategoryById[0].data.name, "p");
 
   cardPosts.forEach((cardPost) => {
     const card = cardPost as HTMLDivElement;
+
+    const backgroundColor = card.getAttribute("background-color");
+    const textColor = card.getAttribute("text-color");
+
     card.style.cursor = "pointer";
+    card.style.setProperty("--c-background-color", backgroundColor);
+    card.style.setProperty("--c-text-color", textColor);
   });
 
   cardPosts.forEach((cardPost) => {

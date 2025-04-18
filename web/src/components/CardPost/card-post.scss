@@ -1,21 +1,15 @@
 @use "../../styles/settings/variables";
 
-.card-post__media-img, .card-post__media-video{
-  width: 100%;
-  height: fit-content;
-
-  filter: drop-shadow(0 21px 20px color-mix(in srgb, var(--c-dark) 0%, transparent));
-  border-top-left-radius: 24px;
-  border-top-right-radius: 24px;
-
-  transition: .3s;
-
-}
 
 .m-card-post {
-  position: relative;
 
-  border-radius: 24px;
+  /* Default values */
+  --c-text-color: var(--c-dark);
+  --c-background-color: var(--c-white);
+
+  position: relative;
+  background-color: var(--c-background-color);
+  color: var(--c-text-color);
 
   transition: .3s;
 
@@ -29,28 +23,88 @@
 
 .card-post__media-canvas{
   position: relative;
-
   overflow: hidden;
 
   width: 100%;
   height: auto;
 
-  border-top-left-radius: 24px;
-  border-top-right-radius: 24px;
 }
+
+.card-post__media-img, .card-post__media-video{
+  width: 100%;
+  height: fit-content;
+
+
+  transition: .3s;
+}
+
 
 
 .card-post__data{
-  padding: 24px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-
 }
-
+.card-post__date{
+  font-size: .8em;
+}
+.card-post__copy{
+  font-size: 1em;
+  font-weight: 400;
+}
+.card-post__author{
+  margin: .8em 0;
+}
 .card-post__title{
   margin-top: 8px;
   font-family: variables.$ff-bold;
+  display: flex;
+  flex-direction: column;
+
+  text-decoration: none;
+  width: fit-content;
+  color: var(--c-text-color);
+  
+  &::after{
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: var(--c-text-color);
+    transition: .7s;
+
+    margin-top: -4px;
+  }
 }
 
+.m-card-post:hover  .card-post__title{
+  color: var(--c-text-color);
+  &::after{
+    width: 100%;
+  }
+}
+
+.card-post__category-name{
+
+  border: 1px solid var(--c-text-color);
+  background-color: transparent;
+  border-radius: 100px;
+  color: var(--c-text-color);
+  padding: .4rem;
+  padding-bottom: .2rem;
+  padding-left: .6em;
+  padding-right: .6em;
+  display: inline-flex;
+  align-items: center;
+  font-size: .8em;
+
+  width: fit-content;
+  text-decoration: none;
+
+  &:hover{
+    background-color: var(--c-text-color);
+    color: var(--c-background-color);
+  }
+}
 

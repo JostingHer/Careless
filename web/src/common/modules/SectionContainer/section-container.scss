@@ -1,0 +1,18 @@
+@use "../../../styles/settings/variables";
+
+
+.o-section-container{
+    margin-top: var(--spacing-section);
+    margin-bottom: var(--spacing-section);
+
+    .c-section-container{
+        @include variables.boxed-container;
+    }
+    .c-section-container--small{
+        @include variables.boxed-container-small;
+    }
+    .c-section-container--large{
+        @include variables.boxed-container-large;
+    }
+
+}

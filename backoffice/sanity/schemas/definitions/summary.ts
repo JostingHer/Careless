@@ -18,6 +18,12 @@ export const summary = defineType({
             title: 'Contenido',
             type: 'markdown',
         }),
+        defineField({
+            name: 'theme',
+            title: 'Tema',
+            type: 'reference',
+            to: [{type: 'theme'}],
+        }),
         ...MEDIALIST,
     ],
     preview: {

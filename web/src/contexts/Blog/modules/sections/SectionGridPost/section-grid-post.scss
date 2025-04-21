@@ -1,0 +1,13 @@
+
+.c-section-grid-post-list {
+    --gap: clamp(0.5rem, 2vw, 1.5rem);
+
+    columns: 3 300px;
+
+    > article {
+        break-inside: avoid;
+        margin-bottom: var(--gap);
+        width: 100%;
+    }
+}
+  

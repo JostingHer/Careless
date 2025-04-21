@@ -24,8 +24,13 @@ export type Media = {
     alt?: string;
 };
 
-export type SectionBase<T> = Omit<T, "mediaList"> & {
-    _type: T;
+export type SectionBase = {
+    copy?: string;
+    mediaList?: Media[];
+    theme?: Theme;
+};
+export type Base<T> = Omit<T, "mediaList"> & {
+    copy?: string;
     mediaList?: Media[];
     theme?: Theme;
 };

@@ -5,9 +5,13 @@
 @use "src/components/CarouselNav/carousel-nav.scss";
 @use "src/components/LanguageSelector/m-language-selector.scss";
 @use "src/contexts/Blog/modules/sections/SectionCarousel/section-carousel.scss";
+@use "src/contexts/Blog/modules/sections/SectionGridPost/section-grid-post.scss";
 @use "src/features/cookie-consent/cookie-consent.scss";
 @use "src/features/getting-leads/ui/shared/contact-method.scss";
 @use "src/features/getting-leads/ui/shared/popups.scss";
+@use "src/sections/Hero/Hero.scss";
+@use "src/sections/HeroBasic/hero-basic.scss";
+@use "src/sections/HeroPhoto/hero-photo.scss";
 @use "src/sections/HeroVideo/hero-video.scss";
 @use "src/sections/shared/footer/footer.scss";
 @use "src/sections/shared/header/Nav/header-links.scss";

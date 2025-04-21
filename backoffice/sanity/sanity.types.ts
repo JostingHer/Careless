@@ -393,17 +393,6 @@ export type HeroHome = {
   >
 }
 
-export type Theme = {
-  _id: string
-  _type: 'theme'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  backgroundColor?: string
-  textColor?: string
-}
-
 export type Video = {
   _type: 'video'
   alt?: string
@@ -467,6 +456,12 @@ export type Summary = {
   _type: 'summary'
   title?: string
   text?: string
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
   mediaList?: Array<
     | ({
         _key: string
@@ -556,6 +551,17 @@ export type SanityImageMetadata = {
   isOpaque?: boolean
 }
 
+export type Theme = {
+  _id: string
+  _type: 'theme'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  backgroundColor?: string
+  textColor?: string
+}
+
 export type Markdown = string
 
 export type Table = {
@@ -595,7 +601,6 @@ export type AllSanitySchemaTypes =
   | HeroPost
   | HeroBasic
   | HeroHome
-  | Theme
   | Video
   | Photo
   | Metadata
@@ -606,6 +611,7 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
+  | Theme
   | Markdown
   | Table
   | TableRow

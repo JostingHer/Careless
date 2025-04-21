@@ -23,7 +23,11 @@ const { _id, collection = "HomeBlog" } = Astro.props;
 
 const { data } = (await getEntry(collection, _id)) as Data<LandingPage>;
 
-const { language, ref } = data;
+const { language, ref, theme } = data;
+
+const c_black = "#000000";
+const c_white = "#ffffff";
+const { backgroundColor = c_white, textColor = c_black } = theme || {};
 
 const context: SharedContext = {
   id: _id,
@@ -33,7 +37,6 @@ const context: SharedContext = {
 };
 ---
 
-<!doctype html>
 <html lang={getCodeLang(language)}>
   <head>
     <CookieConsentHead />
@@ -44,7 +47,11 @@ const context: SharedContext = {
     <MarkupSchema _id={_id} collection={collection} />
     <meta name="generator" content={Astro.generator} />
   </head>
-  <body class={`l-${collection}`}>
+  <body
+    class={`layout l-${collection}`}
+    text-color={textColor}
+    background-color={backgroundColor}
+  >
     <GoogleTagManager />
     <!-- <Header language={language} /> -->
     <slot />
@@ -52,3 +59,11 @@ const context: SharedContext = {
     <ContactPopup />
   </body>
 </html>
+
+<script>
+  const body = document.querySelector("body") as HTMLBodyElement;
+  const backgroundColor = body.getAttribute("background-color");
+  const textColor = body.getAttribute("text-color");
+  body.style.setProperty("--c-background-color", backgroundColor);
+  body.style.setProperty("--c-text-color", textColor);
+</script>

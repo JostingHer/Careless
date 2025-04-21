@@ -8,10 +8,12 @@ export const postInSanity = defineCollection({
     loader: async () => {
         const pagesList = await sanityClient.fetch<Array<Post>>(
             `
-                 *[_type == "Post"]{
+              *[_type == "Post"]{
                  ...,
+                "theme": theme->{...},
                   summary {
                         ...,
+                          "theme": theme->{...},
                           mediaList[]{
                             ...,
                             _type,
@@ -21,8 +23,33 @@ export const postInSanity = defineCollection({
                             alt
                         }
                     },
-                 "theme": theme->{...},
-                 }
+                      hero{
+                    ...,
+                        "theme": theme->{...},
+                        mediaList[]{
+                            ...,
+                            _type,
+                            "srcLaptop": srcLaptop.asset->url,
+                            "srcMobile": srcMobile.asset->url,
+                            "photo": photo.asset,
+                            alt
+                        }
+                    },
+
+                   pageSections[] {
+                    ...,
+                    "theme": theme->{...},
+                    mediaList[]{
+                        ...,
+                        _type,
+                        "srcLaptop": srcLaptop.asset->url,
+                        "srcMobile": srcMobile.asset->url,
+                        "photo": photo.asset,
+                        alt
+                    }
+                }
+              
+        }
             `,
         );
         return pagesList.map((page) => ({

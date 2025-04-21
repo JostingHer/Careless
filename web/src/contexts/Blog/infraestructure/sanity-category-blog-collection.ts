@@ -10,6 +10,18 @@ export const categoryInSanity = defineCollection({
             `
                  *[_type == "Category"]{
                  ...,
+                  heroBasic{
+                    ...,
+                        "theme": theme->{...},
+                        mediaList[]{
+                            ...,
+                            _type,
+                            "srcLaptop": srcLaptop.asset->url,
+                            "srcMobile": srcMobile.asset->url,
+                            "photo": photo.asset,
+                            alt
+                        }
+                    },
                   summary {
                         ...,
                           mediaList[]{

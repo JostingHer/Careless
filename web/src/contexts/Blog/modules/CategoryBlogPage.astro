@@ -5,6 +5,9 @@ import { getEntry } from "astro:content";
 import type { Data } from "@/common/astro";
 import type { CategoryEntry } from "@/contexts/Blog/infraestructure/sanity-category-blog-collection";
 import { getMediaListOptimized } from "@/common/sanity/getOptimizedImage";
+import SectionGridPost from "./sections/SectionGridPost/SectionGridPost.astro";
+import Hero from "@/sections/Hero/Hero.astro";
+import type { SectionBase } from "@/common/types";
 
 type Props = {
   _id: string;
@@ -20,11 +23,6 @@ const { data } = (await getEntry(collection, _id)) as Data<CategoryEntry>;
 ---
 
 <Layout collection={collection} _id={_id}>
-  <h1>Title!</h1>
-  <h2>Hola</h2>
-  <p>Asoma!!!</p>
-
-  <pre>
-    {JSON.stringify(data, null, 2)}
-  </pre>
+  {data.heroBasic && <Hero {...(data.heroBasic as SectionBase)} />}
+  <SectionGridPost category_id={data._id} />
 </Layout>

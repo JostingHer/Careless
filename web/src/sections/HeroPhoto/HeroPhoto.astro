@@ -1,0 +1,32 @@
+---
+import ImageOptimized from "@/common/modules/ImageOptimized.astro";
+import {
+  getFirstPhoto,
+  getMediaListOptimized,
+  getOptimizedImage,
+} from "@/common/sanity/getOptimizedImage";
+import type { HeroHome } from "@/common/sanity/sanity.types";
+import type { Media } from "@/common/types";
+import type { SectionBase } from "@/common/types";
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+import type { Reference } from "sanity";
+
+type props = SectionBase;
+
+const { theme, mediaList, copy } = Astro.props as props;
+
+const info = getHtmlSimpleCopy(copy, "h1");
+
+if (!mediaList) return null;
+const optimizedImage = getFirstPhoto(mediaList).photo;
+---
+
+<section class="o-hero-photo">
+  <div class="c-hero-photo">
+    <div class="hero-photo__copy" set:html={info} />
+  </div>
+  <div class="hero-photo__ctas">
+    <a href="#hero" class="m-button button--primary"> All Articles </a>
+  </div>
+  <ImageOptimized photo={optimizedImage} class="hero-photo__background" />
+</section>

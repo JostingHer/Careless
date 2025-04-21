@@ -1,0 +1,22 @@
+---
+import type { Data } from "@/common/astro";
+import SectionContainer from "@/common/modules/SectionContainer/SectionContainer.astro";
+import CardPost from "@/components/CardPost/CardPost.astro";
+import type { PostEntry } from "@/contexts/Blog/infraestructure/sanity-post-blog-collection";
+import { getCollection } from "astro:content";
+
+type Props = {
+  category_id: string;
+};
+const { category_id } = Astro.props as Props;
+
+const filterPostByCategory = (await getCollection("Post", (post) => {
+  return post.data.category?._ref == category_id;
+})) as Data<PostEntry>[];
+---
+
+<SectionContainer boxed="large" class:list={["c-section-grid-post"]}>
+  <div class="c-section-grid-post-list">
+    {filterPostByCategory.map((card) => <CardPost _id={card.id} />)}
+  </div>
+</SectionContainer>

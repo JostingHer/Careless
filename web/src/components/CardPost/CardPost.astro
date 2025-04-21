@@ -3,7 +3,7 @@ import type { Data } from "@/common/astro";
 import ImageOptimized from "@/common/modules/ImageOptimized.astro";
 import { getFirstPhoto } from "@/common/sanity/getOptimizedImage";
 import type { Summary, Theme } from "@/common/sanity/sanity.types";
-import type { SectionBase } from "@/common/types";
+import type { Base } from "@/common/types";
 import { formatDate } from "@/common/utils/formDate";
 import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
 import type { AuthorEntry } from "@/contexts/Blog/infraestructure/sanity-author-blog-collection";
@@ -20,7 +20,7 @@ const { _id } = Astro.props as props;
 
 const getPostById = (await getEntry("Post", _id)) as Data<PostEntry>;
 
-const summary = getPostById.data.summary as SectionBase<Summary>;
+const summary = getPostById.data.summary as Base<Summary>;
 
 if (!summary) return null;
 

@@ -5,7 +5,7 @@ import type {
   Category,
   SectionCarouselPostFilter,
 } from "@/common/sanity/sanity.types";
-import type { SectionBase } from "@/common/types";
+import type { Base, SectionBase } from "@/common/types";
 import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
 import CardPost from "@/components/CardPost/CardPost.astro";
 import CarouselNav from "@/components/CarouselNav/CarouselNav.astro";
@@ -16,11 +16,11 @@ import { getCollection } from "astro:content";
 import { getEntry } from "astro:content";
 import { getEntries } from "astro:content";
 
-type props = SectionBase<SectionCarouselPostFilter> & {
+type props = Base<SectionCarouselPostFilter> & {
   index?: number;
 };
 
-const { copy, category, limit, mediaList, index } = Astro.props as props;
+const { copy, category, mediaList, index } = Astro.props as props;
 
 const filterPostByCategory = (await getCollection("Post", (post) => {
   return post.data.category?._ref == category?._ref;

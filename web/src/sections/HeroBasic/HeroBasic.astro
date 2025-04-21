@@ -1,0 +1,33 @@
+---
+import type {
+  HeroBasic,
+  HeroHome,
+  HeroPost,
+} from "@/common/sanity/sanity.types";
+import type { SectionBase } from "@/common/types";
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+
+type Props = SectionBase;
+
+const { copy, mediaList, theme } = Astro.props as Props;
+
+const info = getHtmlSimpleCopy(copy, "h1");
+
+const bgColor = theme?.backgroundColor || "#000000";
+const textColor = theme?.textColor || "#ffffff";
+---
+
+<section class="o-hero-basic" background-color={bgColor} text-color={textColor}>
+  <div class="c-hero-basic">
+    <div class="hero-basic__copy" set:html={info} />
+  </div>
+</section>
+
+<script>
+  const hero = document.querySelector(".o-hero-basic") as HTMLDivElement;
+
+  const backgroundColor = hero.getAttribute("background-color");
+  const textColor = hero.getAttribute("text-color");
+  hero.style.setProperty("--c-background-color", backgroundColor);
+  hero.style.setProperty("--c-text-color", textColor);
+</script>

@@ -12,6 +12,7 @@ export const homeBlogInSanity = defineCollection({
                     ...,
                     summary {
                         ...,
+                        "theme": theme->{...},
                           mediaList[]{
                             ...,
                             _type,

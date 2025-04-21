@@ -1,30 +1,19 @@
 ---
-import ImageOptimized from "@/common/modules/ImageOptimized.astro";
-import {
-  getFirstPhoto,
-  getMediaListOptimized,
-  getOptimizedImage,
-} from "@/common/sanity/getOptimizedImage";
 import type { HeroHome } from "@/common/sanity/sanity.types";
 import type { Media } from "@/common/types";
 import type { SectionBase } from "@/common/types";
 import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
 import type { Reference } from "sanity";
 
-type props = SectionBase<HeroHome>;
+type Props = SectionBase;
 
-const { theme, mediaList, copy } = Astro.props as props;
+const { theme, mediaList, copy } = Astro.props as Props;
 
 const info = getHtmlSimpleCopy(copy, "h1");
 
-const bgVideo = mediaList?.filter((media) => media._type === "video")[0];
-const bgPhoto = mediaList?.filter((media) => media._type === "photo")[0];
-
 if (!mediaList) return null;
 
-const optimizedImage = getFirstPhoto(mediaList);
-
-const medias = getMediaListOptimized(mediaList);
+const bgVideo = mediaList.filter((media) => media._type === "video")[0];
 ---
 
 <section class="o-hero-video">

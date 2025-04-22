@@ -31,7 +31,7 @@ const info = getHtmlSimpleCopy(copy, "h2");
 const carouselId = `section-carousel-${index}`;
 ---
 
-<SectionContainer boxed="large" class:list={["c-section-carousel"]}>
+<SectionContainer class:list={["c-section-carousel"]}>
   <div class="cs-section-carousel" id={carouselId}>
     {filterPostByCategory.map((card) => <CardPost _id={card.id} />)}
   </div>

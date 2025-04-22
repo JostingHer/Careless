@@ -15,7 +15,7 @@ const filterPostByCategory = (await getCollection("Post", (post) => {
 })) as Data<PostEntry>[];
 ---
 
-<SectionContainer boxed="large" class:list={["c-section-grid-post"]}>
+<SectionContainer class:list={["c-section-grid-post"]}>
   <div class="c-section-grid-post-list">
     {filterPostByCategory.map((card) => <CardPost _id={card.id} />)}
   </div>

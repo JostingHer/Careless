@@ -49,10 +49,10 @@ const cardTitle = getHtmlSimpleCopy(summary?.title, "h3");
   text-color={theme?.textColor}
   background-color={theme?.backgroundColor}
 >
-  <div class="card-post__media-canvas">
-    {
-      summary.mediaList ? (
-        bgVideo ? (
+  {
+    summary.mediaList ? (
+      bgVideo ? (
+        <div class="card-post__media-canvas">
           <video
             class="card-post__media-video"
             autoplay
@@ -63,17 +63,19 @@ const cardTitle = getHtmlSimpleCopy(summary?.title, "h3");
           >
             <source id="video-hero-source" type="video/mp4" />
           </video>
-        ) : (
+        </div>
+      ) : (
+        <div class="card-post__media-canvas">
           <ImageOptimized
             class="card-post__media-img"
             photo={optimizedImage?.photo}
           />
-        )
-      ) : (
-        ""
+        </div>
       )
-    }
-  </div>
+    ) : (
+      ""
+    )
+  }
 
   <div class="card-post__data">
     <a href={getPostById.data.slug} class="card-post__title">

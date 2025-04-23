@@ -30,12 +30,12 @@ const { data } = (await getEntry(collection, _id)) as Data<HomeBlogEntry>;
         case "sectionCarouselPostFilter":
           return <SectionCarousel {...section} index={index} />;
         case "banner":
-          return <h1>Banner</h1>;
+          return "";
         case "sectionBasic":
-          return <h1>sectionBasic</h1>;
+          return "";
         default:
           // section reference = section._type es igual SharedSection
-          return <h1>shared section {section}</h1>;
+          return "";
       }
     })
   }

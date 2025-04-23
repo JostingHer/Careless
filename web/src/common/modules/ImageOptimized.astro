@@ -19,7 +19,7 @@ const objectPosition: string = hotspot
 
 <img
   src={photo?.url}
-  alt={`${photo?.caption}`}
+  alt={`${photo?.caption || "imagen descriptiva"}`}
   {...restProps}
   style={{ objectFit: "cover", objectPosition: `${objectPosition}` }}
 />

@@ -1,6 +1,6 @@
-@use "../../styles/settings/variables";
+@use "../../../styles/settings/variables";
 
-.o-hero-video{
+.o-hero-photo{
   --spacing-vertical: 16px;
 
   position: relative;
@@ -19,7 +19,7 @@
   }
 }
 
-.c-hero-video{
+.c-hero-photo{
   @include variables.boxed-container;
 
   position: relative;
@@ -34,7 +34,7 @@
   height: 100%;
 }
 
-.hero-video__copy{
+.hero-photo__copy{
 
   font-family: variables.$ff-regular;
   font-size: 1em;
@@ -57,13 +57,13 @@
   }
 }
 
-.hero-video__ctas{
+.hero-photo__ctas{
   display: flex;
   gap: 1.5em;
   margin-top: var(--spacing-vertical);
 }
 
-.hero-video__background {
+.hero-photo__background {
     position: absolute;
     top: 0;
     left: 0;

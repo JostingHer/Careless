@@ -1,3 +1,5 @@
+@use "../../../styles/settings/variables";
+
 
 .o-hero-basic{
     --c-background-color: var(--c-black);
@@ -7,11 +9,10 @@
     color: var(--c-text-color);
     font-size: 1.5em;
 
-    height: 70vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: -8em;
 
 }
 .c-hero-basic{

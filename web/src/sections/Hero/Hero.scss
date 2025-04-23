@@ -1,3 +1,5 @@
+@use "../../styles/settings/variables";
+
 .o-hero-basic{
     --c-background-color: var(--c-black);
     --c-text-color: var(--c-white);
@@ -6,11 +8,17 @@
     color: var(--c-text-color);
     font-size: 1.5em;
 
-    height: 70vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: -8em;
+   
+  width: 100%;
+  height: 100vh ;
+
+  font-size: var(--fs-hero);
+
+
+  @media (orientation: landscape) {
+    height: 100vh;
+    padding-top: 0;
+  }
 
 }
 .c-hero-basic{

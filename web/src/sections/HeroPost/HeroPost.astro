@@ -1,0 +1,111 @@
+---
+import type { Data } from "@/common/astro";
+import ImageOptimized from "@/common/modules/ImageOptimized.astro";
+import {
+  getFirstPhoto,
+  getOptimizedImage,
+} from "@/common/sanity/getOptimizedImage";
+import type { HeroPost, Theme } from "@/common/sanity/sanity.types";
+import type { Base } from "@/common/types";
+import { formatDate } from "@/common/utils/formDate";
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+import { getOrientationFromRef } from "@/common/utils/getOrientationMedia";
+import type { AuthorEntry } from "@/contexts/Blog/infraestructure/sanity-author-blog-collection";
+import type { CategoryEntry } from "@/contexts/Blog/infraestructure/sanity-category-blog-collection";
+import type { PostEntry } from "@/contexts/Blog/infraestructure/sanity-post-blog-collection";
+import { getCollection } from "astro:content";
+import { getEntry } from "astro:content";
+
+type props = {
+  _id: string;
+};
+
+const { _id } = Astro.props as props;
+
+const post = (await getEntry("Post", _id)) as Data<PostEntry>;
+
+const heroPost = post.data.hero as Base<HeroPost>;
+
+const theme = post.data?.theme;
+const bgColor = theme?.backgroundColor || "#000000";
+const textColor = theme?.textColor || "#ffffff";
+
+const category = post.data?.category;
+const author = post.data?.author;
+
+const getCategoryById = (await getCollection("Category", (cat) => {
+  return cat.id === category?._ref;
+})) as Data<CategoryEntry>[];
+
+const getAuthorById = (await getCollection("Author", (aut) => {
+  return aut.id === author?._ref;
+})) as Data<AuthorEntry>[];
+
+const postIntro = getHtmlSimpleCopy(post.data.hero?.copy, "h1");
+
+const video = heroPost.mediaList?.filter((media) => media._type == "video")[0];
+const photo = heroPost.mediaList?.filter(
+  (media) => media._type === "photo"
+)[0] as any;
+
+const phoroRef = photo?.photo?._ref as string;
+const orientationImage = getOrientationFromRef(phoroRef || "");
+const optimizedImage = getFirstPhoto(heroPost.mediaList || []);
+---
+
+<section class="o-hero-post" background-color={bgColor} text-color={textColor}>
+  <div
+    class="c-hero-post"
+    class:list={{ "c-hero-post--landscape": orientationImage !== "" || video }}
+  >
+    <div class="hero-post__info">
+      <span class="hero-post__date">
+        {formatDate(post.data._updatedAt)}
+      </span>
+      <h1 class="a-title hero-post__title">
+        {post.data.name}
+      </h1>
+
+      <div class="hero-post__copy" set:html={postIntro} />
+      <span class="hero-post__author">
+        {getAuthorById[0].data.name}
+      </span>
+      <span class="hero-post__category">
+        {getCategoryById[0].data.name}
+      </span>
+    </div>
+    {
+      video ? (
+        <div class="hero-post__media-canvas">
+          <video
+            class="hero-post__media-video"
+            autoplay
+            loop
+            muted
+            playsinline
+            src={video?.srcLaptop}
+          >
+            <source id="video-hero-source" type="video/mp4" />
+          </video>
+        </div>
+      ) : optimizedImage ? (
+        <div class="hero-post__media-canvas">
+          <ImageOptimized
+            class="hero-post__media-photo"
+            photo={optimizedImage?.photo}
+            alt={"alt"}
+          />
+        </div>
+      ) : null
+    }
+  </div>
+</section>
+
+<script>
+  const hero = document.querySelector(".o-hero-post") as HTMLDivElement;
+
+  const backgroundColor = hero.getAttribute("background-color");
+  const textColor = hero.getAttribute("text-color");
+  hero.style.setProperty("--c-background-color", backgroundColor);
+  hero.style.setProperty("--c-text-color", textColor);
+</script>

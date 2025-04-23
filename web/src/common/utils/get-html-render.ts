@@ -26,6 +26,18 @@ export const getHtmlSimpleCopy = (
         }
     };
 
+    renderer.image = ({ href, title, text }) => {
+        let imageHtml = `<img class="image-markdown" src="${href}" alt="${text || ""}"`;
+
+        if (title) {
+            imageHtml += ` title="${title}"`;
+        }
+
+        imageHtml += `>`;
+
+        return imageHtml;
+    };
+
     marked.setOptions({ renderer });
     return marked(markdown);
 };

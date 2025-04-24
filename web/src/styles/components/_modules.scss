@@ -6,6 +6,8 @@
 @use "src/components/LanguageSelector/m-language-selector.scss";
 @use "src/contexts/Blog/modules/sections/SectionCarousel/section-carousel.scss";
 @use "src/contexts/Blog/modules/sections/SectionGridPost/section-grid-post.scss";
+@use "src/contexts/Shop/modules/components/Cart/cart-counter.scss";
+@use "src/contexts/Shop/modules/components/Products/product.scss";
 @use "src/features/cookie-consent/cookie-consent.scss";
 @use "src/features/getting-leads/ui/shared/contact-method.scss";
 @use "src/features/getting-leads/ui/shared/popups.scss";

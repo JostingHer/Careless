@@ -13,10 +13,15 @@ import { loadITCSS } from "./config/auto-load-styles.mjs";
 import sanity from "@sanity/astro";
 import dotenv from "dotenv";
 
+
+import react from "@astrojs/react";
+
 dotenv.config();
 // https://astro.build/config
 export default defineConfig({
-    output: "static", // default
+    // default
+    output: "static",
+
     env: {
         schema: {
             ENV: envField.string({
@@ -38,6 +43,7 @@ export default defineConfig({
             }),
         },
     },
+
     integrations: [
         sitemap(),
         mdx(),
@@ -48,6 +54,10 @@ export default defineConfig({
             dataset: process.env.SANITY_DATASET,
             useCdn: false,
         }),
+        react(),
     ],
+
     adapter: netlify(),
+
+    
 });

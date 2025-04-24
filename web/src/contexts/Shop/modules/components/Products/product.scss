@@ -1,21 +1,4 @@
-.product-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    place-items: center;
-  }
-  
-  @media (min-width: 640px) {
-    .product-list {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .product-list {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
+
   
 
   /* ProductCard.css */
@@ -27,14 +10,12 @@
     color: inherit;
     text-align: center;
     padding: 16px;
-    border: 1px solid #ddd;
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
   
   .product-card__image {

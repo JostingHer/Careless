@@ -16,5 +16,17 @@ const { language, id, ref, collection } = Astro.props;
 <footer class="o-footer">
   <h2>cambio de idioma</h2>
   <LanguageSelector {...Astro.props} />
+  <pre>
+    {JSON.stringify(
+      {
+        language,
+        id,
+        ref,
+        collection,
+      },
+      null,
+      2
+    )}
+  </pre>
   <!-- <LegalLinks language={language}  /> -->
 </footer>

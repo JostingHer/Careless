@@ -1,0 +1,24 @@
+---
+import type { ProductWithImages } from '@/interfaces';
+
+interface Props {
+  product: ProductWithImages;
+}
+const { product } = Astro.props;
+
+const images = product.images.map((image) => {
+  return image.startsWith("http")
+    ? image
+    : `${import.meta.env.PUBLIC_URL}/images/products/${image}`;
+});
+---
+
+<a href={`/products/${product.slug}`} class="product-card">
+  <img
+    src={images[0]}
+    alt={product.title}
+    class="product-card__image"
+  />
+  <h4 class="product-card__title">{product.title}</h4>
+  <p class="product-card__price">${product.price}</p>
+</a>

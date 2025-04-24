@@ -14,13 +14,11 @@ import sanity from "@sanity/astro";
 import dotenv from "dotenv";
 
 
-import react from "@astrojs/react";
-
 dotenv.config();
 // https://astro.build/config
 export default defineConfig({
     // default
-    output: "static",
+    output: "static",  
 
     env: {
         schema: {
@@ -54,7 +52,6 @@ export default defineConfig({
             dataset: process.env.SANITY_DATASET,
             useCdn: false,
         }),
-        react(),
     ],
 
     adapter: netlify(),

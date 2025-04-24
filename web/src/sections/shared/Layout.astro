@@ -13,6 +13,7 @@ import Header from "./header/Header.astro";
 import ContactPopup from "@/features/getting-leads/ui/ContactForm/ContactPopup.astro";
 import type { Data, SharedContext } from "@/common/astro";
 import type { LandingPage } from "@/common/types";
+import Navbar from "@/contexts/Shop/modules/components/shared/Navbar.astro";
 
 type Props = {
   _id: string;
@@ -54,6 +55,7 @@ const context: SharedContext = {
   >
     <GoogleTagManager />
     <!-- <Header language={language} /> -->
+     <Navbar />
     <slot />
     <Footer {...context} />
     <ContactPopup />

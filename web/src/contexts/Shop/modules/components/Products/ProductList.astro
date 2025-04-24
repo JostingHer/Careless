@@ -1,0 +1,33 @@
+---
+import type { ProductWithImages } from '@/interfaces';
+import  ProductCard from './ProductCard.astro';
+import SectionContainer from '@/common/modules/SectionContainer/SectionContainer.astro';
+
+interface Props {
+  products: ProductWithImages[];
+}
+
+const { products } = Astro.props;
+---
+
+<SectionContainer>
+  <div class="product-list">
+    {products.map((product) => (
+      <ProductCard product={product} />
+    ))}
+  </div>
+</SectionContainer>
+<style>
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .product-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

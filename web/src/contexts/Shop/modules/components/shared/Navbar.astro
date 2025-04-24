@@ -1,8 +1,8 @@
 ---
+import type { SharedContext } from "@/common/astro";
 import { CartCounter } from "../Cart/CartCounter";
 ---
 
-<!-- Navbar component -->
 <nav class="navbar">
   <h1 class="navbar__title">
     <a href="/">BeC@reless</a>
@@ -15,32 +15,45 @@ import { CartCounter } from "../Cart/CartCounter";
       <li class="navbar__item navbar__item--home">
         <a href="/">Home</a>
       </li>
+   
+      <li class="navbar__item navbar__item--home">
+        <a href="/streetwear-para-bailarines/">Streetwear</a>
+      </li>
+      <li class="navbar__item navbar__item--home">
+        <a href="/musica-2025/">musica-2025</a>
+      </li>
+      <li class="navbar__item navbar__item--home">
+        <a href="/products">Productos</a>
+      </li>
     </ul>
   </div>
 </nav>
 
 <style>
-  /* Navbar.css */
-
 /* Navbar container */
 .navbar {
   display: flex;
-  justify-content: space-between;
-  padding: 2.5rem 5rem; /* 10px (default padding) */
+  justify-content: space-around;
   align-items: center;
+  padding: 1.5rem 2.5rem;
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 10;
-  height: 5rem;
-  background-color: #F9F9F9;
+  height: 4.5rem;
+  z-index: 50;
+  background-color: rgba(255, 255, 255, 0.5); /* semi-transparente */
+  backdrop-filter: blur(12px); /* efecto difuminado */
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05); /* sombra sutil */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Navbar title */
 .navbar__title {
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.25rem;
   font-weight: bold;
-  color: #4B5563; /* Text Gray-800 */
+  color: #1F2937;
 }
 
 .navbar__title a {
@@ -58,8 +71,8 @@ import { CartCounter } from "../Cart/CartCounter";
 .navbar__list {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Space between items */
-  list-style-type: none;
+  gap: 1.5rem;
+  list-style: none;
   padding: 0;
   margin: 0;
 }
@@ -67,7 +80,9 @@ import { CartCounter } from "../Cart/CartCounter";
 /* Navbar items */
 .navbar__item {
   font-weight: 600;
-  color: #4B5563; /* Text Gray-700 */
+  font-size: 0.95rem;
+  color: #1F2937;
+  transition: color 0.2s ease;
 }
 
 .navbar__item a {
@@ -75,26 +90,18 @@ import { CartCounter } from "../Cart/CartCounter";
   color: inherit;
 }
 
-/* Specific styling for Home link */
-.navbar__item--home a {
-  color: #4B5563;
+.navbar__item:hover a {
+  color: #111827;
 }
 
-/* Mobile-first styles */
-@media (min-width: 640px) {
-  .navbar {
-    padding: 2.5rem 5rem;
-  }
-}
-
+/* Responsive */
 @media (min-width: 768px) {
   .navbar__title {
     font-size: 1.5rem;
   }
 
   .navbar__item {
-    font-size: 1rem; /* Adjust item text size on larger screens */
+    font-size: 1rem;
   }
 }
-
 </style>

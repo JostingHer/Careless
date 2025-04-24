@@ -4,6 +4,7 @@ import AuthorBlogPage from "@/contexts/Blog/modules/AuthorBlogPage.astro";
 import { seedProducts } from "@/contexts/Shop/infraestructure/seed-data";
 import MainLayout from "@/contexts/Shop/modules/MainLayout.astro";
 import ProductSlideshow from "@/contexts/Shop/modules/components/Products/ProductSlideshow.astro";
+import SectionContainer from "@/common/modules/SectionContainer/SectionContainer.astro";
 
 export async function getStaticPaths() {
   const landingsList = seedProducts;
@@ -35,39 +36,48 @@ const images = product.images.map((image) => {
 
 console.log("data", data);
 ---
+
 <MainLayout title={product.title} description={product.description}>
-  <div class="product">
+  
+  <SectionContainer>
+    <div class="product">
+      <img
+      src={images[0]}
+      alt={product.title}
+      class="product-card__image"
+    />
+      <section class="product__details">
+        <h2 class="product__title">{product.title}</h2>
+        <h2 class="product__price">${product.price}</h2>
+  
+        <h3 class="product__subtitle">Tallas</h3>
+        <ul class="product__sizes">
+          {
+            product.sizes.map((size) => (
+              <li class="product__size-option">{size}</li>
+            ))
+          }
+        </ul>
+  
+        <h3 class="product__subtitle">Cantidad</h3>
+        <div class="product__quantity">
+          <button class="product__btn-quantity">-</button>
+          <input class="product__input" type="number" min="1" value="1" />
+          <button class="product__btn-quantity">+</button>
+        </div>
+  
+        <button class="product__add-to-cart">Añadir al carrito</button>
+  
+        <h3 class="product__subtitle">Descripción</h3>
+        <p>{product.description}</p>
+      </section>
+    </div>
+  
+    <input type="hidden" id="product-id" value={product.slug} />
+  </SectionContainer>
 
-    <section class="product__details">
-      <h2 class="product__title">{product.title}</h2>
-      <h2 class="product__price">${product.price}</h2>
 
-      <h3 class="product__subtitle">Tallas</h3>
-      <ul class="product__sizes">
-        {
-          product.sizes.map((size) => (
-            <li class="product__size-option">{size}</li>
-          ))
-        }
-      </ul>
-
-      <h3 class="product__subtitle">Cantidad</h3>
-      <div class="product__quantity">
-        <button class="product__btn-quantity">-</button>
-        <input class="product__input" type="number" min="1" value="1" />
-        <button class="product__btn-quantity">+</button>
-      </div>
-
-      <button class="product__add-to-cart">Añadir al carrito</button>
-
-      <h3 class="product__subtitle">Descripción</h3>
-      <p>{product.description}</p>
-    </section>
-  </div>
-
-  <input type="hidden" id="product-id" value={product.slug} />
 </MainLayout>
-
 <style>
   .product {
     display: grid;
@@ -182,71 +192,3 @@ console.log("data", data);
     -moz-appearance: textfield;
   }
 </style>
-
-<script>
-  import { CartCookiesClient } from "@/utils";
-  import { itemsInCart } from "@/store";
-  import { navigate } from "astro:transitions/client";
-
-  document.addEventListener("astro:page-load", () => {
-    const sizeElements = document.querySelectorAll<HTMLLIElement>(".product__size");
-    const quantityInput = document.querySelector<HTMLInputElement>("input[type='number']");
-    const productIdInput = document.querySelector<HTMLInputElement>("#product-id");
-
-    const decrementButton = document.querySelector<HTMLButtonElement>(
-      ".product__quantity-button--decrease"
-    );
-    const incrementButton = document.querySelector<HTMLButtonElement>(
-      ".product__quantity-button--increase"
-    );
-    const addToCartButton = document.querySelector<HTMLButtonElement>(
-      ".product__add-to-cart"
-    );
-
-    if (!quantityInput || !productIdInput || !decrementButton || !incrementButton || !addToCartButton) {
-      console.error("No se encontraron los elementos del DOM requeridos");
-      return;
-    }
-
-    let quantity = parseInt(quantityInput.value) || 1;
-
-    sizeElements.forEach((liElement) => {
-      liElement.addEventListener("click", () => {
-        sizeElements.forEach((s) => s.classList.remove("product__size--selected"));
-        liElement.classList.add("product__size--selected");
-      });
-    });
-
-    incrementButton.addEventListener("click", () => {
-      quantity = Math.min(quantity + 1, 5);
-      quantityInput.value = quantity.toString();
-    });
-
-    decrementButton.addEventListener("click", () => {
-      quantity = Math.max(quantity - 1, 1);
-      quantityInput.value = quantity.toString();
-    });
-
-    addToCartButton.addEventListener("click", async () => {
-      const selectedSizeElement = document.querySelector(".product__size--selected");
-      const selectedSize = selectedSizeElement?.textContent?.trim();
-
-      if (!selectedSize) {
-        alert("Seleccione una talla");
-        return;
-      }
-
-      addToCartButton.disabled = true;
-
-      const cart = CartCookiesClient.addItem({
-        productId: productIdInput.value,
-        size: selectedSize,
-        quantity: quantity,
-      });
-
-      itemsInCart.set(cart.length);
-
-      await navigate("/cart");
-    });
-  });
-</script>

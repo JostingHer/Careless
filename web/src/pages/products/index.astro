@@ -1,0 +1,18 @@
+---
+import { seedProducts } from "@/contexts/Shop/infraestructure/seed-data";
+import  ProductList  from "@/contexts/Shop/modules/components/Products/ProductList.astro";
+import Pagination from "@/contexts/Shop/modules/components/shared/Pagination.astro";
+import MainLayout from "@/contexts/Shop/modules/MainLayout.astro";
+import { actions } from "astro:actions";
+
+const productList = seedProducts;
+
+
+---
+
+<MainLayout>
+  <h1 class="text-3xl">Listado de productos</h1>
+
+  <ProductList products={productList}/>
+
+</MainLayout>

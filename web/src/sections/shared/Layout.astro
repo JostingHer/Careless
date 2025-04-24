@@ -40,7 +40,7 @@ const context: SharedContext = {
 
 <html lang={getCodeLang(language)}>
   <head>
-    <CookieConsentHead />
+    <!-- <CookieConsentHead /> -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <Favicons />
@@ -53,12 +53,11 @@ const context: SharedContext = {
     text-color={textColor}
     background-color={backgroundColor}
   >
-    <GoogleTagManager />
+    <!-- <GoogleTagManager /> -->
     <!-- <Header language={language} /> -->
      <Navbar />
     <slot />
     <Footer {...context} />
-    <ContactPopup />
   </body>
 </html>
 

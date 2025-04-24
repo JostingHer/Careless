@@ -62,9 +62,6 @@ const optimizedImage = getFirstPhoto(heroPost.mediaList || []);
       <span class="hero-post__date">
         {formatDate(post.data._updatedAt)}
       </span>
-      <h1 class="a-title hero-post__title">
-        {post.data.name}
-      </h1>
 
       <div class="hero-post__copy" set:html={postIntro} />
       <span class="hero-post__author">

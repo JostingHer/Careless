@@ -28,10 +28,9 @@
 .card-post__media-img, .card-post__media-video{
   width: 100%;
   height: fit-content;
-
-
-  transition: .3s;
+  max-height: 600px;
 }
+
 
 
 
@@ -45,8 +44,9 @@
   font-size: .8em;
 }
 .card-post__copy{
-  font-size: 1em;
-  font-weight: 400;
+  font-size: .8em;
+  text-wrap: balance;
+  opacity: .9;
 }
 .card-post__author{
   margin: .8em 0;
@@ -54,8 +54,6 @@
 .card-post__title{
   margin-top: 8px;
   font-family: variables.$ff-bold;
-  display: flex;
-  flex-direction: column;
 
   text-decoration: none;
   width: fit-content;
@@ -86,10 +84,10 @@
   background-color: transparent;
   border-radius: 100px;
   color: var(--c-text-color);
-  padding: .4rem;
-  padding-bottom: .2rem;
-  padding-left: .6em;
-  padding-right: .6em;
+  padding: 0 .9em;
+  padding-bottom: .4em;
+  padding-top: .7em;
+
   display: inline-flex;
   align-items: center;
   font-size: .8em;

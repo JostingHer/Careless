@@ -16,11 +16,19 @@
   @include variables.boxed-container;
   font-size: 1em;
 
+  .hero-post__media-canvas{
+    width: 100%;
+
+  }
+
   video, img{
     width: 100%;
     height: auto;
   }
-
+  .hero-post__copy{
+    font-family: variables.$ff-bold;
+    font-size: 2em;
+  }
  
 
   display: flex;
@@ -33,7 +41,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    grid-template-rows: 1fr;
     column-gap: 2em;
     padding-top: var(--spacing-section);
     height: fit-content;
@@ -47,7 +54,8 @@
         gap: 2lh;
         justify-content: center;
         align-items: start;
-    }
+
+      }
 }
 
 .hero-post__info{

@@ -38,6 +38,13 @@ export const getHtmlSimpleCopy = (
         return imageHtml;
     };
 
+    renderer.code = ({ text }) => {
+        return `<pre class="code-markdown">${text}</pre>`;
+    };
+    renderer.blockquote = ({ text }) => {
+        return `<blockquote class="blockquote-markdown">${text}</blockquote>`;
+    };
+
     renderer.link = ({ href, title, text }) => {
         let linkHtml = `<a class="link-markdown" href="${href}"`;
 

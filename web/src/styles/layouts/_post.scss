@@ -8,4 +8,15 @@
         height: auto;
 
     }
+    a{
+        color: var(--c-primary);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease-in-out;
+
+        &:hover{
+            color: var(--c-primary-dark);
+            text-decoration: underline;
+        }
+    }
 }

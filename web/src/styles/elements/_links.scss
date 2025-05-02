@@ -9,7 +9,17 @@ a {
 		color: var(--c-dark);
 	}
 }
-
+.link-markdown{
+	color: var(--c-text-color);
+	text-decoration: underline;
+	text-wrap: break-word;
+	overflow-wrap: break-word;
+	word-break: break-word;
+	&:hover,
+	&:focus {
+		color: var(--c-dark);
+	}
+}
 button {
 	font-family: variables.$ff-normal;
 }

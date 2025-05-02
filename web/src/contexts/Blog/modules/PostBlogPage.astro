@@ -11,6 +11,7 @@ import HeroPost from "@/sections/HeroPost/HeroPost.astro";
 import type { SectionBase } from "@/common/types";
 import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
 import SectionContainer from "@/common/modules/SectionContainer/SectionContainer.astro";
+import SectionGridPost from "./sections/SectionGridPost/SectionGridPost.astro";
 
 type Props = {
   _id: string;
@@ -23,6 +24,8 @@ const collection: CollectionKey = "Post";
 const { data } = (await getEntry(collection, _id)) as Data<PostEntry>;
 
 // const shared = await getCollection("shared");
+
+const category = data.category?._ref || "";
 ---
 
 <Layout collection={collection} _id={_id}>
@@ -45,4 +48,5 @@ const { data } = (await getEntry(collection, _id)) as Data<PostEntry>;
       }
     })
   }
+  <SectionGridPost category_id={category} />
 </Layout>

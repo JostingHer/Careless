@@ -16,6 +16,14 @@
   @include variables.boxed-container;
   font-size: 1em;
 
+  .a-title{
+    word-wrap: break-word;      
+    overflow-wrap: break-word;   
+    word-break: break-word;      
+    text-overflow: ellipsis;   
+    max-width: 100%; 
+  }
+
   .hero-post__media-canvas{
     width: 100%;
 
@@ -25,23 +33,22 @@
     width: 100%;
     height: auto;
   }
+
+  
   .hero-post__copy{
     font-family: variables.$ff-bold;
-    font-size: 2em;
   }
- 
 
   display: flex;
   flex-direction: column;
   gap: 2lh;
   justify-content: center;
-    height: 100vh;
 
   @media (min-width: variables.$width-tablet) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    column-gap: 2em;
+    column-gap: 4em;
     padding-top: var(--spacing-section);
     height: fit-content;
   }
@@ -66,10 +73,25 @@
 
 .hero-post__title{
     font-family: variables.$ff-bold;
-    font-size: 2em;
+    font-size: 1rem;
 }
 
 .hero-post__author{
     font-family: variables.$ff-bold;
     font-size: 1em;
+}
+
+@media (min-width: variables.$width-tablet) {
+  .hero-post__title, .hero-post__copy{
+    font-size: 1.5rem;
+  }
+
+  .c-hero-post{
+    video{
+      object-fit: cover;
+      object-position: center center;
+      aspect-ratio: 16/9;
+    }
+  }
+
 }

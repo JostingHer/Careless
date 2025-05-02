@@ -1,7 +1,9 @@
 ---
 import type { Data } from "@/common/astro";
 import SectionContainer from "@/common/modules/SectionContainer/SectionContainer.astro";
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
 import CardPost from "@/components/CardPost/CardPost.astro";
+import type { CategoryEntry } from "@/contexts/Blog/infraestructure/sanity-category-blog-collection";
 import type { PostEntry } from "@/contexts/Blog/infraestructure/sanity-post-blog-collection";
 import { getCollection } from "astro:content";
 
@@ -13,9 +15,17 @@ const { category_id } = Astro.props as Props;
 const filterPostByCategory = (await getCollection("Post", (post) => {
   return post.data.category?._ref == category_id;
 })) as Data<PostEntry>[];
+
+const category = (await getCollection("Category", (category) => {
+  return category.id == category_id;
+})) as Data<CategoryEntry>[];
+const categoryName = category[0].data.name || "";
 ---
 
 <SectionContainer class:list={["c-section-grid-post"]}>
+  <h2 class="a-title">
+    {categoryName}
+  </h2>
   <div class="c-section-grid-post-list">
     {filterPostByCategory.map((card) => <CardPost _id={card.id} />)}
   </div>

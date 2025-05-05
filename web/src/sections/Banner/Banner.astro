@@ -1,9 +1,26 @@
 ---
-type Props = {};
+import type { SectionBase } from "@/common/types";
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+import BannerVideo from "./BannerVideo/BannerVideo.astro";
+import BannerPhoto from "./BannerPhoto/BannerPhoto.astro";
+import BannerBasic from "./BannerBasic/BannerBasic.astro";
 
-const {} = Astro.props;
+type Props = SectionBase;
+
+const { theme, mediaList, copy } = Astro.props as Props;
+
+const info = getHtmlSimpleCopy(copy, "h1");
+
+const bgVideo = mediaList?.filter((media) => media._type === "video")[0];
+const bgPhoto = mediaList?.filter((media) => media._type === "photo")[0];
 ---
 
-<div></div>
-
-<style></style>
+{
+  bgVideo ? (
+    <BannerVideo {...Astro.props} />
+  ) : bgPhoto ? (
+    <BannerPhoto {...Astro.props} />
+  ) : (
+    <BannerBasic {...Astro.props} />
+  )
+}

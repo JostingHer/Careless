@@ -20,7 +20,7 @@ export const schemaTypes = [
     metadata,
     photo,
     video,
-    // cta,
+    cta,
 
     // objects
     heroHome,

@@ -5,29 +5,21 @@ export const sections = defineType({
     title: 'Secciones de la página',
     type: 'array',
     of: [
+        // {
+        //     type: 'reference',
+        //     name: 'sectionShared',
+        //     title: 'Seccion en referencia (compartida)',
+        //     to: [{type: 'sharedSection'}],
+        //     options: {
+        //         collapsible: true,
+        //         collapsed: true,
+        //     },
+        // },
         {
             type: 'reference',
-            name: 'sectionShared',
-            title: 'Seccion en referencia (compartida)',
-            to: [{type: 'sharedSection'}],
-            options: {
-                collapsible: true,
-                collapsed: true,
-            },
-        },
-        {
-            type: 'banner',
-            name: 'banner',
-            title: 'Banner',
-            options: {
-                collapsible: true,
-                collapsed: true,
-            },
-        },
-        {
-            type: 'sectionBasic',
-            name: 'sectionBasic',
-            title: 'Sección Básica',
+            name: 'bannerPost',
+            title: 'Banner de un artículo',
+            to: [{type: 'Post'}],
             options: {
                 collapsible: true,
                 collapsed: true,

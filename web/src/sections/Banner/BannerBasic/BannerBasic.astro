@@ -1,0 +1,32 @@
+---
+import type { SectionBase } from "@/common/types";
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+
+type Props = SectionBase;
+
+const { copy, mediaList, theme } = Astro.props as Props;
+
+const info = getHtmlSimpleCopy(copy, "h1");
+
+const bgColor = theme?.backgroundColor || "#000000";
+const textColor = theme?.textColor || "#ffffff";
+---
+
+<section
+  class="o-banner-basic"
+  background-color={bgColor}
+  text-color={textColor}
+>
+  <div class="c-banner-basic">
+    <div class="banner-basic__copy" set:html={info} />
+  </div>
+</section>
+
+<script>
+  const banner = document.querySelector(".o-banner-basic") as HTMLDivElement;
+
+  const backgroundColor = banner.getAttribute("background-color");
+  const textColor = banner.getAttribute("text-color");
+  banner.style.setProperty("--c-background-color", backgroundColor);
+  banner.style.setProperty("--c-text-color", textColor);
+</script>

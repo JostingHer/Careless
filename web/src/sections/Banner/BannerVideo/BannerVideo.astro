@@ -1,0 +1,34 @@
+---
+import type { SectionBase } from "@/common/types";
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+
+type Props = SectionBase;
+
+const { theme, mediaList, copy } = Astro.props as Props;
+
+const info = getHtmlSimpleCopy(copy, "h1");
+
+if (!mediaList) return null;
+
+const bgVideo = mediaList.filter((media) => media._type === "video")[0];
+---
+
+<section class="o-banner-video">
+  <div class="c-banner-video">
+    <div class="banner-video__copy" set:html={info} />
+  </div>
+  <div class="banner-video__ctas">
+    <a href="#banner" class="m-button button--primary"> All Articles </a>
+  </div>
+</section>
+<video
+  class="banner-video__background"
+  autoplay
+  loop
+  muted
+  playsinline
+  id="video-video-home"
+  src={bgVideo?.srcLaptop}
+>
+  <source id="video-banner-source" type="video/mp4" />
+</video>

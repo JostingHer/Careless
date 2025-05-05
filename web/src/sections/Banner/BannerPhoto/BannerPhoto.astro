@@ -1,0 +1,25 @@
+---
+import ImageOptimized from "@/common/modules/ImageOptimized.astro";
+import { getFirstPhoto } from "@/common/sanity/getOptimizedImage";
+import type { SectionBase } from "@/common/types";
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+
+type props = SectionBase;
+
+const { theme, mediaList, copy } = Astro.props as props;
+
+const info = getHtmlSimpleCopy(copy, "h1");
+
+if (!mediaList) return null;
+const optimizedImage = getFirstPhoto(mediaList).photo;
+---
+
+<section class="o-banner-photo">
+  <div class="c-banner-photo">
+    <div class="banner-photo__copy" set:html={info} />
+  </div>
+  <div class="banner-photo__ctas">
+    <a href="#banner" class="m-button button--primary"> All Articles </a>
+  </div>
+  <ImageOptimized photo={optimizedImage} class="banner-photo__background" />
+</section>

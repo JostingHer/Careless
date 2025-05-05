@@ -66,19 +66,8 @@ export type SharedSection = {
   _updatedAt: string
   _rev: string
   name?: string
-  language?: 'es' | 'en' | 'fr'
+  language?: 'es' | 'en'
   banner?: Banner
-}
-
-export type Popup = {
-  _id: string
-  _type: 'popup'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  language?: 'es' | 'en' | 'fr'
-  copy?: string
-  image?: Photo
 }
 
 export type Legal = {
@@ -89,7 +78,7 @@ export type Legal = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en' | 'fr'
+  language?: 'es' | 'en'
   metas?: Metadata
   summary?: Summary
   ref?: string
@@ -104,7 +93,7 @@ export type Post = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en' | 'fr'
+  language?: 'es' | 'en'
   metas?: Metadata
   summary?: Summary
   ref?: string
@@ -155,7 +144,7 @@ export type Author = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en' | 'fr'
+  language?: 'es' | 'en'
   metas?: Metadata
   summary?: Summary
   ref?: string
@@ -179,7 +168,7 @@ export type HomeBlog = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en' | 'fr'
+  language?: 'es' | 'en'
   metas?: Metadata
   summary?: Summary
   ref?: string
@@ -196,14 +185,8 @@ export type HomeBlog = {
         _type: 'reference'
         _weak?: boolean
         _key: string
-        [internalGroqTypeReferenceTo]?: 'sharedSection'
+        [internalGroqTypeReferenceTo]?: 'Post'
       }
-    | ({
-        _key: string
-      } & Banner)
-    | ({
-        _key: string
-      } & SectionBasic)
     | ({
         _key: string
       } & SectionCarouselPostFilter)
@@ -235,14 +218,8 @@ export type Sections = Array<
       _type: 'reference'
       _weak?: boolean
       _key: string
-      [internalGroqTypeReferenceTo]?: 'sharedSection'
+      [internalGroqTypeReferenceTo]?: 'Post'
     }
-  | ({
-      _key: string
-    } & Banner)
-  | ({
-      _key: string
-    } & SectionBasic)
   | ({
       _key: string
     } & SectionCarouselPostFilter)
@@ -273,7 +250,7 @@ export type Category = {
   _rev: string
   name?: string
   slug?: Slug
-  language?: 'es' | 'en' | 'fr'
+  language?: 'es' | 'en'
   metas?: Metadata
   summary?: Summary
   ref?: string
@@ -391,6 +368,30 @@ export type HeroHome = {
         _key: string
       } & Video)
   >
+}
+
+export type Cta = {
+  _type: 'cta'
+  type?: 'link' | 'popup'
+  url?: string
+  popupRef?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'popup'
+  }
+  buttonStyle?: 'primary' | 'secondary' | 'tertiary'
+}
+
+export type Popup = {
+  _id: string
+  _type: 'popup'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  language?: 'es' | 'en'
+  copy?: string
+  image?: Photo
 }
 
 export type Video = {
@@ -585,7 +586,6 @@ export type AllSanitySchemaTypes =
   | Geopoint
   | Setting
   | SharedSection
-  | Popup
   | Legal
   | Post
   | Author
@@ -601,6 +601,8 @@ export type AllSanitySchemaTypes =
   | HeroPost
   | HeroBasic
   | HeroHome
+  | Cta
+  | Popup
   | Video
   | Photo
   | Metadata

@@ -315,10 +315,6 @@
             {
               "type": "string",
               "value": "en"
-            },
-            {
-              "type": "string",
-              "value": "fr"
             }
           ]
         },
@@ -329,79 +325,6 @@
         "value": {
           "type": "inline",
           "name": "banner"
-        },
-        "optional": true
-      }
-    }
-  },
-  {
-    "name": "popup",
-    "type": "document",
-    "attributes": {
-      "_id": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_type": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string",
-          "value": "popup"
-        }
-      },
-      "_createdAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_updatedAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_rev": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "language": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "union",
-          "of": [
-            {
-              "type": "string",
-              "value": "es"
-            },
-            {
-              "type": "string",
-              "value": "en"
-            },
-            {
-              "type": "string",
-              "value": "fr"
-            }
-          ]
-        },
-        "optional": true
-      },
-      "copy": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "image": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "inline",
-          "name": "photo"
         },
         "optional": true
       }
@@ -469,10 +392,6 @@
             {
               "type": "string",
               "value": "en"
-            },
-            {
-              "type": "string",
-              "value": "fr"
             }
           ]
         },
@@ -572,10 +491,6 @@
             {
               "type": "string",
               "value": "en"
-            },
-            {
-              "type": "string",
-              "value": "fr"
             }
           ]
         },
@@ -860,10 +775,6 @@
             {
               "type": "string",
               "value": "en"
-            },
-            {
-              "type": "string",
-              "value": "fr"
             }
           ]
         },
@@ -1015,10 +926,6 @@
             {
               "type": "string",
               "value": "en"
-            },
-            {
-              "type": "string",
-              "value": "fr"
             }
           ]
         },
@@ -1116,7 +1023,7 @@
                     "optional": true
                   }
                 },
-                "dereferencesTo": "sharedSection",
+                "dereferencesTo": "Post",
                 "rest": {
                   "type": "object",
                   "attributes": {
@@ -1127,36 +1034,6 @@
                       }
                     }
                   }
-                }
-              },
-              {
-                "type": "object",
-                "attributes": {
-                  "_key": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "rest": {
-                  "type": "inline",
-                  "name": "banner"
-                }
-              },
-              {
-                "type": "object",
-                "attributes": {
-                  "_key": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "rest": {
-                  "type": "inline",
-                  "name": "sectionBasic"
                 }
               },
               {
@@ -1307,7 +1184,7 @@
                 "optional": true
               }
             },
-            "dereferencesTo": "sharedSection",
+            "dereferencesTo": "Post",
             "rest": {
               "type": "object",
               "attributes": {
@@ -1318,36 +1195,6 @@
                   }
                 }
               }
-            }
-          },
-          {
-            "type": "object",
-            "attributes": {
-              "_key": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
-                }
-              }
-            },
-            "rest": {
-              "type": "inline",
-              "name": "banner"
-            }
-          },
-          {
-            "type": "object",
-            "attributes": {
-              "_key": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
-                }
-              }
-            },
-            "rest": {
-              "type": "inline",
-              "name": "sectionBasic"
             }
           },
           {
@@ -1514,10 +1361,6 @@
             {
               "type": "string",
               "value": "en"
-            },
-            {
-              "type": "string",
-              "value": "fr"
             }
           ]
         },
@@ -2118,6 +1961,166 @@
           },
           "optional": true
         }
+      }
+    }
+  },
+  {
+    "name": "cta",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "cta"
+          }
+        },
+        "type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "link"
+              },
+              {
+                "type": "string",
+                "value": "popup"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "url": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "popupRef": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "object",
+            "attributes": {
+              "_ref": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              },
+              "_type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string",
+                  "value": "reference"
+                }
+              },
+              "_weak": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "boolean"
+                },
+                "optional": true
+              }
+            },
+            "dereferencesTo": "popup"
+          },
+          "optional": true
+        },
+        "buttonStyle": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "primary"
+              },
+              {
+                "type": "string",
+                "value": "secondary"
+              },
+              {
+                "type": "string",
+                "value": "tertiary"
+              }
+            ]
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "popup",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "popup"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "language": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "es"
+            },
+            {
+              "type": "string",
+              "value": "en"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "copy": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "image": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "photo"
+        },
+        "optional": true
       }
     }
   },

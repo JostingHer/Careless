@@ -14,605 +14,607 @@
 
 // Source: schema.json
 export type SanityImagePaletteSwatch = {
-    _type: 'sanity.imagePaletteSwatch'
-    background?: string
-    foreground?: string
-    population?: number
-    title?: string
+  _type: 'sanity.imagePaletteSwatch'
+  background?: string
+  foreground?: string
+  population?: number
+  title?: string
 }
 
 export type SanityImagePalette = {
-    _type: 'sanity.imagePalette'
-    darkMuted?: SanityImagePaletteSwatch
-    lightVibrant?: SanityImagePaletteSwatch
-    darkVibrant?: SanityImagePaletteSwatch
-    vibrant?: SanityImagePaletteSwatch
-    dominant?: SanityImagePaletteSwatch
-    lightMuted?: SanityImagePaletteSwatch
-    muted?: SanityImagePaletteSwatch
+  _type: 'sanity.imagePalette'
+  darkMuted?: SanityImagePaletteSwatch
+  lightVibrant?: SanityImagePaletteSwatch
+  darkVibrant?: SanityImagePaletteSwatch
+  vibrant?: SanityImagePaletteSwatch
+  dominant?: SanityImagePaletteSwatch
+  lightMuted?: SanityImagePaletteSwatch
+  muted?: SanityImagePaletteSwatch
 }
 
 export type SanityImageDimensions = {
-    _type: 'sanity.imageDimensions'
-    height?: number
-    width?: number
-    aspectRatio?: number
+  _type: 'sanity.imageDimensions'
+  height?: number
+  width?: number
+  aspectRatio?: number
 }
 
 export type Geopoint = {
-    _type: 'geopoint'
-    lat?: number
-    lng?: number
-    alt?: number
+  _type: 'geopoint'
+  lat?: number
+  lng?: number
+  alt?: number
 }
 
 export type Setting = {
-    _id: string
-    _type: 'setting'
-    _createdAt: string
-    _updatedAt: string
-    _rev: string
-    siteUrl?: string
-    legalName?: string
-    comercialName?: string
-    foundingDate?: string
-    googleMapsUrl?: string
+  _id: string
+  _type: 'setting'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  siteUrl?: string
+  legalName?: string
+  comercialName?: string
+  foundingDate?: string
+  googleMapsUrl?: string
 }
 
 export type SharedSection = {
-    _id: string
-    _type: 'sharedSection'
-    _createdAt: string
-    _updatedAt: string
-    _rev: string
-    name?: string
-    language?: 'es' | 'en' | 'fr'
-    banner?: Banner
-}
-
-export type Popup = {
-    _id: string
-    _type: 'popup'
-    _createdAt: string
-    _updatedAt: string
-    _rev: string
-    language?: 'es' | 'en' | 'fr'
-    copy?: string
-    image?: Photo
+  _id: string
+  _type: 'sharedSection'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  language?: 'es' | 'en'
+  banner?: Banner
 }
 
 export type Legal = {
-    _id: string
-    _type: 'legal'
-    _createdAt: string
-    _updatedAt: string
-    _rev: string
-    name?: string
-    slug?: Slug
-    language?: 'es' | 'en' | 'fr'
-    metas?: Metadata
-    summary?: Summary
-    ref?: string
-    content?: string
+  _id: string
+  _type: 'legal'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  slug?: Slug
+  language?: 'es' | 'en'
+  metas?: Metadata
+  summary?: Summary
+  ref?: string
+  content?: string
 }
 
 export type Post = {
-    _id: string
-    _type: 'Post'
-    _createdAt: string
-    _updatedAt: string
-    _rev: string
-    name?: string
-    slug?: Slug
-    language?: 'es' | 'en' | 'fr'
-    metas?: Metadata
-    summary?: Summary
-    ref?: string
-    theme?: {
+  _id: string
+  _type: 'Post'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  slug?: Slug
+  language?: 'es' | 'en'
+  metas?: Metadata
+  summary?: Summary
+  ref?: string
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
+  hero?: HeroPost
+  pageSections?: Array<
+    | {
         _ref: string
         _type: 'reference'
         _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'theme'
-    }
-    hero?: HeroPost
-    pageSections?: Array<
-        | {
-              _ref: string
-              _type: 'reference'
-              _weak?: boolean
-              _key: string
-              [internalGroqTypeReferenceTo]?: 'sharedSection'
-          }
-        | ({
-              _key: string
-          } & SectionBasic)
-        | ({
-              _key: string
-          } & Banner)
-        | ({
-              _key: string
-          } & SectionMarkdown)
-    >
-    category?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'Category'
-    }
-    author?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'Author'
-    }
+        _key: string
+        [internalGroqTypeReferenceTo]?: 'sharedSection'
+      }
+    | ({
+        _key: string
+      } & SectionBasic)
+    | ({
+        _key: string
+      } & Banner)
+    | ({
+        _key: string
+      } & SectionMarkdown)
+  >
+  category?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'Category'
+  }
+  author?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'Author'
+  }
 }
 
 export type Author = {
-    _id: string
-    _type: 'Author'
-    _createdAt: string
-    _updatedAt: string
-    _rev: string
-    name?: string
-    slug?: Slug
-    language?: 'es' | 'en' | 'fr'
-    metas?: Metadata
-    summary?: Summary
-    ref?: string
-    author?: string
-    bio?: string
-    job?: string
-    image?: Photo
-    theme?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'theme'
-    }
+  _id: string
+  _type: 'Author'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  slug?: Slug
+  language?: 'es' | 'en'
+  metas?: Metadata
+  summary?: Summary
+  ref?: string
+  author?: string
+  bio?: string
+  job?: string
+  image?: Photo
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
 }
 
 export type HomeBlog = {
-    _id: string
-    _type: 'homeBlog'
-    _createdAt: string
-    _updatedAt: string
-    _rev: string
-    name?: string
-    slug?: Slug
-    language?: 'es' | 'en' | 'fr'
-    metas?: Metadata
-    summary?: Summary
-    ref?: string
-    hero?: HeroHome
-    theme?: {
+  _id: string
+  _type: 'homeBlog'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  slug?: Slug
+  language?: 'es' | 'en'
+  metas?: Metadata
+  summary?: Summary
+  ref?: string
+  hero?: HeroHome
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
+  pageSections?: Array<
+    | {
         _ref: string
         _type: 'reference'
         _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'theme'
-    }
-    pageSections?: Array<
-        | {
-              _ref: string
-              _type: 'reference'
-              _weak?: boolean
-              _key: string
-              [internalGroqTypeReferenceTo]?: 'sharedSection'
-          }
-        | ({
-              _key: string
-          } & Banner)
-        | ({
-              _key: string
-          } & SectionBasic)
-        | ({
-              _key: string
-          } & SectionCarouselPostFilter)
-    >
+        _key: string
+        [internalGroqTypeReferenceTo]?: 'Post'
+      }
+    | ({
+        _key: string
+      } & SectionCarouselPostFilter)
+  >
 }
 
 export type PostSections = Array<
-    | {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          _key: string
-          [internalGroqTypeReferenceTo]?: 'sharedSection'
-      }
-    | ({
-          _key: string
-      } & SectionBasic)
-    | ({
-          _key: string
-      } & Banner)
-    | ({
-          _key: string
-      } & SectionMarkdown)
+  | {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      _key: string
+      [internalGroqTypeReferenceTo]?: 'sharedSection'
+    }
+  | ({
+      _key: string
+    } & SectionBasic)
+  | ({
+      _key: string
+    } & Banner)
+  | ({
+      _key: string
+    } & SectionMarkdown)
 >
 
 export type Sections = Array<
-    | {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          _key: string
-          [internalGroqTypeReferenceTo]?: 'sharedSection'
-      }
-    | ({
-          _key: string
-      } & Banner)
-    | ({
-          _key: string
-      } & SectionBasic)
-    | ({
-          _key: string
-      } & SectionCarouselPostFilter)
+  | {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      _key: string
+      [internalGroqTypeReferenceTo]?: 'Post'
+    }
+  | ({
+      _key: string
+    } & SectionCarouselPostFilter)
 >
 
 export type SectionCarouselPostFilter = {
-    _type: 'sectionCarouselPostFilter'
-    copy?: string
-    theme?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'theme'
-    }
-    category?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'Category'
-    }
+  _type: 'sectionCarouselPostFilter'
+  copy?: string
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
+  category?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'Category'
+  }
 }
 
 export type Category = {
-    _id: string
-    _type: 'Category'
-    _createdAt: string
-    _updatedAt: string
-    _rev: string
-    name?: string
-    slug?: Slug
-    language?: 'es' | 'en' | 'fr'
-    metas?: Metadata
-    summary?: Summary
-    ref?: string
-    heroBasic?: HeroBasic
-    theme?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'theme'
-    }
+  _id: string
+  _type: 'Category'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  slug?: Slug
+  language?: 'es' | 'en'
+  metas?: Metadata
+  summary?: Summary
+  ref?: string
+  heroBasic?: HeroBasic
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
 }
 
 export type Slug = {
-    _type: 'slug'
-    current?: string
-    source?: string
+  _type: 'slug'
+  current?: string
+  source?: string
 }
 
 export type Banner = {
-    _type: 'banner'
-    copy?: string
-    theme?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'theme'
-    }
-    mediaList?: Array<
-        | ({
-              _key: string
-          } & Photo)
-        | ({
-              _key: string
-          } & Video)
-    >
+  _type: 'banner'
+  copy?: string
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
+  mediaList?: Array<
+    | ({
+        _key: string
+      } & Photo)
+    | ({
+        _key: string
+      } & Video)
+  >
 }
 
 export type SectionMarkdown = {
-    _type: 'sectionMarkdown'
-    content?: string
+  _type: 'sectionMarkdown'
+  content?: string
 }
 
 export type SectionBasic = {
-    _type: 'sectionBasic'
-    copy?: string
-    theme?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'theme'
-    }
-    mediaList?: Array<
-        | ({
-              _key: string
-          } & Photo)
-        | ({
-              _key: string
-          } & Video)
-    >
-    reverse?: boolean
+  _type: 'sectionBasic'
+  copy?: string
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
+  mediaList?: Array<
+    | ({
+        _key: string
+      } & Photo)
+    | ({
+        _key: string
+      } & Video)
+  >
+  reverse?: boolean
 }
 
 export type HeroPost = {
-    _type: 'heroPost'
-    copy?: string
-    theme?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'theme'
-    }
-    mediaList?: Array<
-        | ({
-              _key: string
-          } & Photo)
-        | ({
-              _key: string
-          } & Video)
-    >
+  _type: 'heroPost'
+  copy?: string
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
+  mediaList?: Array<
+    | ({
+        _key: string
+      } & Photo)
+    | ({
+        _key: string
+      } & Video)
+  >
 }
 
 export type HeroBasic = {
-    _type: 'heroBasic'
-    copy?: string
-    theme?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'theme'
-    }
-    mediaList?: Array<
-        | ({
-              _key: string
-          } & Photo)
-        | ({
-              _key: string
-          } & Video)
-    >
+  _type: 'heroBasic'
+  copy?: string
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
+  mediaList?: Array<
+    | ({
+        _key: string
+      } & Photo)
+    | ({
+        _key: string
+      } & Video)
+  >
 }
 
 export type HeroHome = {
-    _type: 'heroHome'
-    copy?: string
-    theme?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'theme'
-    }
-    mediaList?: Array<
-        | ({
-              _key: string
-          } & Photo)
-        | ({
-              _key: string
-          } & Video)
-    >
+  _type: 'heroHome'
+  copy?: string
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
+  mediaList?: Array<
+    | ({
+        _key: string
+      } & Photo)
+    | ({
+        _key: string
+      } & Video)
+  >
+}
+
+export type Cta = {
+  _type: 'cta'
+  type?: 'link' | 'popup'
+  url?: string
+  popupRef?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'popup'
+  }
+  buttonStyle?: 'primary' | 'secondary' | 'tertiary'
+}
+
+export type Popup = {
+  _id: string
+  _type: 'popup'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  language?: 'es' | 'en'
+  copy?: string
+  image?: Photo
 }
 
 export type Video = {
-    _type: 'video'
-    alt?: string
-    srcLaptop?: {
-        asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
-        }
-        _type: 'file'
+  _type: 'video'
+  alt?: string
+  srcLaptop?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
     }
-    srcMobile?: {
-        asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
-        }
-        _type: 'file'
+    _type: 'file'
+  }
+  srcMobile?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
     }
+    _type: 'file'
+  }
 }
 
 export type Photo = {
-    _type: 'photo'
-    photo?: {
-        asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-        }
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        caption?: string
-        _type: 'image'
+  _type: 'photo'
+  photo?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
     }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    caption?: string
+    _type: 'image'
+  }
 }
 
 export type Metadata = {
-    _type: 'metadata'
-    title?: string
-    description?: string
-    canonical?: string
-    robots?: 'index, follow' | 'index, nofollow' | 'noindex, follow' | 'noindex, nofollow'
-    photo?: {
-        asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-        }
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        caption?: string
-        _type: 'image'
+  _type: 'metadata'
+  title?: string
+  description?: string
+  canonical?: string
+  robots?: 'index, follow' | 'index, nofollow' | 'noindex, follow' | 'noindex, nofollow'
+  photo?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
     }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    caption?: string
+    _type: 'image'
+  }
 }
 
 export type Summary = {
-    _type: 'summary'
-    title?: string
-    text?: string
-    theme?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'theme'
-    }
-    mediaList?: Array<
-        | ({
-              _key: string
-          } & Photo)
-        | ({
-              _key: string
-          } & Video)
-    >
+  _type: 'summary'
+  title?: string
+  text?: string
+  theme?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'theme'
+  }
+  mediaList?: Array<
+    | ({
+        _key: string
+      } & Photo)
+    | ({
+        _key: string
+      } & Video)
+  >
 }
 
 export type SanityFileAsset = {
-    _id: string
-    _type: 'sanity.fileAsset'
-    _createdAt: string
-    _updatedAt: string
-    _rev: string
-    originalFilename?: string
-    label?: string
-    title?: string
-    description?: string
-    altText?: string
-    sha1hash?: string
-    extension?: string
-    mimeType?: string
-    size?: number
-    assetId?: string
-    uploadId?: string
-    path?: string
-    url?: string
-    source?: SanityAssetSourceData
+  _id: string
+  _type: 'sanity.fileAsset'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  source?: SanityAssetSourceData
 }
 
 export type SanityImageCrop = {
-    _type: 'sanity.imageCrop'
-    top?: number
-    bottom?: number
-    left?: number
-    right?: number
+  _type: 'sanity.imageCrop'
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
 }
 
 export type SanityImageHotspot = {
-    _type: 'sanity.imageHotspot'
-    x?: number
-    y?: number
-    height?: number
-    width?: number
+  _type: 'sanity.imageHotspot'
+  x?: number
+  y?: number
+  height?: number
+  width?: number
 }
 
 export type SanityImageAsset = {
-    _id: string
-    _type: 'sanity.imageAsset'
-    _createdAt: string
-    _updatedAt: string
-    _rev: string
-    originalFilename?: string
-    label?: string
-    title?: string
-    description?: string
-    altText?: string
-    sha1hash?: string
-    extension?: string
-    mimeType?: string
-    size?: number
-    assetId?: string
-    uploadId?: string
-    path?: string
-    url?: string
-    metadata?: SanityImageMetadata
-    source?: SanityAssetSourceData
+  _id: string
+  _type: 'sanity.imageAsset'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  originalFilename?: string
+  label?: string
+  title?: string
+  description?: string
+  altText?: string
+  sha1hash?: string
+  extension?: string
+  mimeType?: string
+  size?: number
+  assetId?: string
+  uploadId?: string
+  path?: string
+  url?: string
+  metadata?: SanityImageMetadata
+  source?: SanityAssetSourceData
 }
 
 export type SanityAssetSourceData = {
-    _type: 'sanity.assetSourceData'
-    name?: string
-    id?: string
-    url?: string
+  _type: 'sanity.assetSourceData'
+  name?: string
+  id?: string
+  url?: string
 }
 
 export type SanityImageMetadata = {
-    _type: 'sanity.imageMetadata'
-    location?: Geopoint
-    dimensions?: SanityImageDimensions
-    palette?: SanityImagePalette
-    lqip?: string
-    blurHash?: string
-    hasAlpha?: boolean
-    isOpaque?: boolean
+  _type: 'sanity.imageMetadata'
+  location?: Geopoint
+  dimensions?: SanityImageDimensions
+  palette?: SanityImagePalette
+  lqip?: string
+  blurHash?: string
+  hasAlpha?: boolean
+  isOpaque?: boolean
 }
 
 export type Theme = {
-    _id: string
-    _type: 'theme'
-    _createdAt: string
-    _updatedAt: string
-    _rev: string
-    name?: string
-    backgroundColor?: string
-    textColor?: string
+  _id: string
+  _type: 'theme'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  backgroundColor?: string
+  textColor?: string
 }
 
 export type Markdown = string
 
 export type Table = {
-    _type: 'table'
-    rows?: Array<
-        {
-            _key: string
-        } & TableRow
-    >
+  _type: 'table'
+  rows?: Array<
+    {
+      _key: string
+    } & TableRow
+  >
 }
 
 export type TableRow = {
-    _type: 'tableRow'
-    cells?: Array<string>
+  _type: 'tableRow'
+  cells?: Array<string>
 }
 
 export type AllSanitySchemaTypes =
-    | SanityImagePaletteSwatch
-    | SanityImagePalette
-    | SanityImageDimensions
-    | Geopoint
-    | Setting
-    | SharedSection
-    | Popup
-    | Legal
-    | Post
-    | Author
-    | HomeBlog
-    | PostSections
-    | Sections
-    | SectionCarouselPostFilter
-    | Category
-    | Slug
-    | Banner
-    | SectionMarkdown
-    | SectionBasic
-    | HeroPost
-    | HeroBasic
-    | HeroHome
-    | Video
-    | Photo
-    | Metadata
-    | Summary
-    | SanityFileAsset
-    | SanityImageCrop
-    | SanityImageHotspot
-    | SanityImageAsset
-    | SanityAssetSourceData
-    | SanityImageMetadata
-    | Theme
-    | Markdown
-    | Table
-    | TableRow
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | Geopoint
+  | Setting
+  | SharedSection
+  | Legal
+  | Post
+  | Author
+  | HomeBlog
+  | PostSections
+  | Sections
+  | SectionCarouselPostFilter
+  | Category
+  | Slug
+  | Banner
+  | SectionMarkdown
+  | SectionBasic
+  | HeroPost
+  | HeroBasic
+  | HeroHome
+  | Cta
+  | Popup
+  | Video
+  | Photo
+  | Metadata
+  | Summary
+  | SanityFileAsset
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | Theme
+  | Markdown
+  | Table
+  | TableRow
 export declare const internalGroqTypeReferenceTo: unique symbol

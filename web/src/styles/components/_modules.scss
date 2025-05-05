@@ -9,6 +9,9 @@
 @use "src/features/cookie-consent/cookie-consent.scss";
 @use "src/features/getting-leads/ui/shared/contact-method.scss";
 @use "src/features/getting-leads/ui/shared/popups.scss";
+@use "src/sections/Banner/BannerBasic/banner-basic.scss";
+@use "src/sections/Banner/BannerPhoto/banner-photo.scss";
+@use "src/sections/Banner/BannerVideo/banner-video.scss";
 @use "src/sections/Banner/banner.scss";
 @use "src/sections/Hero/Hero.scss";
 @use "src/sections/Hero/HeroBasic/hero-basic.scss";

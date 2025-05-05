@@ -4,23 +4,40 @@ import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
 import BannerVideo from "./BannerVideo/BannerVideo.astro";
 import BannerPhoto from "./BannerPhoto/BannerPhoto.astro";
 import BannerBasic from "./BannerBasic/BannerBasic.astro";
+import { getEntry } from "astro:content";
+import type { Data } from "@/common/astro";
+import type { PostEntry } from "@/contexts/Blog/infraestructure/sanity-post-blog-collection";
 
-type Props = SectionBase;
+type Props = {
+  _id: string;
+};
 
-const { theme, mediaList, copy } = Astro.props as Props;
+const { _id } = Astro.props as Props;
+const collection = "Post";
 
-const info = getHtmlSimpleCopy(copy, "h1");
+const { data } = (await getEntry(collection, _id)) as Data<PostEntry>;
+
+const { theme, mediaList, copy } = data.hero as SectionBase;
+
+const info = getHtmlSimpleCopy(copy, "h2");
 
 const bgVideo = mediaList?.filter((media) => media._type === "video")[0];
 const bgPhoto = mediaList?.filter((media) => media._type === "photo")[0];
+
+const contentBanner = {
+  theme,
+  mediaList,
+  copy,
+  slug: data.slug,
+};
 ---
 
 {
   bgVideo ? (
-    <BannerVideo {...Astro.props} />
+    <BannerVideo {...contentBanner} />
   ) : bgPhoto ? (
-    <BannerPhoto {...Astro.props} />
+    <BannerPhoto {...contentBanner} />
   ) : (
-    <BannerBasic {...Astro.props} />
+    <BannerBasic {...contentBanner} />
   )
 }

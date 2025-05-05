@@ -8,3 +8,22 @@
   border: none;
   outline: none;
 }
+
+.m-button{
+  all: unset;
+  background-color: var(--c-primary);
+  color: var(--c-white);
+  padding: 1rem 2rem;
+  padding-top: 1.4rem;
+  border: 1px solid var(--c-white);
+
+  border-radius: 0.5rem;
+
+  transition: background-color .5s ease-in-out;
+  transition: color .2s ease-in-out;
+
+  &:hover{
+    background-color: var(--c-white);
+    color: var(--c-primary);
+  }
+}

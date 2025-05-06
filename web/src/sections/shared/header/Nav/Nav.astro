@@ -1,18 +1,63 @@
 ---
+import type { Data, SharedContext } from "@/common/astro";
 import HeaderLink from "../HeaderLink.astro";
+import { DEFAULT_LANGUAGE } from "@global-shared/translations/domain/languages";
+import { getCollection } from "astro:content";
+import type { HomeBlogEntry } from "@/contexts/Blog/infraestructure/sanity-home-blog-collection";
+import type { CategoryEntry } from "@/contexts/Blog/infraestructure/sanity-category-blog-collection";
+
+type Props = SharedContext;
+
+const { language = DEFAULT_LANGUAGE, collection, ref, id } = Astro.props;
+
+const homeCollection = (await getCollection(
+  "HomeBlog"
+)) as Data<HomeBlogEntry>[];
+
+const homeLink = homeCollection
+  .map((home) => {
+    const { id, data } = home;
+    const { language, slug } = data;
+    return {
+      link: slug,
+      lang: language,
+    };
+  })
+  .filter((home) => home.lang === language)[0].link;
+
+const categoryBlog = (await getCollection("Category")) as Data<CategoryEntry>[];
+
+const categoryLink = categoryBlog
+  .map((category) => {
+    const { id, data } = category;
+    const { language, slug, name } = data;
+    return {
+      link: slug,
+      lang: language,
+      name,
+    };
+  })
+  .filter((category) => category.lang === language);
 ---
 
 <nav class="m-nav">
-  <HeaderLink class="header__link" href="/">Home</HeaderLink>
+  <HeaderLink class="header__link" href={homeLink}>Home</HeaderLink>
   <details class="nav__details">
-    <summary class="nav__link-button">Desplegable</summary>
+    <summary id="summary-blog" class="nav__link-button">Blog</summary>
     <ul class="nav__details-content">
-      <li>
-        <HeaderLink class="header__link header__link--subitem" href={`/test/`}>
-          to test
-        </HeaderLink>
-      </li>
+      {
+        categoryLink.map((category) => (
+          <li>
+            <HeaderLink
+              class="header__link header__link--subitem"
+              href={category.link}
+            >
+              {category.name}
+            </HeaderLink>
+          </li>
+        ))
+      }
     </ul>
   </details>
-  <HeaderLink class="header__link" href="/sobre-nosotros/">Upcars</HeaderLink>
+  <HeaderLink class="header__link" href="/sobre-nosotros/">Shop</HeaderLink>
 </nav>

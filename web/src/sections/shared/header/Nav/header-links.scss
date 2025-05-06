@@ -7,7 +7,6 @@
    text-decoration: none;
 
    &--active{
-     pointer-events: none;
      color: var(--c-text-header);
      border-bottom: 2px solid var(--c-text-header);
    }

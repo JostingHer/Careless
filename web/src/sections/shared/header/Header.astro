@@ -1,22 +1,24 @@
 ---
 import Nav from "./Nav/Nav.astro";
 import Sidebar from "./Sidebar/Sidebar.astro";
-import { logo_html } from "@/assets/icons/html/company-elements";
+import {
+  logo_html,
+  logo_light_html,
+} from "@/assets/icons/html/company-elements";
+import type { SharedContext } from "@/common/astro";
 import type { LANGUAGE } from "@global-shared/translations/domain/languages";
 import { DEFAULT_LANGUAGE } from "@global-shared/translations/domain/languages";
 
-type Props = {
-  language?: LANGUAGE;
-};
+type Props = SharedContext;
 
-const { language = DEFAULT_LANGUAGE } = Astro.props;
+const { language = DEFAULT_LANGUAGE, collection, ref, id } = Astro.props;
 ---
 
 <header class="o-header">
   <div class="c-header">
-    <a href="/" class="header__logo" set:html={logo_html} />
-    <Nav />
-    <Sidebar language={language} />
+    <a href="/" class="header__logo" set:html={logo_light_html} />
+    <Nav {...Astro.props} />
+    <Sidebar {...Astro.props} />
   </div>
 </header>
 

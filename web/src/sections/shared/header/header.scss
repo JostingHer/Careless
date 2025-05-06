@@ -4,7 +4,7 @@
 $break-menu: 1000px;
 
 .o-header {
-  --c-background-header: var(--c-dark);
+  --c-background-header: transparent;
   --c-text-header: var(--c-white);
   --c-text-hover-header: var(--c-primary);
 
@@ -20,6 +20,11 @@ $break-menu: 1000px;
 
   .m-button{
     font-size: var(--fs-menu);
+  }
+  // media queries
+  @media (min-width: $break-menu){
+    --c-background-header: transparent;
+
   }
 
 }
@@ -71,9 +76,14 @@ $break-menu: 1000px;
     position: relative;
     z-index: 1;
 
-    width: 100px;
+    width: 150px;
     height: auto;
 
     object-fit: cover;
+
+    // medias
+    @media (min-width: $break-menu){
+      width: 200px;
+    }
   }
 }

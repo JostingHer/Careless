@@ -1,27 +1,25 @@
 ---
 import Nav from "../Nav/Nav.astro";
 import { getEntry } from "astro:content";
-import type { Data } from "@/common/astro";
+import type { Data, SharedContext } from "@/common/astro";
 import type { SettingEntry } from "@/common/infrastructure/sanity-settings-collection";
 import { phone_html } from "@/assets/icons/html/contact-methods-elements";
 import type { LANGUAGE } from "@global-shared/translations/domain/languages";
 import { DEFAULT_LANGUAGE } from "@global-shared/translations/domain/languages";
 import { getCollection } from "astro:content";
 
-type Props = {
-  language?: LANGUAGE;
-};
+type Props = SharedContext;
 
-const { language = DEFAULT_LANGUAGE } = Astro.props;
+const { language = DEFAULT_LANGUAGE, collection, ref, id } = Astro.props;
 ---
 
-<button
+<!-- <button
   class="m-button button--primary"
   id="sidebar-button-contact"
   data-button-contact
 >
   Contacto
-</button>
+</button> -->
 <button data-open-sidebar class="sidebar__burger button-empty">
   <svg xmlns="http://www.w3.org/2000/svg" width="50" height="67" fill="none"
     ><path
@@ -42,7 +40,7 @@ const { language = DEFAULT_LANGUAGE } = Astro.props;
           clip-rule="evenodd"></path></svg
       >
     </button>
-    <Nav />
+    <Nav {...Astro.props} />
     <div class="sidebar__overlay"></div>
   </div>
 </aside>

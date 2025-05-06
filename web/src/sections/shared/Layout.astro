@@ -53,7 +53,7 @@ const context: SharedContext = {
     background-color={backgroundColor}
   >
     <GoogleTagManager />
-    <!-- <Header language={language} /> -->
+    <Header {...context} />
     <slot />
     <!-- <Footer {...context} /> -->
     <ContactPopup />

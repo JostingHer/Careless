@@ -7,8 +7,14 @@
     color: var(--c-text-color);
 
 
-    margin-top: var(--spacing-section);
+    padding-top: calc(var(--spacing-section) * 2);
     margin-bottom: var(--spacing-section);
+
+    // media
+    @media (min-width: variables.$width-tablet) {
+        padding-top: var(--spacing-section);
+        margin-bottom: var(--spacing-section);
+    }
   
 }
 

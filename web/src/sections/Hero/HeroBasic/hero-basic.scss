@@ -8,12 +8,19 @@
     background-color: var(--c-background-color);
     color: var(--c-text-color);
     font-size: 1.5em;
+    padding-top: var(--header-height);
 
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center ;
+
+    // media queries
+    @media (min-width: 768px) {
+        font-size: 1.2em;
+        padding-top: 0;
+    }
 
 
 }

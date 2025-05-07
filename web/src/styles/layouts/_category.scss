@@ -2,7 +2,17 @@
 
 .l-Category{
     .o-hero-basic{
-        height: 70vh;
-        margin-bottom: -6em;
+        @media (min-width: 768px) {
+            margin-bottom: -6em;
+             height: 70vh;
+        }
     }
+    .c-section-grid-post{
+
+        .a-title{
+            display: none ;
+        }
+    }
+    
+
 }

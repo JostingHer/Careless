@@ -2,32 +2,39 @@
 import ImageOptimized from "@/common/modules/ImageOptimized.astro";
 import { getFirstPhoto } from "@/common/sanity/getOptimizedImage";
 import { getOptimizedImage } from "@/common/sanity/getOptimizedImage";
+import type { Media } from "@/common/types";
 import type { AuthorEntry } from "@/contexts/Blog/infraestructure/sanity-author-blog-collection";
 
 type Props = AuthorEntry;
 
-const { _id, name, author, image, bio } = Astro.props as Props;
+const { _id, name, author, image, bio, job, theme } = Astro.props as Props;
+
+const imagenParse = image as Media;
+
+const authorImage = getFirstPhoto([imagenParse]);
+
+const textNeon = theme?.textColor || "#e9ff47";
 ---
 
-<section class="hero-author">
+<section class="hero-author" style={`--c-text-neon: ${textNeon};`}>
   <div class="hero-author__container">
     <div class="hero-author__content">
       <h1 class="hero-author__title">
         <span class="hero-author__title-main">{name}</span>
-        <span class="hero-author__title-highlight">DESIGNER</span>
+        <span class="hero-author__title-highlight">{job}</span>
       </h1>
       <p class="hero-author__description">
         {bio}
       </p>
       <div class="hero-author__badges">
-        <div class="badge badge--ux">UI/UX</div>
-        <div class="badge badge--user">USER EXPERIENCE DESIGN</div>
+        <div class="badge"><span>•</span> UI/UX</div>
+        <div class="badge"><span>•</span> USER EXPERIENCE DESIGN</div>
       </div>
     </div>
     <div class="hero-author__image">
       <div class="hero-author__image-wrapper">
-        <img
-          src="https://www.appdavivienda.com/productos/images/mi-perfil/miPerfil-bnn.png"
+        <ImageOptimized
+          photo={authorImage.photo}
           alt="Designer portrait"
           class="hero-author__portrait"
         />
@@ -35,3 +42,5 @@ const { _id, name, author, image, bio } = Astro.props as Props;
     </div>
   </div>
 </section>
+
+<script></script>

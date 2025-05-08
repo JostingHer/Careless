@@ -22,6 +22,14 @@ export const authorInSanity = defineCollection({
                         }
                     },
                  "theme": theme->{...},
+                 image{
+                            ...,
+                            _type,
+                            "srcLaptop": srcLaptop.asset->url,
+                            "srcMobile": srcMobile.asset->url,
+                            "photo": photo.asset,
+                            alt
+                        }
                  }
             `,
         );

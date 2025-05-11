@@ -6,7 +6,7 @@ import { getEntry, type CollectionKey } from "astro:content";
 import Favicons from "./head/Favicons.astro";
 import Metas from "./head/Metas.astro";
 // import GoogleTagManager from "@/features/cookie-consent/GoogleTagManager.astro";
-import CookieConsentHead from "@/features/cookie-consent/CookieConsentHead.astro";
+// import CookieConsentHead from "@/features/cookie-consent/CookieConsentHead.astro";
 import MarkupSchema from "./head/MarkupSchema.astro";
 import Footer from "./footer/Footer.astro";
 import Header from "./header/Header.astro";
@@ -39,7 +39,7 @@ const context: SharedContext = {
 
 <html lang={getCodeLang(language)}>
   <head>
-    <CookieConsentHead />
+    <!-- <CookieConsentHead /> -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <Favicons />

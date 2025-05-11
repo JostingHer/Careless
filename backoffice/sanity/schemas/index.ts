@@ -1,4 +1,4 @@
-import {cta, metadata, photo, summary, video} from './definitions'
+import {attachedInSanity, cta, metadata, photo, summary, video} from './definitions'
 import {author, category, homeBlog, legal, popups, post, setting, shared, theme} from './document'
 import {
     banner,
@@ -21,6 +21,7 @@ export const schemaTypes = [
     photo,
     video,
     cta,
+    attachedInSanity,
 
     // objects
     heroHome,

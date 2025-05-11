@@ -1,4 +1,5 @@
 export * from './cta'
+export * from './file'
 export * from './media'
 export * from './metadata'
 export * from './photo'

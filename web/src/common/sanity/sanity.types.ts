@@ -151,6 +151,16 @@ export type Author = {
   author?: string
   bio?: string
   job?: string
+  keywords?: Array<string>
+  cv?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
+    }
+    _type: 'file'
+  }
   image?: Photo
   theme?: {
     _ref: string
@@ -368,6 +378,20 @@ export type HeroHome = {
         _key: string
       } & Video)
   >
+}
+
+export type AttachedInSanity = {
+  _type: 'attachedInSanity'
+  asset?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
+    }
+    caption?: string
+    _type: 'file'
+  }
 }
 
 export type Cta = {
@@ -601,6 +625,7 @@ export type AllSanitySchemaTypes =
   | HeroPost
   | HeroBasic
   | HeroHome
+  | AttachedInSanity
   | Cta
   | Popup
   | Video

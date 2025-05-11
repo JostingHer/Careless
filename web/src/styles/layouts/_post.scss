@@ -1,5 +1,21 @@
 
 .l-Post{
+    p{
+       margin: 1lh auto;
+        line-height: 1lh;
+        font-size: 1em;
+    }
+
+    ul,ol{
+        margin: 1lh auto;
+        line-height: 1lh;
+
+        li::marker{
+            color: var(--c-primary);
+            font-weight: 600;
+            font-size: 2rem;
+        }
+    }
 
     .image-markdown{
         margin: 2lh auto;

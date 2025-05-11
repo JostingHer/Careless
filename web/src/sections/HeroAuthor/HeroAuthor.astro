@@ -4,16 +4,22 @@ import { getFirstPhoto } from "@/common/sanity/getOptimizedImage";
 import { getOptimizedImage } from "@/common/sanity/getOptimizedImage";
 import type { Media } from "@/common/types";
 import type { AuthorEntry } from "@/contexts/Blog/infraestructure/sanity-author-blog-collection";
+import { cv_svg } from "./ui-elements";
 
 type Props = AuthorEntry;
 
-const { _id, name, author, image, bio, job, theme } = Astro.props as Props;
+const { _id, name, author, image, bio, job, theme, keywords, cv } =
+  Astro.props as Props;
 
 const imagenParse = image as Media;
 
 const authorImage = getFirstPhoto([imagenParse]);
 
 const textNeon = theme?.textColor || "#e9ff47";
+
+const serializedCv = cv as unknown as {
+  url: string;
+};
 ---
 
 <section class="hero-author" style={`--c-text-neon: ${textNeon};`}>
@@ -26,9 +32,29 @@ const textNeon = theme?.textColor || "#e9ff47";
       <p class="hero-author__description">
         {bio}
       </p>
+
       <div class="hero-author__badges">
-        <div class="badge"><span>•</span> UI/UX</div>
-        <div class="badge"><span>•</span> USER EXPERIENCE DESIGN</div>
+        {
+          keywords?.map((keyword) => (
+            <div class="badge">
+              <span>•</span> {keyword}
+            </div>
+          )) || null
+        }
+        {
+          serializedCv && (
+            <a
+              href={serializedCv.url}
+              class="hero-author__cv"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span set:html={cv_svg} />
+              {author}
+              {job} CV
+            </a>
+          )
+        }
       </div>
     </div>
     <div class="hero-author__image">
@@ -41,6 +67,6 @@ const textNeon = theme?.textColor || "#e9ff47";
       </div>
     </div>
   </div>
-</section>
 
-<script></script>
+  <script></script>
+</section>

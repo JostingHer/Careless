@@ -25,7 +25,7 @@ const prototype = [
         type: 'string',
         options: {
             list: Languages,
-            layout: 'radio',
+            layout: 'dropdown',
         },
         initialValue: Languages[0].value,
     }),

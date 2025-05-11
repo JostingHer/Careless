@@ -29,6 +29,21 @@ export const author = defineType({
             type: 'string',
         }),
         defineField({
+            name: 'keywords',
+            title: 'Palabras clave',
+            type: 'array',
+            of: [{type: 'string'}],
+        }),
+        defineField({
+            name: 'cv',
+            title: 'Currículum vitae .pdf',
+            type: 'file',
+            options: {
+                collapsible: true,
+                collapsed: false,
+            },
+        }),
+        defineField({
             name: 'image',
             title: 'Foto',
             type: 'photo',

@@ -1,3 +1,101 @@
+@use "../../../styles/settings/variables";
+
+$break-menu: variables.$width-desktop;
+
 .o-footer{
   /* Ready */
+  padding-top: var(--spacing-section);
+  padding-bottom: var(--spacing-section);
+  background-color: #141414;
+  color: #fff;
+
+  a{
+    color: #fff;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all .3s;
+    &:hover{
+      text-decoration: underline;
+
+    }
+  }
+  ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+
+  .c-footer{
+    @include variables.boxed-container;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @media (min-width: $break-menu){
+      display: flex;
+      flex-direction: row;
+      align-items: start;
+      justify-content: space-evenly;
+    }
+    
+
+    .nav-footer{
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      .languages{
+        display: flex;
+        height: fit-content;
+        gap: 1rem;
+
+      }
+
+   
+
+      @media (min-width: $break-menu){
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .footer__link{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: .5rem 0;
+
+        @media (min-width: $break-menu){
+          flex-direction: row;
+          gap: 2rem;
+        }
+      }
+    }
+  }
+
+
+
+  .footer__logo{
+    margin-right: auto;
+    margin-left: 0;
+
+    .logo-svg{
+      pointer-events: all;
+
+      position: relative;
+      z-index: 1;
+
+      width: 150px;
+      height: auto;
+
+      object-fit: cover;
+
+      // medias
+      @media (min-width: $break-menu){
+        width: 200px;
+      }
+    }
+  }
+
 }

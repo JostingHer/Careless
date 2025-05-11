@@ -64,9 +64,9 @@ const optimizedImage = getFirstPhoto(heroPost.mediaList || []);
       </span>
 
       <div class="hero-post__copy" set:html={postIntro} />
-      <span class="hero-post__author">
+      <a href={getAuthorById[0].data.slug} class="hero-post__author">
         {getAuthorById[0].data.name}
-      </span>
+      </a>
       <span class="hero-post__category">
         {getCategoryById[0].data.name}
       </span>

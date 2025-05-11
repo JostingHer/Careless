@@ -8,6 +8,8 @@ import SectionCarousel from "./sections/SectionCarousel/SectionCarousel.astro";
 import Hero from "@/sections/Hero/Hero.astro";
 import type { SectionBase } from "@/common/types";
 import Banner from "@/sections/Banner/Banner.astro";
+import type { CategoryEntry } from "../infraestructure/sanity-category-blog-collection";
+import SectionGridPost from "./sections/SectionGridPost/SectionGridPost.astro";
 
 type Props = {
   _id: string;
@@ -28,7 +30,7 @@ const { data } = (await getEntry(collection, _id)) as Data<HomeBlogEntry>;
     data.pageSections?.map((section, index) => {
       switch (section._type) {
         case "sectionCarouselPostFilter":
-          return <SectionCarousel {...section} index={index} />;
+          return <SectionGridPost category_id={section.category?._ref || ""} />;
         default:
           return <Banner _id={section._ref} />;
       }

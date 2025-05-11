@@ -5,8 +5,13 @@ import { DEFAULT_LANGUAGE } from "@global-shared/translations/domain/languages";
 import { getCollection } from "astro:content";
 import type { HomeBlogEntry } from "@/contexts/Blog/infraestructure/sanity-home-blog-collection";
 import type { CategoryEntry } from "@/contexts/Blog/infraestructure/sanity-category-blog-collection";
+import { logo_light_html } from "@/assets/icons/html/company-elements";
+import type { AuthorEntry } from "@/contexts/Blog/infraestructure/sanity-author-blog-collection";
 
-type Props = SharedContext;
+type Props = SharedContext & {
+  show?: boolean;
+};
+const { show = true } = Astro.props as Props;
 
 const { language = DEFAULT_LANGUAGE, collection, ref, id } = Astro.props;
 
@@ -38,8 +43,23 @@ const categoryLink = categoryBlog
     };
   })
   .filter((category) => category.lang === language);
+
+const authorBlog = (await getCollection("Author")) as Data<AuthorEntry>[];
+
+const authorLink = authorBlog
+  .map((category) => {
+    const { id, data } = category;
+    const { language, slug, name } = data;
+    return {
+      link: slug,
+      lang: language,
+      name,
+    };
+  })
+  .filter((category) => category.lang === language);
 ---
 
+{show && <a href={homeLink} class="header__logo" set:html={logo_light_html} />}
 <nav class="m-nav">
   <HeaderLink class="header__link" href={homeLink}>Home</HeaderLink>
   <details class="nav__details">
@@ -59,5 +79,22 @@ const categoryLink = categoryBlog
       }
     </ul>
   </details>
-  <HeaderLink class="header__link" href="/sobre-nosotros/">Shop</HeaderLink>
+  <details class="nav__details">
+    <summary id="summary-author" class="nav__link-button">Socios</summary>
+    <ul class="nav__details-content">
+      {
+        authorLink.map((author) => (
+          <li>
+            <HeaderLink
+              class="header__link header__link--subitem"
+              href={author.link}
+            >
+              {author.name}
+            </HeaderLink>
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+  <HeaderLink class="header__link" href="/sandra/">Shop</HeaderLink>
 </nav>

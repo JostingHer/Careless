@@ -29,7 +29,17 @@ const listLinks = current_page_other_lang.map(({ data }) => ({
 }));
 ---
 
-<details class="m-language-selector">
+<div class="languages">
+  {
+    listLinks.map((link) => (
+      <a href={link.link} class={`language-selector__button`}>
+        {getLanguageTitle(link.lang)}
+      </a>
+    ))
+  }
+</div>
+
+<!-- <details class="m-language-selector">
   <summary class="language-selector__summary">
     <span set:html={globe_svg} />
     {getLanguageTitle(language)}
@@ -51,10 +61,10 @@ const listLinks = current_page_other_lang.map(({ data }) => ({
       ))
     }
   </div>
-</details>
-
+</details> -->
+<!-- 
 <pre>
   <code>
     {JSON.stringify(listLinks, null, 2)}
   </code>
-</pre>
+</pre> -->

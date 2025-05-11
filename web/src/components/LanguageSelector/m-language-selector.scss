@@ -4,15 +4,15 @@ $break-menu: variables.$width-desktop;
 
 
 .m-language-selector {
-  --c-text-language: var(--c-dark);
+  --c-text-language: var(--c-white);
 
   position: relative;
-  right:calc(var(--boxed-margin) + 40px);
 
   width: fit-content;
 
   font-size: var(--fs-pill);
   list-style: none;
+
 
   &::marker {
     content: ''; /* Esconde el marcador visual */
@@ -88,7 +88,7 @@ $break-menu: variables.$width-desktop;
 
   width: 80%;
   padding: .5em;
-  padding-right: 1em;
+  padding-bottom: .2em;
 
   color: var(--c-white);
   text-align: right;
@@ -96,6 +96,7 @@ $break-menu: variables.$width-desktop;
 
   opacity: .5;
   background: rgb(45 45 52);
+  width: fit-content;
   border: none;
   border-radius: 5px;
 

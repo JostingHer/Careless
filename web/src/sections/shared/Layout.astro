@@ -5,7 +5,7 @@ import { getCodeLang } from "@global-shared/translations/utils/getCodeLang";
 import { getEntry, type CollectionKey } from "astro:content";
 import Favicons from "./head/Favicons.astro";
 import Metas from "./head/Metas.astro";
-import GoogleTagManager from "@/features/cookie-consent/GoogleTagManager.astro";
+// import GoogleTagManager from "@/features/cookie-consent/GoogleTagManager.astro";
 import CookieConsentHead from "@/features/cookie-consent/CookieConsentHead.astro";
 import MarkupSchema from "./head/MarkupSchema.astro";
 import Footer from "./footer/Footer.astro";
@@ -52,7 +52,7 @@ const context: SharedContext = {
     text-color={textColor}
     background-color={backgroundColor}
   >
-    <GoogleTagManager />
+    <!-- <GoogleTagManager /> -->
     <Header {...context} />
     <slot />
     <Footer {...context} />

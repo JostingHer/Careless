@@ -85,6 +85,7 @@
 .hero-post__author{
     font-family: variables.$ff-bold;
     font-size: 1em;
+    color: var(--c-text-color);
 }
 
 @media (min-width: variables.$width-tablet) {

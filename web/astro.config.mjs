@@ -16,7 +16,7 @@ import dotenv from "dotenv";
 dotenv.config();
 // https://astro.build/config
 export default defineConfig({
-    output: "server", // default
+    output: "static", // default
     env: {
         schema: {
             ENV: envField.string({

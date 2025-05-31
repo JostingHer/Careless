@@ -6,19 +6,24 @@ import type { ApiResponse, FeaturedProduct } from "@/common/shop";
 
 export const productInPrestashop = defineCollection({
     loader: async () => {
-        const response = await fetch(`http://localhost:4321/api/products`);
+        const response = await fetch(
+            `https://shop.becareless.es/rest/featuredproducts`,
+        );
         const data = (await response.json()) as ApiResponse;
 
-        const productsList = data.psdata
-            .featuredProductsList as FeaturedProduct[];
+        const productsList = data.psdata as FeaturedProduct[];
 
-        return productsList.map((product) => ({
+        const landingList = productsList.map((product) => ({
             ...product,
             _id: product.name,
             id: product.name,
             slug: `${getSlugWithLang(product.link_rewrite)}`,
             pathname: `${getSlugWithLang(product.link_rewrite)}`,
         }));
+
+        console.log("Landing List", landingList);
+
+        return landingList;
     },
 });
 

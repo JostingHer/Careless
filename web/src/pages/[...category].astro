@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import CategoryBlogPage from "@/contexts/Blog/modules/CategoryBlogPage.astro";
+export const prerender = true;
 
 export async function getStaticPaths() {
   const landingsList = await getCollection("Category");

@@ -160,24 +160,24 @@ export type ImageSize = {
     width: number;
     height: number;
     sources: {
-      jpg: string;
+        jpg: string;
     };
-  };
-  
+};
+
 export type ProductImage = {
     cover: string | null;
     id_image: string;
     legend: string;
     position: string;
     bySize: {
-      small_default: ImageSize;
-      cart_default: ImageSize;
-      home_default: ImageSize;
-      medium_default: ImageSize;
-      large_default: ImageSize;
+        small_default: ImageSize;
+        cart_default: ImageSize;
+        home_default: ImageSize;
+        medium_default: ImageSize;
+        large_default: ImageSize;
     };
     small: ImageSize;
     medium: ImageSize;
     large: ImageSize;
     associatedVariants: string[];
-  };
+};

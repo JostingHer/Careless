@@ -23,7 +23,6 @@ export async function getStaticPaths() {
 }
 
 const { data } = Astro.props;
-console.log("data", data);
 ---
 
 <ProductPage _id={data._id} />

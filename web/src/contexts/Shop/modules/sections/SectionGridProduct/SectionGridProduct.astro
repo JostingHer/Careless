@@ -12,5 +12,4 @@ const productList = (await getCollection("Product")) as Data<ProductEntry>[];
   <div class="c-section-grid-product-list">
     {productList.map((card) => <CardProduct _id={card.id} />)}
   </div>
-</SectionContainer>;
-
+</SectionContainer>

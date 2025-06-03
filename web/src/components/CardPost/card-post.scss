@@ -3,6 +3,8 @@
 
 .m-card-post {
 
+  --border-radius: 20px;
+
   /* Default values */
   --c-text-color: var(--c-dark);
   --c-background-color: var(--c-white);
@@ -10,11 +12,13 @@
   position: relative;
   background-color: var(--c-background-color);
   color: var(--c-text-color);
-
+  border-radius: var(--border-radius);
 }
 
 .m-card-post:not(:has(.card-post__media-canvas)) {
   border: 1px solid var(--c-text-color);
+  border-radius: var(--border-radius);
+
 }
 
 .card-post__media-canvas{
@@ -30,6 +34,10 @@
   width: 100%;
   height: fit-content;
   max-height: 550px;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  object-fit: cover;
+
 }
 
 .card-post__data{

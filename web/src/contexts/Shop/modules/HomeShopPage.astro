@@ -1,0 +1,72 @@
+---
+import "@/styles/index.scss";
+
+import type { CollectionKey } from "astro:content";
+import { getCollection } from "astro:content";
+import HeroShop from "./sections/HeroShop/HeroShop.astro";
+import Header from "@/sections/shared/header/Header.astro";
+import Footer from "@/sections/shared/footer/Footer.astro";
+import ContactPopup from "@/features/getting-leads/ui/ContactForm/ContactPopup.astro";
+import SectionGridProduct from "./sections/SectionGridProduct/SectionGridProduct.astro";
+
+const listProduct = await getCollection("Product");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>bec@reless - Break the code of fashion</title>
+  </head>
+  <body>
+    <Header />
+    <HeroShop />
+    <SectionGridProduct />
+    <!-- <Footer /> -->
+
+    <!-- <ContactPopup /> -->
+  </body>
+
+  <style>
+    :root {
+      --font-cyber: "Orbitron", sans-serif;
+      --font-mono: "Roboto Mono", monospace;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: var(--font-mono);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      background: #1a1a1a;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--font-cyber);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+  </style>
+</html>

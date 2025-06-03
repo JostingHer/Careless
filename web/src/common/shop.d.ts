@@ -1,7 +1,10 @@
 export type ApiResponse = {
     success: boolean;
     code: number;
-    psdata: FeaturedProduct[];
+    psdata: {
+        menuItems: any[]; // Puedes tipar esto mejor si conoces la estructura
+        featuredProductsList: FeaturedProduct[];
+    };
 };
 
 export type FeaturedProduct = {

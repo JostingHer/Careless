@@ -2,10 +2,13 @@
 @use "src/common/modules/SectionContainer/section-container.scss";
 @use "src/components/Accordion/accordion.scss";
 @use "src/components/CardPost/card-post.scss";
+@use "src/components/CardProduct/card-product.scss";
 @use "src/components/CarouselNav/carousel-nav.scss";
 @use "src/components/LanguageSelector/m-language-selector.scss";
 @use "src/contexts/Blog/modules/sections/SectionCarousel/section-carousel.scss";
 @use "src/contexts/Blog/modules/sections/SectionGridPost/section-grid-post.scss";
+@use "src/contexts/Shop/modules/sections/HeroShop/hero-shop.scss";
+@use "src/contexts/Shop/modules/sections/SectionGridProduct/section-grid-product.scss";
 @use "src/features/cookie-consent/cookie-consent.scss";
 @use "src/features/getting-leads/ui/shared/contact-method.scss";
 @use "src/features/getting-leads/ui/shared/popups.scss";

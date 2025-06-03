@@ -3,6 +3,7 @@ import Layout from "@/sections/shared/Layout.astro";
 import type { CollectionKey } from "astro:content";
 import { getEntry } from "astro:content";
 import type { Data } from "@/common/astro";
+
 import type { ProductEntry } from "../infraestructure/ps-product-shop-collection";
 
 type Props = {
@@ -16,6 +17,4 @@ const collection: CollectionKey = "Product";
 const { data } = (await getEntry(collection, _id)) as Data<ProductEntry>;
 ---
 
-<Layout collection={collection} _id={_id}>
-  <h1>{data.name}</h1>
-</Layout>
+<Layout collection={collection} _id={_id} />

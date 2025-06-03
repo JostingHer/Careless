@@ -5,6 +5,8 @@ import { getEntry } from "astro:content";
 import type { Data } from "@/common/astro";
 
 import type { ProductEntry } from "../infraestructure/ps-product-shop-collection";
+import LayoutShop from "./LayoutShop.astro";
+import HeroProduct from "./sections/HeroProduct/HeroProduct.astro";
 
 type Props = {
   _id: string;
@@ -17,4 +19,6 @@ const collection: CollectionKey = "Product";
 const { data } = (await getEntry(collection, _id)) as Data<ProductEntry>;
 ---
 
-<Layout collection={collection} _id={_id} />
+<LayoutShop>
+  <HeroProduct _id={_id} />
+</LayoutShop>

@@ -4,9 +4,12 @@
 
 "fileseeder@https://github.com/TheCookiesAgency/fileseeder.git#astro":
   version "1.0.0"
-  resolved "git+ssh://git@github.com/TheCookiesAgency/fileseeder.git#4c4b78e161332f3c959a858fb28031c8ca89fa8a"
+  resolved "git+ssh://git@github.com/TheCookiesAgency/fileseeder.git"
+  integrity sha512-MuzAYTMLm69eiqr27obgb0JNSqSuRdEVsfYbcZM92APaCiWgPFQAse8r0f9DaL4+PWxQiZtODiBkrT7PCExUIQ==
   dependencies:
     python3 "^0.0.1"
 
 python3@^0.0.1:
   version "0.0.1"
+  resolved "https://registry.npmjs.org/python3/-/python3-0.0.1.tgz"
+  integrity sha512-VB3Pe0uV1mjWND5Kv1FJQOSuAe979Oo0gRs/C8JGF8wx+ulkWqHC/sWlQz+ezcGpwsJP0tTIh+No/iRaqQlcNg==

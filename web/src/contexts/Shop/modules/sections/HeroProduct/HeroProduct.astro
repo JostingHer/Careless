@@ -1,0 +1,18 @@
+---
+import type { Data } from "@/common/astro";
+import type { ProductEntry } from "@/contexts/Shop/infraestructure/ps-product-shop-collection";
+import type { CollectionKey } from "astro:content";
+import { getEntry } from "astro:content";
+
+type Props = {
+  _id: string;
+};
+
+const { _id } = Astro.props as Props;
+
+const collection: CollectionKey = "Product";
+
+const { data } = (await getEntry(collection, _id)) as Data<ProductEntry>;
+---
+
+<h1>{data.name}</h1>

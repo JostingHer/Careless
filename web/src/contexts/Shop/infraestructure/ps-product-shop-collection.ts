@@ -18,7 +18,8 @@ export const productInPrestashop = defineCollection({
             ...product,
             _id: product.name,
             id: product.name,
-            slug: `shop${getSlugWithLang(product.link_rewrite)}`,
+            slug: `${getSlugWithLang(product.link_rewrite)}`,
+            pathname: `/shop${getSlugWithLang(product.link_rewrite)}`,
         }));
 
         console.log("Landing List", landingList);

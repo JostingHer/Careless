@@ -28,7 +28,7 @@ const getproductById = (await getEntry("Product", _id)) as Data<ProductEntry>;
   <div class="card-product__data">
     <div>
       <span>New!</span>
-      <a href={getproductById.data.slug} class="card-product__title">
+      <a href={getproductById.data.pathname} class="card-product__title">
         <h2>{getproductById.data.name}</h2>
       </a>
     </div>

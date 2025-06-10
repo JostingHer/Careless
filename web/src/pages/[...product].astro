@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   const paths = landingsList.map((landing) => {
     return {
       params: {
-        product: landing.data.slug,
+        product: landing.data.pathname,
       },
       props: {
         data: landing.data,

@@ -1,11 +1,19 @@
 .hero-product {
+
+  --c-background-color: #1a1a1a;
+  --c-text-color: var(--c-white);
+
   width: 100%;
   min-height: 100vh;
   padding: 20px 16px;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: var(--c-background-color);
+  color: var(--c-text-color);
+      
 }
 
 .hero-product__container {
+  padding-top: 100px;
+
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -34,7 +42,7 @@
 .hero-product__title {
   font-size: 28px;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--c-text-color);
   margin: 0 0 16px 0;
   line-height: 1.2;
 }
@@ -49,8 +57,13 @@
 .hero-product__description {
   font-size: 16px;
   line-height: 1.6;
-  color: #6b7280;
+  color: var(--c-text-color);
   margin: 0 0 32px 0;
+
+  overflow: auto;
+  max-height: 10lh;
+  
+
 }
 
 .hero-product__actions {
@@ -97,7 +110,7 @@
 }
 
 .hero-product__button:focus {
-  outline: 2px solid #3b82f6;
+  outline: 1px solid #3b82f6;
   outline-offset: 2px;
 }
 
@@ -126,7 +139,7 @@
   }
   
   .hero-product__description {
-    font-size: 18px;
+    font-size: .8em;
     margin-bottom: 40px;
   }
   

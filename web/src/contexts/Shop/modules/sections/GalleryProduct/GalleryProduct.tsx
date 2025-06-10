@@ -67,7 +67,7 @@ export default function GalleryProduct({
 
             {/* Thumbnail scroll with navigation */}
             <div className="gallery-product__thumbnails-wrapper">
-                <button
+                {/* <button
                     className="gallery-product__nav-button gallery-product__nav-button--left"
                     onClick={() => scrollThumbnails("left")}
                     type="button"
@@ -88,7 +88,7 @@ export default function GalleryProduct({
                             strokeLinejoin="round"
                         />
                     </svg>
-                </button>
+                </button> */}
 
                 <div
                     className="gallery-product__thumbnails"
@@ -118,7 +118,7 @@ export default function GalleryProduct({
                     </div>
                 </div>
 
-                <button
+                {/* <button
                     className="gallery-product__nav-button gallery-product__nav-button--right"
                     onClick={() => scrollThumbnails("right")}
                     type="button"
@@ -139,7 +139,7 @@ export default function GalleryProduct({
                             strokeLinejoin="round"
                         />
                     </svg>
-                </button>
+                </button> */}
             </div>
         </div>
     );

@@ -3,7 +3,8 @@ import type { Data } from "@/common/astro";
 import type { ProductEntry } from "@/contexts/Shop/infraestructure/ps-product-shop-collection";
 import type { CollectionKey } from "astro:content";
 import { getEntry } from "astro:content";
-import HeroProduct from "./HeroProduct.tsx";
+import { getHtmlSimpleCopy } from "@/common/utils/get-html-render";
+import GalleryProduct from "../GalleryProduct/GalleryProduct";
 
 type Props = {
   _id: string;
@@ -15,6 +16,11 @@ const collection: CollectionKey = "Product";
 
 const { data } = (await getEntry(collection, _id)) as Data<ProductEntry>;
 
+interface ProductImage {
+  id: string;
+  src: string;
+  alt: string;
+}
 const imagesLarge = data.images
   .map((item) => item.bySize.large_default)
   .map((item) => {
@@ -23,15 +29,40 @@ const imagesLarge = data.images
       src: item.url,
       alt: data.name,
     };
-  });
+  }) as ProductImage[];
 
-const sampleProduct = {
+const product = {
   id: data.id,
   name: data.name,
   price: data.price,
-  description: data.description,
+  description: await getHtmlSimpleCopy(data.description),
   images: [...imagesLarge],
 };
 ---
 
-<HeroProduct product={sampleProduct} client:load />
+<section class="hero-product">
+  <div class="hero-product__container">
+    <div class="hero-product__gallery">
+      <GalleryProduct
+        images={product.images}
+        className="hero-product__gallery-component"
+        client:idle
+      />
+    </div>
+
+    <div class="hero-product__info">
+      <h1 class="hero-product__title">{product.name}</h1>
+      <p class="hero-product__price">{product.price}</p>
+      <div class="hero-product__description" set:html={product.description} />
+
+      <div class="hero-product__actions">
+        <button class="hero-product__button hero-product__button--primary">
+          Add to cart
+        </button>
+        <button class="hero-product__button hero-product__button--secondary">
+          Buy now
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

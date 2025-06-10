@@ -3,6 +3,7 @@ import type { Data } from "@/common/astro";
 import type { ProductEntry } from "@/contexts/Shop/infraestructure/ps-product-shop-collection";
 import type { CollectionKey } from "astro:content";
 import { getEntry } from "astro:content";
+import HeroProduct from "./HeroProduct.tsx";
 
 type Props = {
   _id: string;
@@ -13,6 +14,24 @@ const { _id } = Astro.props as Props;
 const collection: CollectionKey = "Product";
 
 const { data } = (await getEntry(collection, _id)) as Data<ProductEntry>;
+
+const imagesLarge = data.images
+  .map((item) => item.bySize.large_default)
+  .map((item) => {
+    return {
+      id: item.url,
+      src: item.url,
+      alt: data.name,
+    };
+  });
+
+const sampleProduct = {
+  id: data.id,
+  name: data.name,
+  price: data.price,
+  description: data.description,
+  images: [...imagesLarge],
+};
 ---
 
-<h1>{data.name}</h1>
+<HeroProduct product={sampleProduct} client:load />

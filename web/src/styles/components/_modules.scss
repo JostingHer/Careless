@@ -7,6 +7,8 @@
 @use "src/components/LanguageSelector/m-language-selector.scss";
 @use "src/contexts/Blog/modules/sections/SectionCarousel/section-carousel.scss";
 @use "src/contexts/Blog/modules/sections/SectionGridPost/section-grid-post.scss";
+@use "src/contexts/Shop/modules/sections/GalleryProduct/gallery-product.scss";
+@use "src/contexts/Shop/modules/sections/HeroProduct/hero-product.scss";
 @use "src/contexts/Shop/modules/sections/HeroShop/hero-shop.scss";
 @use "src/contexts/Shop/modules/sections/SectionGridProduct/section-grid-product.scss";
 @use "src/features/cookie-consent/cookie-consent.scss";

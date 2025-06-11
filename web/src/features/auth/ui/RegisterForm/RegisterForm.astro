@@ -1,0 +1,378 @@
+---
+const form = "register-form";
+---
+
+<div class="register">
+  <div class="register__container">
+    <header class="register__header">
+      <h1 class="register__title">Crear cuenta</h1>
+    </header>
+
+    <form
+      method="post"
+      id={form}
+      name={form}
+      data-form-send
+      class="register__form"
+    >
+      <div class="register__field">
+        <label for="contact-firstname" class="register__label"> Nombre </label>
+        <input
+          autofocus
+          id="contact-firstname"
+          class="register__input"
+          type="text"
+          name="firstName"
+          placeholder="Tu nombre"
+          required
+        />
+      </div>
+
+      <div class="register__field">
+        <label for="contact-lastname" class="register__label">
+          Apellidos
+        </label>
+        <input
+          id="contact-lastname"
+          class="register__input"
+          type="text"
+          name="lastName"
+          placeholder="Tus apellidos"
+          required
+        />
+      </div>
+
+      <div class="register__field">
+        <label for="contact-email" class="register__label"> Email </label>
+        <input
+          id="contact-email"
+          class="register__input"
+          type="email"
+          name="email"
+          placeholder="tu@email.com"
+          required
+        />
+      </div>
+
+      <div class="register__field">
+        <label for="contact-password" class="register__label">
+          Contraseña
+        </label>
+        <input
+          id="contact-password"
+          class="register__input"
+          type="password"
+          name="password"
+          placeholder="Mínimo 8 caracteres"
+          required
+          minlength="8"
+        />
+      </div>
+
+      <button
+        id={`${form}-submit`}
+        data-form-submit
+        type="submit"
+        class="register__button"
+      >
+        <span class="register__button-text">Crear cuenta</span>
+        <span class="register__button-loader"></span>
+      </button>
+    </form>
+    <footer class="register__footer">
+      <p class="register__footer-text">
+        ¿Ya tienes cuenta? <a href="/login" class="register__link"
+          >Iniciar sesión</a
+        >
+      </p>
+    </footer>
+  </div>
+</div>
+
+<style>
+  /* Reset */
+  .register * {
+    box-sizing: border-box;
+  }
+
+  /* Block: register */
+  .register {
+    min-height: 100vh;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    padding-top: 100px;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      sans-serif;
+  }
+
+  .register__container {
+    width: 100%;
+    max-width: 400px;
+    background: #ffffff;
+    padding: 40px 30px;
+  }
+
+  /* Header */
+  .register__header {
+    margin-bottom: 40px;
+  }
+
+  .register__title {
+    font-size: 24px;
+    font-weight: 400;
+    color: #000000;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  /* Form */
+  .register__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .register__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .register__label {
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 15px;
+    color: #000000;
+    line-height: 1.4;
+  }
+
+  .register__input {
+    width: 100%;
+    padding: 5px;
+    padding-left: 15px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000000;
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 50px;
+    font-family: inherit;
+    outline: none;
+  }
+
+  .register__input::placeholder {
+    color: #666666;
+  }
+
+  /* Button */
+  .register__button {
+    position: relative;
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 50px;
+
+    line-height: 1.5;
+    text-align: center;
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #000000;
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 10px;
+  }
+
+  .register__button:hover {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .register__button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* Button states */
+  .register__button--submitting {
+    background: #666666;
+    border-color: #666666;
+    color: #ffffff;
+    pointer-events: none;
+  }
+
+  .register__button--submitting .register__button-text {
+    opacity: 0;
+  }
+
+  .register__button--submitting .register__button-loader {
+    opacity: 1;
+  }
+
+  .register__button--success {
+    background: #000000;
+    border-color: #000000;
+    color: #ffffff;
+    pointer-events: none;
+  }
+
+  .register__button--fail {
+    background: #ffffff;
+    border-color: #000000;
+    color: #000000;
+  }
+
+  /* Button loader */
+  .register__button-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    opacity: 0;
+  }
+
+  .register__button-text {
+    transition: opacity 0.2s ease;
+  }
+
+  /* Footer */
+  .register__footer {
+    margin-top: 30px;
+  }
+
+  .register__footer-text {
+    font-size: 14px;
+    color: #000000;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .register__link {
+    color: #000000;
+    text-decoration: underline;
+    font-weight: 400;
+  }
+
+  .register__link:hover {
+    text-decoration: none;
+  }
+
+  /* Animations */
+  @keyframes spin {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  /* Tablet: 768px+ */
+  @media (min-width: 768px) {
+    .register {
+      padding: 40px;
+      padding-top: 150px;
+    }
+
+    .register__container {
+      padding: 50px 40px;
+      max-width: 450px;
+    }
+
+    .register__title {
+      font-size: 28px;
+    }
+
+    .register__form {
+      gap: 15px;
+    }
+
+    .register__input {
+      padding: 18px;
+    }
+
+    .register__button {
+      padding: 18px;
+      font-size: 17px;
+    }
+
+    .register__footer {
+      margin-top: 40px;
+    }
+  }
+
+  /* Desktop: 1024px+ */
+  @media (min-width: 1024px) {
+    .register__container {
+      max-width: 500px;
+      padding: 60px 50px;
+    }
+
+    .register__title {
+      font-size: 32px;
+    }
+
+    .register__form {
+      gap: 20px;
+    }
+
+    .register__input {
+      padding: 20px;
+      font-size: 17px;
+    }
+
+    .register__button {
+      padding: 20px;
+      font-size: 18px;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById("register-form") as HTMLFormElement;
+  const submit = document.getElementById(
+    `register-form-submit`
+  ) as HTMLButtonElement;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    submit?.setAttribute("disabled", "true");
+    submit?.classList.add("register__button--submitting");
+
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    const formData = new FormData(form as HTMLFormElement);
+
+    // Simulate success/error randomly for demo
+    const success = Math.random() > 0.3;
+
+    submit?.classList.remove("register__button--submitting");
+    submit?.removeAttribute("disabled");
+
+    if (!success) {
+      submit?.classList.add("register__button--fail");
+      setTimeout(() => {
+        submit?.classList.remove("register__button--fail");
+      }, 2000);
+      return;
+    }
+
+    submit?.classList.add("register__button--success");
+    const buttonText = submit?.querySelector(".register__button-text");
+    if (buttonText) {
+      buttonText.textContent = "¡Cuenta creada!";
+    }
+  });
+</script>

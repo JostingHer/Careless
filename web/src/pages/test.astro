@@ -1,5 +1,7 @@
 ---
 import type { ApiResponse } from "@/common/shop";
+export const prerender = false;
+
 import Icon from "@/components/ui/Icon.astro";
 
 // haz un fetch a una api de prueba y muestra el resultado en un div
@@ -29,27 +31,3 @@ const data = (await response.json()) as ApiResponse;
     {JSON.stringify(data.psdata.featuredProductsList[2], null, 2)}
   </code>
 </pre>
-<div>
-  <h1>hola jost</h1>
-  <Icon name="favicon" class="favicon_svg" />
-
-  {
-    data.psdata.featuredProductsList[0].images.map((image) => (
-      <img src={image.large.url} alt={image.legend} />
-    ))
-  }
-
-  <style>
-    body {
-      font-family: "Inter", sans-serif;
-      background-color: #111111;
-      color: #333;
-    }
-
-    .favicon_svg {
-      fill: red;
-      height: 20px;
-      width: 10px;
-    }
-  </style>
-</div>

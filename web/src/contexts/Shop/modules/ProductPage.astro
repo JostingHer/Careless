@@ -1,0 +1,26 @@
+---
+import Layout from "@/sections/shared/Layout.astro";
+import type { CollectionKey } from "astro:content";
+import { getEntry } from "astro:content";
+import type { Data } from "@/common/astro";
+
+import type { ProductEntry } from "../infraestructure/ps-product-shop-collection";
+import LayoutShop from "./LayoutShop.astro";
+import HeroProduct from "./sections/HeroProduct/HeroProduct.astro";
+import SectionGridProduct from "./sections/SectionGridProduct/SectionGridProduct.astro";
+
+type Props = {
+  _id: string;
+};
+
+const { _id } = Astro.props;
+
+const collection: CollectionKey = "Product";
+
+const { data } = (await getEntry(collection, _id)) as Data<ProductEntry>;
+---
+
+<LayoutShop>
+  <HeroProduct _id={_id} />
+  <SectionGridProduct />
+</LayoutShop>

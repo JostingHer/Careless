@@ -1,0 +1,13 @@
+---
+import { getCollection } from "astro:content";
+import HeroShop from "./sections/HeroShop/HeroShop.astro";
+import SectionGridProduct from "./sections/SectionGridProduct/SectionGridProduct.astro";
+import LayoutShop from "./LayoutShop.astro";
+
+const listProduct = await getCollection("Product");
+---
+
+<LayoutShop>
+  <HeroShop />
+  <SectionGridProduct />
+</LayoutShop>

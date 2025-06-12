@@ -48,7 +48,6 @@ export const postInSanity = defineCollection({
                         alt
                     }
                 }
-              
         }
             `,
         );

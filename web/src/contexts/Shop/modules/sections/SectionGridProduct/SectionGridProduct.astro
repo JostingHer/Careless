@@ -1,0 +1,15 @@
+---
+import type { Data } from "@/common/astro";
+import SectionContainer from "@/common/modules/SectionContainer/SectionContainer.astro";
+import CardProduct from "@/components/CardProduct/CardProduct.astro";
+import type { ProductEntry } from "@/contexts/Shop/infraestructure/ps-product-shop-collection";
+import { getCollection } from "astro:content";
+
+const productList = (await getCollection("Product")) as Data<ProductEntry>[];
+---
+
+<SectionContainer class:list={["c-section-grid-product"]}>
+  <div class="c-section-grid-product-list">
+    {productList.map((card) => <CardProduct _id={card.id} />)}
+  </div>
+</SectionContainer>

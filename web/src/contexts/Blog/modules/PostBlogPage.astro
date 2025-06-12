@@ -33,8 +33,6 @@ const category = data.category?._ref || "";
   {
     data.pageSections?.map((section, index) => {
       switch (section._type) {
-        case "banner":
-          return "";
         case "sectionMarkdown":
           return (
             <SectionContainer

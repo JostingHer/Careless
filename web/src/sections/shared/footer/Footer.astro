@@ -65,6 +65,7 @@ const authorLink = authorBlog
 <footer class="o-footer">
   <div class="c-footer">
     <a href={homeLink} class="footer__logo" set:html={logo_light_html} />
+
     <nav class="nav-footer">
       <div class="nav-footer__links">
         <HeaderLink class="footer__link" href={homeLink}>Home</HeaderLink>
@@ -97,7 +98,14 @@ const authorLink = authorBlog
           }
         </ul>
       </div>
-      <LanguageSelector class:list={"footer__link"} {...Astro.props} />
+      <div class="footer__language-selector">
+        <LanguageSelector
+          id={id}
+          ref={ref}
+          language={language as LANGUAGE}
+          collection={collection as CollectionKey}
+        />
+      </div>
     </nav>
   </div>
 </footer>

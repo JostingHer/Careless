@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import ProductPage from "@/contexts/Shop/modules/ProductPage.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const landingsList = await getCollection("Product");
+
+  const paths = landingsList.map((landing) => {
+    return {
+      params: {
+        product: landing.data.pathname,
+      },
+      props: {
+        data: landing.data,
+      },
+    };
+  });
+  //console.log("paths", paths);
+
+  return paths;
+}
+
+const { data } = Astro.props;
+---
+
+<ProductPage _id={data._id} />

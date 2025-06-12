@@ -1,4 +1,5 @@
 ---
+import type { ApiResponse } from "@/common/shop";
 export const prerender = false;
 
 import Icon from "@/components/ui/Icon.astro";
@@ -8,36 +9,25 @@ import Icon from "@/components/ui/Icon.astro";
 const response = await fetch(
   "https://shop.becareless.es/rest/bootstrap?with_all_images=1&menu_with_images=all"
 );
-const data = await response.json();
+const data = (await response.json()) as ApiResponse;
 ---
+
+<h1>Pagina de testing api prestashop</h1>
 
 <pre>
   <code>
-    {JSON.stringify(data, null, 2)}
+    {JSON.stringify(data.psdata.featuredProductsList[0], null, 2)}
   </code>
 </pre>
 
-<div>
-  <h1>hola jost</h1>
-  <Icon name="favicon" class="favicon_svg" />
+<pre>
+  <code>
+    {JSON.stringify(data.psdata.featuredProductsList[1], null, 2)}
+  </code>
+</pre>
 
-  {
-    data.psdata.featuredProductsList[0].images.map((image) => (
-      <img src={image.large.url} alt={image.legend} />
-    ))
-  }
-
-  <style>
-    body {
-      font-family: "Inter", sans-serif;
-      background-color: #111111;
-      color: #333;
-    }
-
-    .favicon_svg {
-      fill: red;
-      height: 20px;
-      width: 10px;
-    }
-  </style>
-</div>
+<pre>
+  <code>
+    {JSON.stringify(data.psdata.featuredProductsList[2], null, 2)}
+  </code>
+</pre>

@@ -1,0 +1,103 @@
+---
+// import LegalLinks from "@/landings/legal/sections/LegalLinks/LegalLinks.astro";
+import {
+  DEFAULT_LANGUAGE,
+  type LANGUAGE,
+} from "@global-shared/translations/domain/languages";
+import LanguageSelector from "@/components/LanguageSelector/LanguageSelector.astro";
+import type { CollectionKey } from "astro:content";
+import { getCollection } from "astro:content";
+import type { Data, SharedContext } from "@/common/astro";
+import { logo_light_html } from "@/assets/icons/html/company-elements";
+import type { HomeBlogEntry } from "@/contexts/Blog/infraestructure/sanity-home-blog-collection";
+import type { CategoryEntry } from "@/contexts/Blog/infraestructure/sanity-category-blog-collection";
+import HeaderLink from "@/sections/shared/header/HeaderLink.astro";
+import type { AuthorEntry } from "@/contexts/Blog/infraestructure/sanity-author-blog-collection";
+
+type Props = SharedContext;
+
+const { language = DEFAULT_LANGUAGE, collection, ref, id } = Astro.props;
+
+const homeCollection = (await getCollection(
+  "HomeBlog"
+)) as Data<HomeBlogEntry>[];
+
+const homeLink = homeCollection
+  .map((home) => {
+    const { id, data } = home;
+    const { language, slug } = data;
+    return {
+      link: slug,
+      lang: language,
+    };
+  })
+  .filter((home) => home.lang === language)[0].link;
+
+const categoryBlog = (await getCollection("Category")) as Data<CategoryEntry>[];
+
+const categoryLink = categoryBlog
+  .map((category) => {
+    const { id, data } = category;
+    const { language, slug, name } = data;
+    return {
+      link: slug,
+      lang: language,
+      name,
+    };
+  })
+  .filter((category) => category.lang === language);
+
+const authorBlog = (await getCollection("Author")) as Data<AuthorEntry>[];
+
+const authorLink = authorBlog
+  .map((category) => {
+    const { id, data } = category;
+    const { language, slug, name } = data;
+    return {
+      link: slug,
+      lang: language,
+      name,
+    };
+  })
+  .filter((category) => category.lang === language);
+---
+
+<footer class="o-footer">
+  <div class="c-footer">
+    <a href={homeLink} class="footer__logo" set:html={logo_light_html} />
+
+    <nav class="nav-footer">
+      <div class="nav-footer__links">
+        <HeaderLink class="footer__link" href={homeLink}>Home</HeaderLink>
+      </div>
+      <div class="nav-footer__categories">
+        <span class="footer__link">Blog</span>
+        <ul class="nav-footer__categories">
+          {
+            categoryLink.map((category) => (
+              <li>
+                <HeaderLink class="footer__link" href={category.link}>
+                  {category.name}
+                </HeaderLink>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="nav-footer__categories">
+        <span class="footer__link">Socios</span>
+        <ul class="nav-footer__categories">
+          {
+            authorLink.map((author) => (
+              <li>
+                <HeaderLink class="footer__link" href={author.link}>
+                  {author.name}
+                </HeaderLink>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </nav>
+  </div>
+</footer>

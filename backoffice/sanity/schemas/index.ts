@@ -20,7 +20,7 @@ export const schemaTypes = [
     metadata,
     photo,
     video,
-    cta,
+    //cta,
     attachedInSanity,
 
     // objects
@@ -44,8 +44,8 @@ export const schemaTypes = [
     author,
     category,
 
-    legal,
-    popups,
-    shared,
-    setting,
+    //legal,
+    //popups,
+    //shared,
+    // setting,
 ]

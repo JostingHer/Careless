@@ -3,6 +3,7 @@ import type { Metadata, Photo, Theme } from "./sanity/sanity.types";
 
 export type LandingPage = {
     slug: string;
+    pathname: string;
     id: string;
     language: LANGUAGE;
     ref: string;

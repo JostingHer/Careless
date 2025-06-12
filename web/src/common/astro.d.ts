@@ -8,8 +8,8 @@ export type Data<T> = {
 };
 
 export type SharedContext = {
-    id: string;
-    language: LANGUAGE;
-    collection: CollectionKey;
-    ref: string;
+    id?: string;
+    language?: LANGUAGE;
+    collection?: CollectionKey;
+    ref?: string;
 };

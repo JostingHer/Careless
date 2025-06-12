@@ -1,0 +1,49 @@
+---
+import type { Data } from "@/common/astro";
+import type { ProductEntry } from "@/contexts/Shop/infraestructure/ps-product-shop-collection";
+import { GET } from "@/pages/api/products";
+import { getEntry } from "astro:content";
+
+type props = {
+  _id: string;
+};
+
+const { _id } = Astro.props as props;
+
+const getproductById = (await getEntry("Product", _id)) as Data<ProductEntry>;
+---
+
+<article class="m-card-product">
+  <div class="card-product__canvas">
+    <img
+      class="card-product__image card-product__image--visible"
+      src={getproductById.data.images[0].bySize.large_default.url}
+    />
+    <img
+      class="card-product__image card-product__image--hidden"
+      src={getproductById.data.images[1].bySize.large_default.url}
+    />
+  </div>
+
+  <div class="card-product__data">
+    <div>
+      <span>New!</span>
+      <a href={getproductById.data.pathname} class="card-product__title">
+        <h2>{getproductById.data.name}</h2>
+      </a>
+    </div>
+    <h2 class="card-product__price">{getproductById.data.price}</h2>
+  </div>
+</article>
+
+<script>
+  import { navigate } from "astro:transitions/client";
+  const cardproducts = document.querySelectorAll(".m-card-product");
+
+  cardproducts.forEach((cardproduct) => {
+    cardproduct.addEventListener("click", () => {
+      const link = cardproduct.querySelector("a") as HTMLAnchorElement;
+      navigate(link.href);
+    });
+  });
+</script>

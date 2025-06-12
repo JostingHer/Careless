@@ -1,0 +1,56 @@
+---
+const heroImageUrl =
+  "https://images.pexels.com/photos/2466756/pexels-photo-2466756.jpeg";
+const modelImageUrl =
+  "https://images.pexels.com/photos/2772535/pexels-photo-2772535.jpeg";
+---
+
+<section class="hero-shop">
+  <div class="hero-shop__container">
+    <div class="hero-shop__content">
+      <div class="hero-shop__brand">
+        <h1 class="hero-shop__title">·C@reless·</h1>
+        <p class="hero-shop__subtitle">Break the code of fashion</p>
+      </div>
+    </div>
+
+    <div class="hero-shop__visuals">
+      <div class="hero-shop__image-container hero-shop__image-container--main">
+        <img
+          src={heroImageUrl}
+          alt="Street dancer wearing bec@reless clothing"
+          class="hero-shop__image"
+          loading="eager"
+        />
+        <div class="hero-shop__image-glitch"></div>
+      </div>
+      <div
+        class="hero-shop__image-container hero-shop__image-container--secondary"
+      >
+        <img
+          src={modelImageUrl}
+          alt="Urban fashion model in bec@reless style"
+          class="hero-shop__image"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <div class="hero-shop__decorative">
+      <div class="hero-shop__grid"></div>
+      <div class="hero-shop__circle"></div>
+      <div class="hero-shop__triangle"></div>
+      <div class="hero-shop__square"></div>
+    </div>
+
+    <div class="hero-shop__tagline">
+      <div class="hero-shop__tag-container">
+        <span class="hero-shop__tag-item">Street</span>
+        <span class="hero-shop__tag-divider"></span>
+        <span class="hero-shop__tag-item">Dance</span>
+        <span class="hero-shop__tag-divider"></span>
+        <span class="hero-shop__tag-item">Future</span>
+      </div>
+    </div>
+  </div>
+</section>

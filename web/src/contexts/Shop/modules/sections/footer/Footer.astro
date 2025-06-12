@@ -11,7 +11,7 @@ import type { Data, SharedContext } from "@/common/astro";
 import { logo_light_html } from "@/assets/icons/html/company-elements";
 import type { HomeBlogEntry } from "@/contexts/Blog/infraestructure/sanity-home-blog-collection";
 import type { CategoryEntry } from "@/contexts/Blog/infraestructure/sanity-category-blog-collection";
-import HeaderLink from "../header/HeaderLink.astro";
+import HeaderLink from "@/sections/shared/header/HeaderLink.astro";
 import type { AuthorEntry } from "@/contexts/Blog/infraestructure/sanity-author-blog-collection";
 
 type Props = SharedContext;
@@ -97,14 +97,6 @@ const authorLink = authorBlog
             ))
           }
         </ul>
-      </div>
-      <div class="footer__language-selector">
-        <LanguageSelector
-          id={id}
-          ref={ref}
-          language={language as LANGUAGE}
-          collection={collection as CollectionKey}
-        />
       </div>
     </nav>
   </div>

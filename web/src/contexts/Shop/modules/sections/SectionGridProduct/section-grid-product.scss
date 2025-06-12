@@ -26,7 +26,7 @@
     --gap: clamp(0.5rem, 2vw, 1.5rem);
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--gap);
 
     .m-card-product {

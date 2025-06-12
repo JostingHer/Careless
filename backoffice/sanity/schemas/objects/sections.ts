@@ -28,7 +28,7 @@ export const sections = defineType({
         {
             type: 'sectionCarouselPostFilter',
             name: 'sectionCarouselPostFilter',
-            title: 'Carrusel Filtrado de Posts',
+            title: 'Estilo pinterest filtrar por categoría',
             options: {
                 collapsible: true,
                 collapsed: true,

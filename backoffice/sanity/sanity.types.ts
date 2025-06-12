@@ -46,45 +46,6 @@ export type Geopoint = {
   alt?: number
 }
 
-export type Setting = {
-  _id: string
-  _type: 'setting'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  siteUrl?: string
-  legalName?: string
-  comercialName?: string
-  foundingDate?: string
-  googleMapsUrl?: string
-}
-
-export type SharedSection = {
-  _id: string
-  _type: 'sharedSection'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  language?: 'es' | 'en'
-  banner?: Banner
-}
-
-export type Legal = {
-  _id: string
-  _type: 'legal'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  slug?: Slug
-  language?: 'es' | 'en'
-  metas?: Metadata
-  summary?: Summary
-  ref?: string
-  content?: string
-}
-
 export type Post = {
   _id: string
   _type: 'Post'
@@ -105,22 +66,9 @@ export type Post = {
   }
   hero?: HeroPost
   pageSections?: Array<
-    | {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        _key: string
-        [internalGroqTypeReferenceTo]?: 'sharedSection'
-      }
-    | ({
-        _key: string
-      } & SectionBasic)
-    | ({
-        _key: string
-      } & Banner)
-    | ({
-        _key: string
-      } & SectionMarkdown)
+    {
+      _key: string
+    } & SectionMarkdown
   >
   category?: {
     _ref: string
@@ -204,22 +152,9 @@ export type HomeBlog = {
 }
 
 export type PostSections = Array<
-  | {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      _key: string
-      [internalGroqTypeReferenceTo]?: 'sharedSection'
-    }
-  | ({
-      _key: string
-    } & SectionBasic)
-  | ({
-      _key: string
-    } & Banner)
-  | ({
-      _key: string
-    } & SectionMarkdown)
+  {
+    _key: string
+  } & SectionMarkdown
 >
 
 export type Sections = Array<
@@ -392,30 +327,6 @@ export type AttachedInSanity = {
     caption?: string
     _type: 'file'
   }
-}
-
-export type Cta = {
-  _type: 'cta'
-  type?: 'link' | 'popup'
-  url?: string
-  popupRef?: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'popup'
-  }
-  buttonStyle?: 'primary' | 'secondary' | 'tertiary'
-}
-
-export type Popup = {
-  _id: string
-  _type: 'popup'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  language?: 'es' | 'en'
-  copy?: string
-  image?: Photo
 }
 
 export type Video = {
@@ -608,9 +519,6 @@ export type AllSanitySchemaTypes =
   | SanityImagePalette
   | SanityImageDimensions
   | Geopoint
-  | Setting
-  | SharedSection
-  | Legal
   | Post
   | Author
   | HomeBlog
@@ -626,8 +534,6 @@ export type AllSanitySchemaTypes =
   | HeroBasic
   | HeroHome
   | AttachedInSanity
-  | Cta
-  | Popup
   | Video
   | Photo
   | Metadata

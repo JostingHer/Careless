@@ -39,11 +39,12 @@ export function getMediaListOptimized(
 ): MediaOptimized[] {
     if (!mediaList) return [];
     const optimizedList = mediaList.map((media) => {
-        if (media._type.includes("photo") && media?.photo) {
+        if (media?._type.includes("photo") && media?.photo) {
+            const serializedPhoto = media.photo as Reference;
             return {
                 ...media,
                 photo: {
-                    url: getOptimizedImage(media.photo).url(),
+                    url: getOptimizedImage(serializedPhoto).url(),
                     caption: media.photo?.caption,
                     hotspot: media.photo?.hotspot,
                 },
@@ -56,8 +57,17 @@ export function getMediaListOptimized(
 
     if (!onlyPhoto && !onlyVideo) return optimizedList;
 
-    if (onlyPhoto)
-        return optimizedList.filter((media) => media._type.includes("photo"));
+    if (onlyPhoto) {
+        const array = optimizedList.filter((media) => {
+            if (!media._type) {
+                console.warn("Media type is undefined", media);
+                return false;
+            }
+            return media._type.includes("photo");
+        });
+
+        return array;
+    }
     if (onlyVideo)
         return optimizedList.filter((media) => media._type.includes("video"));
 

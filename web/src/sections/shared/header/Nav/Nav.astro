@@ -16,7 +16,7 @@ const { show = true } = Astro.props as Props;
 const { language = DEFAULT_LANGUAGE, collection, ref, id } = Astro.props;
 
 const homeCollection = (await getCollection(
-  "HomeBlog"
+  "HomeBlog",
 )) as Data<HomeBlogEntry>[];
 
 const homeLink = homeCollection
@@ -96,5 +96,4 @@ const authorLink = authorBlog
       }
     </ul>
   </details>
-  <HeaderLink class="header__link" href="/shop/">Shop</HeaderLink>
 </nav>
